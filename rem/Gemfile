@@ -1,33 +1,42 @@
 source 'http://rubygems.org'
 
+# Ruby on Rails v3.1.0
 gem 'rails', '3.1.0'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
+# DBMS
 gem 'sqlite3'
+gem 'pg', :require => 'pg', :group => [:production]
 
+# Asset template engines
+gem 'sass-rails', '~> 3.1.0'
+gem 'coffee-script'
+gem 'uglifier'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
-end
-
+# JS
 gem 'jquery-rails'
+gem 'execjs'
+gem 'therubyracer'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# Internationalization
+gem 'gettext_i18n_rails'
+gem "fast_gettext", '>= 0.5'
+gem "gettext", '>= 1.9.3', :require => false
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :test do
-  # Pretty printed test output
+# Some gems available only in development and test environments
+group :development, :test do
+  gem 'nifty-generators'
+  gem 'jasmine'
+  gem 'rspec-rails'
   gem 'turn', :require => false
 end
+
+# Some test-exclusive gems
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'rb-inotify'
+  gem 'database_cleaner'
+end
+
+

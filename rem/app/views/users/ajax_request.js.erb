@@ -1,0 +1,6 @@
+<% if @ajax_response[:dest] ==  'existing_name' %>
+  $('#existing_name').html("<%= escape_javascript(@ajax_response[:value]) %>");
+<% end %>
+<% if @ajax_response[:dest] == 'email_error' %>
+  $('#email_error').html("<%= escape_javascript(@ajax_response[:value]) %>");
+<% end %>

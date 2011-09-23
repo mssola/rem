@@ -19,27 +19,28 @@
 
 
 ##
-# == ApplicationController Class Definition
+# == UsersController Class Definition
 #
-# The ApplicationController for this website. It currently defines
-# just a single extra helper method: current_user.
-class ApplicationController < ActionController::Base
-  protect_from_forgery
-  helper_method :current_user
+# NOTE: Under construction
+class UsersController < ApplicationController
+  # This class responds to Ajax requests.
+  include Hermes::AjaxRequest
 
-  # Setting gettext locale
-  before_filter :set_gettext_locale
+  def index; end
 
-  private
+  def new
+    @user = User.new
+  end
 
-  ##
-  # Get the current logged in user.
-  #
-  # @return *User* The current logged in user, nil if there's
-  # no currently logged in user.
-  def current_user #:doc:
-    if cookies[:auth_token]
-      @current_user ||= User.find_by_auth_token!(cookies[:auth_token])
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      cookies[:auth_token] = @user.auth_token
+      redirect_to profile_url(@user), :notice => _('Signed up!')
+    else
+      render 'new'
     end
   end
+
+  def show; end
 end

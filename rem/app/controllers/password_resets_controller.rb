@@ -19,27 +19,30 @@
 
 
 ##
-# == ApplicationController Class Definition
+# == PasswordResetsController Class Definition
 #
-# The ApplicationController for this website. It currently defines
-# just a single extra helper method: current_user.
-class ApplicationController < ActionController::Base
-  protect_from_forgery
-  helper_method :current_user
+# NOTE: Under construction
+class PasswordResetsController < ApplicationController
+  def new; end
 
-  # Setting gettext locale
-  before_filter :set_gettext_locale
+  def create
+    user = User.find_by_email(params[:email])
+    user.send_password_reset if user
+    redirect_to root_url, :notice => _('Email sent with password reset instructions.')
+  end
 
-  private
+  def edit
+    @user = User.find_by_password_reset_token!(params[:id])
+  end
 
-  ##
-  # Get the current logged in user.
-  #
-  # @return *User* The current logged in user, nil if there's
-  # no currently logged in user.
-  def current_user #:doc:
-    if cookies[:auth_token]
-      @current_user ||= User.find_by_auth_token!(cookies[:auth_token])
+  def update
+    @user = User.find_by_password_reset_token!(params[:id])
+    if @user.password_reset_sent_at < 2.hours.ago
+      redirect_to new_password_reset_path, :alert => _('Password reset has expired.')
+    elsif @user.update_attributes(params[:user])
+      redirect_to root_url, :notice => _('Password has been reset!')
+    else
+      render :edit
     end
   end
 end

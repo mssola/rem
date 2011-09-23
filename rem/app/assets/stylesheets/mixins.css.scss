@@ -1,0 +1,40 @@
+/*
+ * Let's just define here some utilities that can be used by
+ * all the other scss files.
+ */
+
+
+/* Define here the colors */
+
+$white: #FFF;
+$black: #000000;
+$red: #D00;
+$blue: #4B7399;
+$button_blue: #39d;
+$icy_blue: #ACE;
+$royal_blue: #3A5FCD;
+
+
+/* And now the mixins */
+
+@mixin error-base-style {
+  display: inline;
+  color: $red;
+  padding-left: 5px;
+}
+
+@mixin set_opacity($value) {
+  opacity: $value;
+  filter: alpha(opacity = ($value * 100));
+
+  &:hover {
+    opacity: 1.0;
+    filter: alpha(opacity = 100);
+  }
+}
+
+@mixin borders($radius: 4px) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+ 

@@ -1,0 +1,56 @@
+
+
+@import "mixins.css.scss";
+
+/*
+ * The following rules apply to the l_submit button.
+ */
+
+.r_submit {
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  background: $button_blue repeat-x scroll 0 0;
+  border:1px solid $button_blue;
+  color: $white;
+  text-shadow:0 -1px 0 $button_blue;
+  padding:4px 10px 5px;
+  font-size:11px;
+  margin:0 5px 0 0;
+  font-weight:bold;
+
+  &:hover, &:focus {
+    background-position:0 -5px;
+    background: darken($button_blue, 5%);
+    border:1px solid $royal_blue;
+    text-shadow:0 -1px 0 $royal_blue;
+    color: $white;
+    cursor:pointer;
+  }
+}
+
+.r_submit::-moz-focus-inner {
+  padding:0;
+  border:0;
+}
+
+
+/* Text and password fields */
+
+@mixin field_base {
+  @include set_opacity(0.8);
+  @include borders;
+  display:block;
+  border:1px solid $icy_blue;
+  font-size:13px;
+  margin:0 0 5px;
+  padding:5px;
+  width:203px;
+}
+
+.r_text_field {
+  @include field_base;
+}
+
+.r_password_field {
+  @include field_base;
+} 
