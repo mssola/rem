@@ -36,11 +36,11 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      redirect_to profile_url(@user), :notice => _('Signed up!')
+      redirect_to root_url, :notice => _('Signed up!')
     else
       render 'new'
     end
   end
 
-  def show; end
+  def edit; end
 end

@@ -1,9 +1,7 @@
-<% title 'Linx' %>
+<% title 'Rem' %>
 
-<h1>Home page</h1>
-<p>Lalalala</p>
-
-
-<form method="get" action="signup" >
-  <%= r_submit 'Sign up' %>
-</form>
+<% if current_user.nil? %>
+  <%= render :template => 'home/_default' %>
+<% else %>
+  <%= render :template => 'home/_user' %>
+<% end %>
