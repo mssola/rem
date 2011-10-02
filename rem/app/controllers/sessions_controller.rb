@@ -33,10 +33,15 @@ class SessionsController < ApplicationController
       else
         cookies[:auth_token] = user.auth_token
       end
+      Cerber.remove_ip request.remote_ip
       redirect_to root_url, :notice => _('Logged in!')
     else
       flash.now.alert = _('Invalid email or password')
-      render "new"
+      if Cerber.should_continue?(request.remote_ip)
+        render 'new'
+      else
+        raise ActionController::RoutingError.new('Not Found')
+      end
     end
   end
 

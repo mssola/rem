@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    raise ActionController::RoutingError.new('Not Found') current_user.nil?
+    raise ActionController::RoutingError.new('Not Found') if current_user.nil?
   end
 
   def show
