@@ -43,4 +43,11 @@ class UsersController < ApplicationController
   end
 
   def edit; end
+
+  def show
+    @user = User.find_by_name(params[:name])
+    respond_to do |format|
+      format.xml { render :xml => @user.to_xml }
+    end
+  end
 end

@@ -49,6 +49,17 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
+  ##
+  # Override the to_xml method to limit the fields returned
+  #
+  # @param *Hash* options Options passed to this method
+  def to_xml(options = {})
+    except = [:updated_at, :password_digest, :password_reset_token,
+              :password_reset_sent_at, :auth_token]
+    options.merge!(:except => except)
+    super(options)
+  end
+
   private
 
   ##
