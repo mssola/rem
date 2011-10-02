@@ -42,7 +42,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    raise ActionController::RoutingError.new('Not Found') current_user.nil?
+  end
 
   def show
     @user = User.find_by_name(params[:name])
