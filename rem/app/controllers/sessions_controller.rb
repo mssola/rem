@@ -21,10 +21,19 @@
 ##
 # == SessionsController Class Definition
 #
-# NOTE: Under construction
+# The controller for the sessions. It keeps track if a given user
+# is logging in or logging out. It stores the authentication
+# token to the cookies. Plus, if a given IP is failing too much
+# at logging in, this IP is black-listed for security reasons.
 class SessionsController < ApplicationController
+  ##
+  # The _new_ method. It does nothing.
   def new; end
 
+  ##
+  # The _create_ method. It creates a new session for a user. This
+  # method is called when the user clicked on of the log in buttons.
+  # It also handles the cookies and if a given IP should be black-listed.
   def create
     user = find_name_or_email(params[:name_or_email])
     if user && user.authenticate(params[:password])
@@ -45,6 +54,9 @@ class SessionsController < ApplicationController
     end
   end
 
+  ##
+  # The _destroy_ method. It deletes the authentication token on the
+  # cookies and redirects the user to the root url.
   def destroy
     cookies.delete(:auth_token)
     redirect_to root_url, :notice => _('Logged out!')
@@ -52,6 +64,11 @@ class SessionsController < ApplicationController
 
   private
 
+  ##
+  # Auxiliar method that finds a user by his email if the given parameter
+  # is certaintly an email or otherwise by his username.
+  #
+  # @param *String* param a username or an email.
   def find_name_or_email(param)
     if valid_email? param
       User.find_by_email(param)
@@ -60,6 +77,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  ##
+  # Checks if the given parameter is a valid email.
+  #
+  # @param *String* email The email to be checked.
+  #
+  # @return *Boolean* True if the parameter is really an email,
+  # false otherwise.
   def valid_email?(email)
     /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.match(email)
   end
