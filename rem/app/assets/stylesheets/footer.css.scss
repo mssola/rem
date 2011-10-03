@@ -1,0 +1,30 @@
+
+
+#footer {
+  position:relative;
+  bottom:0;
+  color:#636363;
+  margin:45px 0 0 0;
+  font-size:12px;
+
+  li {
+    list-style:none;
+  }
+
+  ul.footer_nav {
+    position:relative;
+    float:left;
+    width:164px;
+    margin:20px 10px;
+  }
+
+  h4 {
+    margin-bottom:5px;
+    padding-bottom:5px;
+    border-bottom:thin solid #e1e1e1;
+  }
+}
+
+a:hover {
+  text-decoration:underline;
+}

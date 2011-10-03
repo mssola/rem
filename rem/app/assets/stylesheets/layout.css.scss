@@ -6,10 +6,11 @@
 
 @import "mixins.css.scss";
 @import "login.css.scss";
+@import "footer.css.scss";
 
 
 body {
-  background-color: $blue;
+  background-color: $white;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }

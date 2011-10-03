@@ -16,14 +16,13 @@
         Logged in as <%= current_user.name %>
         <%= link_to "Log out", logout_path %> |
         <%= link_to "Profile", "#{current_user.name}" %> |
-        <%= link_to 'Delete', delete_account_path(current_user.id) %>
-<!--         <%= link_to "Delete Account", :method => :delete, :confirm => "Are you sure?" %> -->
-<!--         <%= link_to "Delete Account", user_path(current_user), :action => :delete %> -->
+        <%= link_to 'Delete Account', delete_account_path(current_user.id) %>
       <% end %>
       <% flash.each do |key, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{key}", :class => :flashy %>
       <% end %>
       <%= yield %>
     </div>
+    <%= render :template => 'layouts/_footer' %>
   </body>
 </html>
