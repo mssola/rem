@@ -8,7 +8,7 @@ Rem::Application.routes.draw do
 
   # Rest API
   # TODO: what about collections ?
-  get "/getUser/:name" => "users#show"
+  get "/users/:name" => "users#show"
 
   resources :users, :sessions, :password_resets
 end

@@ -60,6 +60,14 @@ class User < ActiveRecord::Base
     super(options)
   end
 
+  ##
+  # Override the as_json method to limit the fields returned.
+  #
+  # @param *Hash* options Options passed to this method. Unused.
+  def as_json(options = {})
+    { name: self.name, email: self.email, created_at: self.created_at }
+  end
+
   private
 
   ##

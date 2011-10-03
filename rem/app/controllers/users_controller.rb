@@ -49,7 +49,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_name(params[:name])
     respond_to do |format|
-      format.xml { render :xml => @user.to_xml }
+      format.json { render :json => @user.to_json }
+      format.any(:xml, :html) { render :xml => @user.to_xml }
     end
   end
 end
