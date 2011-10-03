@@ -44,9 +44,11 @@ module RemWidgets
   # text_field_tag definition.
   #
   # @param *String* name The name for this tag.
-  def r_field(kind, name)
+  #
+  # @param *String* value The value for this field. Default value of nil.
+  def r_field(kind, name, value = nil)
     aux = kind.to_s + '_field'
-    method(aux + '_tag').call(name, nil, { :class => 'r_' + aux })
+    method(aux + '_tag').call(name, value, { :class => 'r_' + aux })
   end
 
   ##

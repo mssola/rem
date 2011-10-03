@@ -16,7 +16,7 @@
         <%= r_label :remember_me %>
       </p>
       <p><%= link_to _('Forgotten password?'), new_password_reset_path,
-      :title => 'Click here if you do not remeber your password' %></p>
+      :title => 'Click here if you do not remeber your password', :id => 'password' %></p>
       <p><%= link_to _('Log in by using your Facebook or Twitter accounts.'), login_path,
       :title => 'You can also log in by using your Facebook or Twitter accounts.' %></p>
     <% end %>

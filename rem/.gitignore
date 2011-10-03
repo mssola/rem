@@ -14,5 +14,4 @@ config/*.yml
 config.ru
 Gemfile.lock
 .rvmrc
-.rspec
 Guardfile

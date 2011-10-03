@@ -22,6 +22,7 @@ gem 'gettext_i18n_rails'
 gem "fast_gettext", '>= 0.5'
 gem "gettext", '>= 1.9.3', :require => false
 
+
 # Some gems available only in development and test environments
 group :development, :test do
   gem 'nifty-generators'
@@ -35,6 +36,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'libnotify'
   gem 'rb-inotify'
   gem 'database_cleaner'
 end
