@@ -7,7 +7,6 @@ Rem::Application.routes.draw do
   root to: 'home#index'
 
   # Rest API
-  # TODO: what about collections ?
   get "/users/:name" => "users#show"
 
   resources :users, :sessions, :password_resets

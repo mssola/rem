@@ -20,11 +20,12 @@
 ##
 # == Cerber Class Definition
 #
-# Cerber is a class that stores IP's. It's used to check if a given
+# Cerber is a singleton class that stores IP's. It's used to check if a given
 # IP can be dangerous (i.e. it's trying to login repeatedly with incorrect
 # parameters). This class should be initialized with all the other Rails
 # initializers so you can configure how many attempts do you want a specific
-# IP to have.
+# IP to have. The name is the catalan name for Kerberos, the guardian dog
+# of the Hades according to greek mythology.
 class Cerber
   ##
   # Initialize this class.
