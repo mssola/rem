@@ -1,9 +1,12 @@
+
+<p>Let's show some info about <b><%= current_user.name %></b>:</p>
+
 <% @rejects = ["created_at", "updated_at"] %>
 <% @columns = User.column_names - @rejects %>
 <% @columns.each_with_index do |c, i| %>
   <% next if (c =~ /^password_/ or c =~ /^auth_/) %>
   <p id="p<%= i %>" class="check">
-    <span class="title"><%= c %>:</span>
+    <span class="title"><b><%= c %></b>:</span>
     <span class="value"><%= current_user.send(c) %></span>
   </p>
 <% end %>

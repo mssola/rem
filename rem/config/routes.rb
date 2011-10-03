@@ -4,6 +4,7 @@ Rem::Application.routes.draw do
   get 'signup' => 'users#new', as: 'signup'
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
   get ':name' => "users#edit"
+  get 'delete_account/:id' => 'users#destroy', as: 'delete_account'
   root to: 'home#index'
 
   # Rest API

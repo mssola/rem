@@ -21,7 +21,10 @@
 ##
 # == UsersController Class Definition
 #
-# The controller for the users.
+# The controller for the users. It can create new users through the Sign Up
+# form. It can edit users through de dashboard and show users through the
+# Rest API. A user can also delete his account so this controller must
+# handle the destroy method too.
 class UsersController < ApplicationController
   # This class responds to Ajax requests.
   include Hermes::AjaxRequest
@@ -66,5 +69,16 @@ class UsersController < ApplicationController
       format.json { render :json => @user.to_json }
       format.any(:xml, :html) { render :xml => @user.to_xml }
     end
+  end
+
+  ##
+  # The _destroy_ method. This method is called when the user decided to
+  # delete his account. At this point, this method will destroy the
+  # user on our database and delete the auth_token on the cookies.
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    cookies.delete(:auth_token)
+    redirect_to root_url, :notice => _('Account deleted')
   end
 end
