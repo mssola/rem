@@ -21,10 +21,7 @@
 ##
 # == HomeController Class Definition
 #
-# Controller for the Home page. It does nothing at all and
-# it only implements the index method.
+# Controller for the Home page.
 class HomeController < ApplicationController
-  ##
-  # Index method for the controller.
-  def index; end
+  # There's nothing to do here
 end
