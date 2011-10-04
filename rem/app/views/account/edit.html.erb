@@ -1,6 +1,17 @@
 
 <br>
 
-This is you
+<% present current_user do |user_presenter| %>
+  <div id="account">
+    <dl>
+      <dt>Username</dt>
+      <dd><%= user_presenter.name %></dd>
+      <dt>Member since</dt>
+      <dd><%= user_presenter.member_since %></dd>
+    </dl>
+  </div>
+<% end %>
 
-<%= current_user.name %>
+<br>
+
+<%= link_to 'Delete Account', delete_account_path(current_user.id) %>

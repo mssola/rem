@@ -16,8 +16,7 @@
         Logged in as <%= current_user.name %>
         <%= link_to 'Log out', logout_path %> |
         <%= link_to 'Profile', "#{current_user.name}" %> |
-        <%= link_to 'Account Settings', account_path %> |
-        <%= link_to 'Delete Account', delete_account_path(current_user.id) %>
+        <%= link_to 'Account Settings', account_path %>
       <% end %>
       <% flash.each do |key, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{key}", :class => :flashy %>
