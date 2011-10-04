@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110923060613) do
+ActiveRecord::Schema.define(:version => 20111004150037) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(:version => 20110923060613) do
     t.datetime "password_reset_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "full_name"
+    t.string   "twitter_name"
+    t.string   "url"
+    t.text     "bio"
   end
 
 end
