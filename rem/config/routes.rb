@@ -10,6 +10,8 @@ Rem::Application.routes.draw do
   get 'about' => "home#about"
   get 'overview' => "home#overview"
   get 'contact' => "home#contact"
+  get 'api' => "home#api"
+  get 'help' => "home#help"
 
   # Rest API
   get "/users/:name" => "users#show"

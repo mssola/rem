@@ -1,0 +1,26 @@
+
+<h2>This is the API page</h2>
+
+This is the provisional API page for the Rem service. Right now, it implements
+the following methods:
+
+<br><br>
+
+<b>Getting user information</b>
+
+<br><br>
+
+In order to get the info about a single user, we can call to the url following
+the format /users/:name. After doing this we will obtain the info of the
+user with name :name in XML format if it was specified to be an XML or in
+JSON format otherwise. For example, imagine we are doing:
+curl localhost:3000/users/mssola; The obtained result will be:
+
+<br><br>
+
+{"name":"mssola","email":"mikisabate@gmail.com","created_at":"2011-10-03T18:23:54Z","id":2}
+
+<br><br>
+
+If you appended .xml to the name of the user, the result's format would have
+also been in XML format.

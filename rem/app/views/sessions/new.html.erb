@@ -5,12 +5,12 @@
 <%= form_tag sessions_path do %>
   <div class="field">
     <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
+    <%= r_field :text, :email, params[:email] %>
   </div>
   <div class="field">
     <%= label_tag :password %>
-    <%= password_field_tag :password %>
+    <%= r_field :password, :login_password %>
   </div>
   <p><%= link_to "forgotten password?", new_password_reset_path %></p>
-  <div class="actions"><%= submit_tag "Log in" %></div>
+  <div class="actions"><%= r_submit 'Log in' %></div>
 <% end %>
