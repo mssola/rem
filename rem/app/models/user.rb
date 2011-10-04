@@ -65,10 +65,10 @@ class User < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method. Unused.
   def as_json(options = {})
-    {
-      name: self.name, email: self.email, created_at: self.created_at,
-      id: self.id
-    }
+    except = [:updated_at, :password_digest, :password_reset_token,
+              :password_reset_sent_at, :auth_token]
+    options ||= { except: except }
+    super(options)
   end
 
   private
