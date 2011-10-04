@@ -30,8 +30,51 @@ class UserPresenter < BasePresenter
   delegate :name, to: :user
 
   ##
+  # Show your full_name if it was given, it will show your username otherwise.
+  def full_name
+    user.full_name.present? ? user.full_name : user.name
+  end
+
+  ##
   # Show how long this user is registered on our website.
   def member_since
     user.created_at.strftime("%e %B %Y")
+  end
+
+  ##
+  # Show a link to your website.
+  def website
+    handle_none user.url do
+      link_to(user.url, user.url)
+    end
+  end
+
+  ##
+  # Show a link to your twitter account.
+  def twitter
+    handle_none user.url do
+      link_to(user.url, "http://twitter.com/#{user.twitter_name}")
+    end
+  end
+
+  ##
+  # Show your bio.
+  def bio
+    # TODO: maybe some markdown?
+    handle_none user.bio
+  end
+
+  private
+
+  ##
+  # Handle when we want to show an attribute that may not have been given.
+  #
+  # @param *String* value The attribute we want to show.
+  def handle_none(value)
+    if value.present?
+      yield if block_given?
+    else
+      content_tag :span, 'None given', class: 'none'
+    end
   end
 end
