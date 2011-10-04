@@ -4,6 +4,8 @@ Rem::Application.routes.draw do
   get 'signup' => 'users#new', as: 'signup'
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
   get 'delete_account/:id' => 'users#destroy', as: 'delete_account'
+  get 'account' => 'account#edit', as: 'account'
+
   root to: 'home#index'
 
   # Footer

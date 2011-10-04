@@ -4,3 +4,4 @@ TODO:
 
 - Consider Presenters
 - In the API Page, what about putting some Markup ?
+- I think that the "manual" sign in is broken
