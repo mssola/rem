@@ -65,6 +65,7 @@ class UsersController < ApplicationController
   # the url specifies it, otherwise it will return a JSON object.
   def show
     @user = User.find_by_name(params[:name])
+    raise ActionController::RoutingError.new('Not Found') if @user.nil?
     respond_to do |format|
       format.json { render :json => @user.to_json }
       format.any(:xml, :html) { render :xml => @user.to_xml }
