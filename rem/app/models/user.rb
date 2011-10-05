@@ -54,9 +54,7 @@ class User < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method
   def to_xml(options = {})
-    except = [:updated_at, :password_digest, :password_reset_token,
-              :password_reset_sent_at, :auth_token]
-    options.merge!(:except => except)
+    options.merge!(except: private_columns)
     super(options)
   end
 
@@ -65,13 +63,18 @@ class User < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method. Unused.
   def as_json(options = {})
-    except = [:updated_at, :password_digest, :password_reset_token,
-              :password_reset_sent_at, :auth_token]
-    options ||= { except: except }
+    options ||= { except: private_columns }
     super(options)
   end
 
   private
+
+  ##
+  # Returns the most sensitive columns in this model
+  def private_columns
+    [:updated_at, :password_digest, :password_reset_token,
+     :password_reset_sent_at, :auth_token]
+  end
 
   ##
   # Generate an authorization token and assign it to the specified column.
