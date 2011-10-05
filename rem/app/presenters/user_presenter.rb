@@ -60,8 +60,7 @@ class UserPresenter < BasePresenter
   ##
   # Show your bio.
   def bio
-    # TODO: maybe some markdown?
-    handle_none user.bio
+    handle_none user.bio { markdown user.bio }
   end
 
   private

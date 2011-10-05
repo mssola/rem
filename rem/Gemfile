@@ -22,6 +22,9 @@ gem 'gettext_i18n_rails'
 gem "fast_gettext", '>= 0.5'
 gem "gettext", '>= 1.9.3', :require => false
 
+# Others
+gem 'redcarpet'
+
 
 # Some gems available only in development and test environments
 group :development, :test do

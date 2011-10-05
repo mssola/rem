@@ -50,9 +50,11 @@ class BasePresenter
   end
 
   ##
-  # TODO
+  # Produce some basic markdown for the given text.
+  #
+  # @param *String* text The text to beautify.
   def markdown(text)
-    # TODO
+    Redcarpet.new(text, :hard_wrap, :filter_html, :autolink).to_html.html_safe
   end
 
   ##
