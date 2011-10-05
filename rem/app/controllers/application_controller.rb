@@ -42,11 +42,4 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find_by_auth_token!(cookies[:auth_token])
     end
   end
-
-  ##
-  # TODO: WHY?
-  def present(object, klass = nil)
-    klass ||= "#{object.class}Presenter".constantize
-    klass.new(view_context, object)
-  end
 end
