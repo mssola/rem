@@ -61,27 +61,12 @@ module LayoutHelper
 
   ##
   # Sets the javascript of the page. This is a wrapper of
-  # the javascript_include_tag method. It also adds the following
-  # Javascript libraries:
-  # - jQuery
-  # - jQuery UI
+  # the javascript_include_tag method.
   #
   # @param *Argument* *List* args The args to pass to the
   # javascript_include_tag method.
   def javascript(*args)
-    content_for(:head) { javascript_include_tag(*jquery_urls) }
     content_for(:head) { javascript_include_tag(*args) }
-  end
-
-  private
-
-  ##
-  # Returns an array containing the urls of the jQuery and jQuery UI libs.
-  #
-  # @return *Array* that contains the urls of the jQuery and jQuery UI libs.
-  def jquery_urls #:doc:
-    [ "https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js",
-      "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"]
   end
 end
  

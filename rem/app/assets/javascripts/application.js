@@ -19,6 +19,9 @@
  */
 
 
+//= require jquery
+//= requrie jquery_ujs
+//= require jquery-ui
 //= require flash
 //= require users
 
