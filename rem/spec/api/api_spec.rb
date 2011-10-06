@@ -7,6 +7,7 @@ describe 'Rest API' do
   Request.init('http://localhost:3000')
 
   describe 'User' do
+    # TODO: this user has to be on our database, it can be improved
     let(:user) { Factory(:user, :name => 'mssola') }
     let(:bad)  { Factory(:user, :name => 'i_am_not_in_the_db') }
 
