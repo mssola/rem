@@ -42,6 +42,8 @@ group :test do
   gem 'libnotify'
   gem 'rb-inotify'
   gem 'database_cleaner'
+  gem 'spork', '> 0.9.0.rc'
+  gem 'guard-spork'
 end
 
 
