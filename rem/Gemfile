@@ -25,25 +25,16 @@ gem "gettext", '>= 1.9.3', :require => false
 # Others
 gem 'redcarpet'
 
-
-# Some gems available only in development and test environments
-group :development, :test do
-  gem 'nifty-generators'
-  gem 'jasmine'
-  gem 'rspec-rails'
-  gem 'turn', :require => false
-end
-
-# Some test-exclusive gems
+# Some TDD candy
+gem "rspec-rails", :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
   gem 'libnotify'
-  gem 'rb-inotify'
-  gem 'database_cleaner'
   gem 'spork', '> 0.9.0.rc'
   gem 'guard-spork'
+  gem 'jasmine'
 end
 
 
