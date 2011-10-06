@@ -17,7 +17,10 @@ describe 'Rest API' do
       response[:email].should eql(user.attributes[:email])
     end
 
-    pending 'same as above but with failures'
+    it 'raises an exception when trying to access an invalid user' do
+      expect { Request.do_get("/users/#{user.bad}") }.to raise_error(NoMethodError)
+    end
+
     pending 'same as above but with XML'
   end
 end
