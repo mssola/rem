@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source :rubygems
 
 # Ruby on Rails 3
 gem 'rails', '~> 3.1.0'
