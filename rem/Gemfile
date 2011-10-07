@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-# Ruby on Rails v3.1.0
-gem 'rails', '3.1.0'
+# Ruby on Rails 3
+gem 'rails', '~> 3.1.0'
 
 # DBMS
 gem 'sqlite3'
@@ -24,6 +24,7 @@ gem "gettext", '>= 1.9.3', :require => false
 
 # Others
 gem 'redcarpet'
+gem 'gmaps4rails'
 
 # Some TDD candy
 gem "rspec-rails", :group => [:test, :development]
