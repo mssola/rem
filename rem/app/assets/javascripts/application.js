@@ -25,6 +25,8 @@
 //= require flash
 //= require users
 
+//= require rmaps
+
 
 /* This is a trick to load the correct Rem object from CoffeeScript. */
 var Rem;
