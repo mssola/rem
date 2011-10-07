@@ -8,6 +8,7 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <a href="/" id="rem">About Rem</a>
     <% if current_user.nil? %>
       <%= render :template => 'layouts/_login' %>
     <% end %>

@@ -38,6 +38,19 @@ a {
   margin-top: 20px;
 }
 
+#rem {
+  height:35px;
+  width:70px;
+  float:left;
+  background:url('rem.svg') no-repeat;
+  text-indent:-5000px;
+/*   margin:0 0 0 0; */
+
+  &:hover {
+    background:url('rem-blue.svg') no-repeat;
+  }
+}
+
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;
