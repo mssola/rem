@@ -1,6 +1,7 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
+# Let's use Spork to boost up TDD
 guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :bundler => false do
   watch('config/application.rb')
   watch('config/environment.rb')
@@ -10,6 +11,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :bundler => false do
   watch(%r{^spec/support/.+\.rb$})
 end
 
+# We are using RSpec
 guard 'rspec', :version => 2, :cli => '--drb', :bundler => false do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }

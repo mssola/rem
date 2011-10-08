@@ -29,14 +29,15 @@ gem 'bcrypt-ruby'
 
 # Some TDD candy
 gem "rspec-rails", :group => [:test, :development]
+gem 'jasmine', :group => [:test, :development]
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'guard-coffeescript'
   gem 'libnotify'
   gem 'spork', '> 0.9.0.rc'
-  gem 'guard-spork'
-  gem 'jasmine'
 end
 
 
