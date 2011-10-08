@@ -38,6 +38,7 @@ group :test do
   gem 'guard-coffeescript'
   gem 'libnotify'
   gem 'spork', '> 0.9.0.rc'
+  gem 'libxml-ruby'
 end
 
 
