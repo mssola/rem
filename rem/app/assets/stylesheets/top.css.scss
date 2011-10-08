@@ -3,6 +3,19 @@
 @import "mixins.css.scss";
 
 
-.hot_top {
-  // TODO
+ul.hot_top {
+  display:inline;
+  margin:0;
+  font-weight:bold;
+  font-size:12px;
+
+  a {
+    text-decoration:none;
+    list-style-type:none;
+    display:inline;
+    margin:0;
+    padding:0 5px 0 6px;
+
+    &:hover { color:$dark_royal; }
+  }
 }
