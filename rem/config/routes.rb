@@ -20,5 +20,5 @@ Rem::Application.routes.draw do
 
   resources :users, :sessions, :password_resets
 
-  get ':name' => "users#edit"
+  get '/:name' => "users#edit"
 end
