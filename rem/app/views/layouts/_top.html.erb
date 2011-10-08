@@ -1,0 +1,11 @@
+<a href="/" id="rem">About Rem</a>
+<ul class="topnav">
+  <% if current_user %>
+    <%= link_to "#{current_user.name}", root_url, class: 'hot_top' %>
+    <%= link_to 'Profile', "#{current_user.name}", class: 'hot_top' %>
+    <%= link_to 'Account Settings', account_path, class: 'hot_top' %>
+    <%= link_to 'Log out', logout_path, class: 'hot_top' %>
+  <% else %>
+    <%= render :template => 'layouts/_login' %>
+  <% end %>
+</ul>

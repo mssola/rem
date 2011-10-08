@@ -8,17 +8,8 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <a href="/" id="rem">About Rem</a>
-    <% if current_user.nil? %>
-      <%= render :template => 'layouts/_login' %>
-    <% end %>
+    <%= render :template => 'layouts/_top' %>
     <div id="main">
-      <% if current_user %>
-        Logged in as <%= current_user.name %>
-        <%= link_to 'Log out', logout_path %> |
-        <%= link_to 'Profile', "#{current_user.name}" %> |
-        <%= link_to 'Account Settings', account_path %>
-      <% end %>
       <% flash.each do |key, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{key}", :class => :flashy %>
       <% end %>
