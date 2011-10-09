@@ -1,5 +1,5 @@
 #
-# Javascripted functions related to form validations.
+# Client-side functions related to form validations.
 #
 # Copyright (C) 2011 Miquel Sabaté <mikisabate@gmail.com>
 #
