@@ -21,6 +21,10 @@
 #= require rem.valid
 
 
+# This is a trick to load the correct Rem object from CoffeeScript.
+Rem = (if (typeof exports != "undefined" and exports != null) then exports else this)
+
+
 # Let's see if the user chooses a username that is already picked up.
 jQuery ->
   $("#user_name").blur ->
