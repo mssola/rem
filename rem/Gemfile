@@ -19,7 +19,7 @@ gem 'therubyracer'
 
 # Internationalization
 gem 'gettext_i18n_rails'
-gem "fast_gettext", '>= 0.5'
+gem "fast_gettext", '~> 0.6.1'
 gem "gettext", '>= 1.9.3', :require => false
 
 # Others
