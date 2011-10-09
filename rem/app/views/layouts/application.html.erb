@@ -11,7 +11,7 @@
     <%= render :template => 'layouts/_top' %>
     <div id="main">
       <% flash.each do |key, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{key}", :class => :flashy %>
+        <%= content_tag :div, msg, :id => "flash_#{key}", class: :flashy %>
       <% end %>
       <%= yield %>
     </div>
