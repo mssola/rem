@@ -19,13 +19,11 @@
 # 
 
 
-# Showing Facebook-like tips with jquery.tipsy
 jQuery ->
+  # Showing Facebook-like tips with jquery.tipsy
   $('.tip').tipsy { gravity: 'n' }
 
-
-# Let's apply some cool effects to Rails flash messages
-jQuery ->
+  # Let's apply some cool effects to Rails flash messages
   $('.flashy').delay(500).fadeIn 'normal', ->
     $(this).delay(2000).fadeOut('slow')
 

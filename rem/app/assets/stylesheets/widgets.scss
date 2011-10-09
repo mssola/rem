@@ -1,6 +1,6 @@
 
 
-@import "mixins.css.scss";
+@import "mixins.scss";
 
 /*
  * The following rules apply to the l_submit button.
@@ -36,9 +36,10 @@
 
 /* Text and password fields */
 
-@mixin field_base {
+.r_text_field {
   @include set_opacity(0.8);
   @include borders;
+
   display:block;
   border:1px solid $icy_blue;
   font-size:13px;
@@ -47,10 +48,6 @@
   width:203px;
 }
 
-.r_text_field {
-  @include field_base;
-}
-
 .r_password_field {
-  @include field_base;
+  @extend .r_text_field;
 } 
