@@ -1,0 +1,41 @@
+
+@import "mixins.scss";
+
+
+.signup {
+  margin-left:75px;
+  float:left;
+  padding:10px;
+
+  .join_rem { font-weight:normal; }
+}
+
+#new_user .textbox {
+  border:0px;
+  padding:10px;
+
+  div.prompt {
+    margin-bottom:15px;
+  }
+
+  .holding {
+    .holder {
+      display:none;
+      line-height:43px;
+      padding-left:1px;
+      color:#DDD;
+    }
+
+    input {
+      @include shadows;
+
+      outline:0;
+      padding:8px 6px;
+      width:382px;
+    }
+  }
+}
+
+#new_user .textbox input, #new_user .textbox .holder {
+  font:20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

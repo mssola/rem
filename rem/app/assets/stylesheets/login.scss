@@ -89,12 +89,8 @@ a.signin.menu-open span {
 }
 
 #signin_menu {
-  -moz-border-radius-topleft:5px;
-  -moz-border-radius-bottomleft:5px;
-  -moz-border-radius-bottomright:5px;
-  -webkit-border-top-left-radius:5px;
-  -webkit-border-bottom-left-radius:5px;
-  -webkit-border-bottom-right-radius:5px;
+  @include borders(5px);
+
   display:none;
   background-color:#ddeef6;
   position:absolute;

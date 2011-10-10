@@ -1,7 +1,10 @@
 <% title 'Sign Up' %>
 
-<h1>Sign Up</h1>
-
+<h1 class="signup">
+  What are you waiting for?
+  <br>
+  <em class="join_rem">Join Rem.</em>
+</h1>
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
@@ -13,25 +16,34 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :name, 'Username' %>
-    <%= f.text_field :name, { class: 'r_text_field' } %>
-    <div id="existing_name"></div>
-  </div>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email, { class: 'r_text_field' } %>
-    <div id="email_error"></div>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password, { class: 'r_text_field' } %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, { class: 'r_text_field' } %>
-    <div id="password_error"></div>
-  </div>
+  <fieldset class="textbox">
+    <div class="prompt name">
+      <div class="holding" data-fieldname="name">
+        <div class="side_tip">
+        </div>
+        <%= f.text_field :name, { class: 'r_text_field' } %>
+        <span class="holder">Username</span>
+      </div>
+    </div>
+    <div class="prompt email">
+      <div class="holding" data-fieldname="email">
+        <%= f.text_field :email, { class: 'r_text_field' } %>
+        <span class="holder">Email</span>
+      </div>
+    </div>
+    <div class="prompt password">
+      <div class="holding" data-fieldname="password">
+        <%= f.password_field :password, { class: 'r_text_field' } %>
+        <span class="holder">Password</span>
+      </div>
+    </div>
+    <div class="prompt password_confirmation" >
+      <div class="holding" data-fieldname="password_confirmation">
+        <%= f.password_field :password_confirmation, { class: 'r_text_field' } %>
+        <span class="holder">Confirm Password</span>
+      </div>
+    </div>
+  </fieldset>
   <br>
   <div class="actions" id="user_submit"><%= r_submit 'Sign up!' %>
   </div>
