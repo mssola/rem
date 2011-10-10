@@ -6,17 +6,13 @@
  * The following rules apply to the l_submit button.
  */
 
-.r_submit {
+.submit_base {
   @include borders;
 
   background: $button_blue repeat-x scroll 0 0;
   border:1px solid $button_blue;
   color: $white;
   text-shadow:0 -1px 0 $button_blue;
-  padding:4px 10px 5px;
-  font-size:11px;
-  margin:0 5px 0 0;
-  font-weight:bold;
 
   &:hover, &:focus {
     background-position:0 -5px;
@@ -33,12 +29,31 @@
   }
 }
 
+.r_submit {
+  @extend .submit_base;
+  @include my_font(11px, bold);
+  
+  padding:4px 10px 5px;
+  margin:0 5px 0 0;
+}
+
+.r_signup {
+  @extend .submit_base;
+  @include my_font(30px, bold);
+
+  padding:9px 15px 10px;
+  margin:20px 5px 20px 90px;
+
+  &:active {
+    background: darken($button_blue, 20%);
+  }
+}
+
 
 
 /* Text and password fields */
 
-.r_text_field {
-  @include set_opacity(0.8);
+.r_raw_field {
   @include borders;
 
   display:block;
@@ -47,6 +62,11 @@
   margin:0 0 5px;
   padding:5px;
   width:203px;
+}
+
+.r_text_field {
+  @extend .r_raw_field;
+  @include set_opacity(0.8);
 }
 
 .r_password_field {

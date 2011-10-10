@@ -1,11 +1,12 @@
 <% title 'Sign Up' %>
 
-<h1 class="signup">
-  What are you waiting for?
-  <br>
-  <em class="join_rem">Join Rem.</em>
-</h1>
 <%= form_for @user do |f| %>
+  <div class="signup">
+    <h1>What are you waiting for?
+    <br>
+    <em class="join_rem">Join Rem.</em></h1>
+    <div class="actions" id="user_submit"><%= r_submit 'Sign up!', 'r_signup' %>
+    </div>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -16,35 +17,34 @@
       </ul>
     </div>
   <% end %>
+  </div>
   <fieldset class="textbox">
     <div class="prompt name">
       <div class="holding" data-fieldname="name">
         <div class="side_tip">
         </div>
-        <%= f.text_field :name, { class: 'r_text_field' } %>
+        <%= f.text_field :name, { class: 'r_raw_field' } %>
         <span class="holder">Username</span>
       </div>
     </div>
     <div class="prompt email">
       <div class="holding" data-fieldname="email">
-        <%= f.text_field :email, { class: 'r_text_field' } %>
+        <%= f.text_field :email, { class: 'r_raw_field' } %>
         <span class="holder">Email</span>
       </div>
     </div>
     <div class="prompt password">
       <div class="holding" data-fieldname="password">
-        <%= f.password_field :password, { class: 'r_text_field' } %>
+        <%= f.password_field :password, { class: 'r_raw_field' } %>
         <span class="holder">Password</span>
       </div>
     </div>
     <div class="prompt password_confirmation" >
       <div class="holding" data-fieldname="password_confirmation">
-        <%= f.password_field :password_confirmation, { class: 'r_text_field' } %>
+        <%= f.password_field :password_confirmation, { class: 'r_raw_field' } %>
         <span class="holder">Confirm Password</span>
       </div>
     </div>
   </fieldset>
   <br>
-  <div class="actions" id="user_submit"><%= r_submit 'Sign up!' %>
-  </div>
 <% end %>

@@ -20,9 +20,11 @@
 
   .holding {
     .holder {
-      display:none;
+      padding:10px;
+/*       display:inline; */
+      position:absolute;
       line-height:43px;
-      padding-left:1px;
+/*       padding-left:1px; */
       color:#DDD;
     }
 
@@ -39,3 +41,4 @@
 #new_user .textbox input, #new_user .textbox .holder {
   font:20px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+

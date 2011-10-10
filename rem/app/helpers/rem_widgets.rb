@@ -32,8 +32,12 @@ module RemWidgets
   # with 'signin_submit' as its class and a tabindex of 6.
   #
   # @param *String* text The text of the submit button.
-  def r_submit(text)
-    submit_tag text, { :class => 'r_submit', :tabindex => '6' }
+  #
+  # @param *String* kind You can optionally specify a different class for
+  # this submit button.
+  def r_submit(text, kind = nil)
+    kind ||= 'r_submit'
+    submit_tag text, { :class => kind, :tabindex => '6' }
   end
 
   ##
