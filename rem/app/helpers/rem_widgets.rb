@@ -70,4 +70,12 @@ module RemWidgets
     text = name.to_s.capitalize.gsub('_', ' ') if text.nil?
     label_tag name, _(text)
   end
+
+  ##
+  # TODO: Check how multiple elements can be spitted into the html
+  # so we can embed in a single call both the check_box and the r_label
+  def r_check(name, element = nil)
+    element ||= name
+    check_box_tag name, 1, params[element]
+  end
 end

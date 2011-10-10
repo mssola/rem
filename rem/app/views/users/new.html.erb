@@ -7,16 +7,16 @@
     <em class="join_rem">Join Rem.</em></h1>
     <div class="actions" id="user_submit"><%= r_submit 'Sign up!', 'r_signup' %>
     </div>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
   <fieldset class="textbox">
     <div class="prompt name">
@@ -45,6 +45,7 @@
         <span class="holder">Confirm Password</span>
       </div>
     </div>
+    <%= r_check :remember_me %>
+    <%= r_label :remember_label, 'Keep me logged-in on this computer.' %>
   </fieldset>
-  <br>
 <% end %>

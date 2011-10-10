@@ -44,7 +44,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      cookies[:auth_token] = @user.auth_token
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = @user.auth_token
+      else
+        cookies[:auth_token] = @user.auth_token
+      end
       redirect_to root_url, :notice => _('Signed up!')
     else
       render 'new'
