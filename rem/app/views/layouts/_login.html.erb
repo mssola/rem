@@ -12,7 +12,7 @@
       </p>
       <p class="remember">
         <%= r_submit 'Log in' %>
-        <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+        <%= r_check :remember_me %>
         <%= r_label :remember_me %>
       </p>
       <p><%= link_to _('Forgotten password?'), new_password_reset_path,
