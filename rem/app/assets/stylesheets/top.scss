@@ -3,18 +3,39 @@
 @import "mixins.scss";
 
 
-ul.hot_top {
-/*   float:right; */
+#top_bar {
+/*   background-color:$dark_royal; */
+  position:absolute;
+/*   right:8px; */
+  top:0;
+  width:100%;
+  z-index:100;
+/*   background:#111 url('http://s.twimg.com/a/1290471375/images/whatsnew/bg-newbar.jpg') repeat-x 0 0; */
+/*   color:#ccc; */
+/*   box-shadow:0 1px 2px rgba(0, 0, 0, 0.5); */
+}
+
+#top_sep {
+  margin-bottom:20px;
+  width:100%;
+/*   border-style:solid; */
+/*   border-width:1px; */
+/*   background-color:$black; */
+}
+
+.hot_top {
+  float:right;
   display:inline;
-  margin:0;
+/*   margin:0; */
   font-weight:bold;
   font-size:12px;
+  margin-right:10px;
 
   a {
     text-decoration:none;
     list-style-type:none;
     display:inline;
-    margin:0;
+/*     margin:0; */
     padding:0 5px 0 6px;
 
     &:hover { color:$dark_royal; }

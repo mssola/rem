@@ -2,12 +2,16 @@
 @import "mixins.scss";
 
 
-.signup {
-  margin-left:75px;
-  float:left;
-  padding:10px;
+#new_user {
+  margin-top:20px;
 
-  .join_rem { font-weight:normal; }
+  .signup {
+    margin-left:-30px;
+    float:left;
+    padding:10px;
+
+    .join_rem { font-weight:normal; }
+  }
 }
 
 #new_user .textbox {

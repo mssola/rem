@@ -31,24 +31,30 @@ a {
 }
 
 #main {
-/*   width: 75%; */
-/*   margin: 0 auto; */
-/*   background-color: $white; */
-/*   padding: 20px 40px; */
-/*   border: solid 1px black; */
-  margin: 0px 0px 20px 20px;
+  width:1000px;
+  padding-top:60px;
+  margin:0 auto 0 auto;
 }
 
 #rem {
-  height:35px;
-  width:70px;
   float:left;
   background:url('rem.svg') no-repeat;
-  text-indent:-5000px;
+  text-indent:-9999px;
 /*   margin:0 0 0 0; */
+display:block;
+  color:#fff;
+  height:35px;
+  width:70px;
+  margin-right:5px;
+/*   outline:none; */
 
   &:hover {
     background:url('rem-blue.svg') no-repeat;
   }
 }
+/*
+
+div.top_bar {
+  margin-bottom:20px;
+}*/
 
