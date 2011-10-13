@@ -16,14 +16,6 @@ body {
   font-size: 14px;
 }
 
-a img {
-  border: none;
-}
-
-a {
-  color: #0000FF;
-}
-
 .clear {
   clear: both;
   height: 0;
@@ -36,25 +28,28 @@ a {
   margin:0 auto 0 auto;
 }
 
+a:link, a:visited {
+  color:#27b;
+  text-decoration:none;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
 #rem {
   float:left;
   background:url('rem.svg') no-repeat;
   text-indent:-9999px;
-/*   margin:0 0 0 0; */
-display:block;
+  display:block;
   color:#fff;
   height:35px;
   width:70px;
   margin-right:5px;
-/*   outline:none; */
+  outline:none;
 
   &:hover {
     background:url('rem-blue.svg') no-repeat;
   }
 }
-/*
-
-div.top_bar {
-  margin-bottom:20px;
-}*/
 

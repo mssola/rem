@@ -1,4 +1,9 @@
 
+/*
+ * The style for the login menu.
+ */
+
+
 @import "widgets.scss";
 
 
@@ -6,24 +11,6 @@
   width:780px;
   margin:0 auto;
   position: relative;
-}
-
-#content {
-  width:520px;
-  min-height:500px;
-}
-
-a:link, a:visited {
-  color:#27b;
-  text-decoration:none;
-}
-
-a:hover {
-  text-decoration:underline;
-}
-
-a img {
-  border-width:0;
 }
 
 #topnav {
@@ -34,29 +21,25 @@ a img {
 }
 
 #topnav a.signin {
+  @include borders;
+
   background:#88bbd4;
   padding:4px 6px 6px;
   text-decoration:none;
   font-weight:bold;
-  color:#fff;
-  -webkit-border-radius:4px;
-  -moz-border-radius:4px;
+  color:white;
   border-radius:4px;
   *padding:4px 12px 6px;
-}
-
-#topnav a.signin:hover {
-  background:#59B;
-  *padding:4px 12px 6px;
-}
-
-#topnav a.signin, #topnav a.signin:hover {
-  *background-position:0 3px!important;
-}
-
-a.signin {
   position:relative;
   margin-left:3px;
+
+  span {
+    background-repeat:no-repeat;
+    background-position:100% 50%;
+    padding:4px 16px 6px 0;
+  }
+
+  &:hover { background:#59B; }
 }
 
 a.signin::-moz-focus-inner {
@@ -64,10 +47,8 @@ a.signin::-moz-focus-inner {
   border: none;
 }
 
-a.signin span {
-  background-repeat:no-repeat;
-  background-position:100% 50%;
-  padding:4px 16px 6px 0;
+#topnav a.signin, #topnav a.signin:hover {
+  *background-position:0 3px!important;
 }
 
 #topnav a.menu-open {
@@ -106,30 +87,9 @@ a.signin.menu-open span {
   *margin-right: -1px;
   color:#789;
   font-size:11px;
+
+  p { margin:0; }
+  p.remember { padding:10px 0; }
+  label { font-weight:normal; }
 }
 
-#signin_menu p {
-  margin:0;
-}
-
-#signin_menu a {
-  color:#6AC;
-}
-
-#signin_menu label {
-  font-weight:normal;
-}
-
-#signin_menu p.remember {
-  padding:10px 0;
-}
-
-#signin_menu p.forgot, #signin_menu p.complete {
-  clear:both;
-  margin:5px 0;
-}
-
-#signin_menu p a {
-  color:#27B!important;
-}
- 

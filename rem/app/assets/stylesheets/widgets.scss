@@ -1,4 +1,8 @@
 
+/*
+ * The style for all the special widgets in our site.
+ */
+
 
 @import "mixins.scss";
 
@@ -23,7 +27,7 @@
     cursor:pointer;
   }
 
-  &:-moz-focus-inner {
+  &::-moz-focus-inner {
     padding:0;
     border:0;
   }
