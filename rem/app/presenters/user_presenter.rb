@@ -42,6 +42,12 @@ class UserPresenter < BasePresenter
   end
 
   ##
+  # Show the location of the user
+  def location
+    handle_none user.location
+  end
+
+  ##
   # Show a link to your website.
   def website
     handle_none user.url do
