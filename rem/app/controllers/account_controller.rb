@@ -24,4 +24,8 @@
 # TODO
 class AccountController < ApplicationController
   # There's nothing to do here
+  def update
+    puts 'here'
+    render 'edit'
+  end
 end

@@ -68,7 +68,7 @@ module RemWidgets
   # @param *String* text The text shown by the label tag. (_optional_)
   def r_label(name, text = nil)
     text = name.to_s.capitalize.gsub('_', ' ') if text.nil?
-    label_tag name, _(text)
+    label_tag name, _(text), :class => 'r_label'
   end
 
   ##

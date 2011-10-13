@@ -5,6 +5,7 @@ Rem::Application.routes.draw do
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
   get 'delete_account/:id' => 'users#destroy', as: 'delete_account'
   get 'account' => 'account#edit', as: 'account'
+  put 'account' => 'account#update'
 
   root to: 'home#index'
 
@@ -18,7 +19,7 @@ Rem::Application.routes.draw do
   # Rest API
   get "/users/:name" => "users#show"
 
-  resources :users, :sessions, :password_resets
+  resources :users, :sessions, :password_resets, :account
 
   get '/:name' => "users#edit"
 end

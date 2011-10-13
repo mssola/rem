@@ -1,25 +1,43 @@
-
-<% present current_user do |user_presenter| %>
-  <div id="account">
-    <dl>
-      <dt>Username</dt>
-      <dd><%= user_presenter.name %></dd>
-      <dt>Full name</dt>
-      <dd><%= user_presenter.full_name %></dd>
-      <dt>Member since</dt>
-      <dd><%= user_presenter.member_since %></dd>
-      <dt>Location</dt>
-      <dd><%= user_presenter.location %></dd>
-      <dt>Website</dt>
-      <dd><%= user_presenter.website %></dd>
-      <dt>Twitter account</dt>
-      <dd><%= user_presenter.twitter %></dd>
-      <dt>Bio</dt>
-      <dd><%= user_presenter.bio %></dd>
-    </dl>
-  </div>
-<% end %>
-
-<br>
-
-<%= link_to 'Delete Account', delete_account_path(current_user.id) %>
+<div id="account_page">
+  <ul id="account_tabs" >
+    <li><a href="account">Public Profile</a></li>
+    <li><a href="account/admin">Account Admin</a></li>
+    <li><a href="account/notification">Notifications</a></li>
+  </ul>
+  <% present current_user do |up| %>
+    <fieldset id="user_bucket">
+      <%= form_tag account_path, :method => 'PUT' do %>
+        <div class="present full">
+          <%= r_label :full, 'Full name' %>
+          <%= r_field :text, :full, up.full_name %>
+        </div>
+        <div class="present email">
+          <%= r_label :email, 'Email' %>
+          <%= r_field :text, :email, up.email %>
+        </div>
+        <div class="present location">
+          <%= r_label :location, 'Location' %>
+          <%= r_field :text, :location, up.location %>
+        </div>
+        <div class="present website">
+          <%= r_label :site, 'Website' %>
+          <%= r_field :text, :site, up.website %>
+        </div>
+        <div class="present twitter">
+          <%= r_label :twitter, 'Twitter account' %>
+          <%= r_field :text, :twitter, up.twitter %>
+        </div>
+        <%= r_submit 'Update information' %>
+      <% end %>
+    </fieldset>
+    <fieldset id="admin_bucket">
+      <div class="admin password">
+        <%= r_label :password, 'Admin Bucket: TODO' %>
+      </div>
+    </fieldset>
+    <fieldset id="notification_bucket">
+      <div class="notification">
+        <%= r_label :note, 'Notification Bucket: TODO' %>
+    </fieldset>
+  <% end %>
+</div>

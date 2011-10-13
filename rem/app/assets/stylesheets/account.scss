@@ -1,0 +1,32 @@
+
+
+@import "mixins.scss";
+
+#account_page {
+}
+
+#account_tabs {
+  text-decoration:none;
+  list-style-type:none;
+/*   display:inline; */
+  float:left;
+}
+
+@mixin bucket_base {
+  border:1px transparent;
+  float:left;
+
+  .r_label { font-weight:bold; }
+}
+
+#user_bucket {
+  @include bucket_base;
+}
+
+#admin_bucket {
+  @include bucket_base;
+}
+
+#notification_bucket {
+  @include bucket_base;
+}

@@ -27,24 +27,12 @@
 # is very related to the user so this kind of connection makes sense.
 class UserPresenter < BasePresenter
   presents :user
-  delegate :name, to: :user
-
-  ##
-  # Show your full_name if it was given, it will show your username otherwise.
-  def full_name
-    user.full_name.present? ? user.full_name : user.name
-  end
+  delegate :name, :email, :full_name, :location, to: :user
 
   ##
   # Show how long this user is registered on our website.
   def member_since
     user.created_at.strftime("%e %B %Y")
-  end
-
-  ##
-  # Show the location of the user
-  def location
-    handle_none user.location
   end
 
   ##
@@ -76,10 +64,6 @@ class UserPresenter < BasePresenter
   #
   # @param *String* value The attribute we want to show.
   def handle_none(value)
-    if value.present?
-      yield if block_given?
-    else
-      content_tag :span, 'None given', class: 'none'
-    end
+    yield if value.present?
   end
 end
