@@ -13,7 +13,7 @@
         </div>
         <div class="present email">
           <%= r_label :email, 'Email' %>
-          <%= r_field :text, :email, up.email %>
+          <%= r_field :text, 'user[email]', up.email %>
         </div>
         <div class="present location">
           <%= r_label :location, 'Location' %>
@@ -21,7 +21,7 @@
         </div>
         <div class="present website">
           <%= r_label :site, 'Website' %>
-          <%= r_field :text, :site, up.website %>
+          <%= r_field :text, :website, up.website %>
         </div>
         <div class="present twitter">
           <%= r_label :twitter, 'Twitter account' %>

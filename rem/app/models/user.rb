@@ -23,7 +23,8 @@
 #
 # This is the User model.
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation,
+                  :full_name, :twitter_name, :location, :url
 
   # Let's make some basic validation.
   validates_uniqueness_of :name, :email

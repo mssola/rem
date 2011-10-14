@@ -25,7 +25,19 @@
 class AccountController < ApplicationController
   # There's nothing to do here
   def update
-    puts 'here'
-    render 'edit'
+    if update_user
+      redirect_to account_url, :notice => 'Configuration saved!'
+    else
+      render :action => 'edit', :error => 'Fuck'
+    end
+  end
+
+  private
+
+  def update_user
+    current_user.update_attributes(full_name: params[:full],
+                                   location: params[:location],
+                                   url: params[:website],
+                                   twitter_name: params[:twitter])
   end
 end
