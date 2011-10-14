@@ -27,6 +27,7 @@
 #= require sparky
 #= require users
 #= require signup
+#= require account
 
 #= require rmaps
 

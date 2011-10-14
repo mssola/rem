@@ -11,7 +11,7 @@
 
 
 body {
-  background-color: $white;
+  background-color:white;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
@@ -26,15 +26,15 @@ body {
   width:1000px;
   padding-top:60px;
   margin:0 auto 0 auto;
+
+  a:hover {
+    text-decoration:underline;
+  }
 }
 
 a:link, a:visited {
   color:#27b;
   text-decoration:none;
-}
-
-a:hover {
-  text-decoration:underline;
 }
 
 #rem {

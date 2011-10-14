@@ -15,7 +15,7 @@
 
   background: $button_blue repeat-x scroll 0 0;
   border:1px solid $button_blue;
-  color: $white;
+  color: white;
   text-shadow:0 -1px 0 $button_blue;
 
   &:hover, &:focus {
@@ -23,7 +23,7 @@
     background: darken($button_blue, 5%);
     border:1px solid $royal_blue;
     text-shadow:0 -1px 0 $royal_blue;
-    color: $white;
+    color: white;
     cursor:pointer;
   }
 

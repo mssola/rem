@@ -6,9 +6,6 @@
 
 /* Define here the colors */
 
-$white: #FFF;
-$black: #000000;
-$red: #D00;
 $blue: #4B7399;
 $button_blue: #39d;
 $icy_blue: #ACE;
@@ -20,7 +17,7 @@ $dark_royal: darken($royal_blue, 10%);
 
 @mixin error-base-style {
   display: inline;
-  color: $red;
+  color: red;
   padding-left: 5px;
 }
 
