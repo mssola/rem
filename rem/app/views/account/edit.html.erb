@@ -32,12 +32,15 @@
     </fieldset>
     <fieldset id="admin_bucket" type="hidden">
       <div class="admin password">
-        <%= r_label :password, 'Admin Bucket: TODO' %>
+        <%= r_label :password, 'Password reset' %>
+        <br>
+        <%= r_label :delete, 'Delete Account' %>
+        <%= link_to 'Delete Account', delete_account_path(current_user.id) %>
       </div>
     </fieldset>
     <fieldset id="notification_bucket" type="hidden">
       <div class="notification">
-        <%= r_label :note, 'Notification Bucket: TODO' %>
+        <%= r_label :note, 'Aqui hi ha els mailers' %>
     </fieldset>
   <% end %>
 </div>

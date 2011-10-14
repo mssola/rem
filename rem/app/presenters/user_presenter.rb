@@ -46,11 +46,11 @@ class UserPresenter < BasePresenter
   ##
   # Show a link to your twitter account.
   def twitter(link = false)
-    handle_none user.url do
+    handle_none user.twitter_name do
       unless link
         user.twitter_name
       else
-        link_to(user.url, "http://twitter.com/#{user.twitter_name}")
+        link_to(user.twitter_name, "http://twitter.com/#{user.twitter_name}")
       end
     end
   end
