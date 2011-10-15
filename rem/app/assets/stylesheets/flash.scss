@@ -2,6 +2,25 @@
 @import "mixins.scss";
 
 
+#flash_container {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  display:inline;
+}
+
+.flashy {
+  @include borders;
+  @include display_inline_block;
+
+  text-align:center;
+}
+
+
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;

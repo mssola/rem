@@ -45,4 +45,10 @@ $dark_royal: darken($royal_blue, 10%);
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
 }
+
+@mixin display_inline_block {
+  display:inline-block;
+  display:-moz-inline-stack;
+  *display:inline;
+}
  

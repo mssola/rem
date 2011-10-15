@@ -24,6 +24,8 @@ jQuery ->
   $('.tip').tipsy { gravity: 'n' }
 
   # Let's apply some cool effects to Rails flash messages
-  $('.flashy').delay(500).fadeIn 'normal', ->
-    $(this).delay(2000).fadeOut('slow')
+  $('.flashy').hide()
+  $('.flashy').delay(500).slideDown 'normal', ->
+    $(this).show()
+    $(this).delay(5000).slideUp('slow')
 

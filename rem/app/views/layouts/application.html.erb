@@ -8,11 +8,13 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <%= render :template => 'layouts/_top' %>
-    <div id="main">
+    <div id="flash_container">
       <% flash.each do |key, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{key}", class: :flashy %>
       <% end %>
+    </div>
+    <%= render :template => 'layouts/_top' %>
+    <div id="main">
       <%= yield %>
     </div>
     <%= render :template => 'layouts/_footer' %>
