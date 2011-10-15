@@ -37,14 +37,22 @@ class UserPresenter < BasePresenter
 
   ##
   # Show a link to your website.
-  def website
+  #
+  # @param *Boolean* link True to have it as a link.
+  def website(link = false)
     handle_none user.url do
-      link_to(user.url, user.url)
+      unless link
+        user.url
+      else
+        link_to(user.url, user.url)
+      end
     end
   end
 
   ##
   # Show a link to your twitter account.
+  #
+  # @param *Boolean* link True to have it as a link.
   def twitter(link = false)
     handle_none user.twitter_name do
       unless link
