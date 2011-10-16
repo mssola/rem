@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : 'Rem' %></title>
+    <title><%= content_for?(:title) ? "Rem / #{yield(:title)}" : 'Rem' %></title>
     <%= stylesheet 'application' %>
     <%= javascript 'application' %>
     <%= csrf_meta_tag %>
