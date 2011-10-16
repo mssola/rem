@@ -1,96 +1,57 @@
 
 /*
- * The style for the login menu.
+ * The style for the login page. It also imports the style for
+ * special login menu.
  */
 
 
-@import "widgets.scss";
+@import "login_menu.scss";
 
 
-#login_container {
-  width:780px;
-  margin:0 auto;
-  position: relative;
+#login_page {
+  padding:10px;
 }
 
-#topnav {
-  padding:10px 0px 12px;
-  font-size:11px;
-  line-height:23px;
-  text-align:right;
+@mixin login_container {
+  float:left;
+  margin-left:40px;
 }
 
-#topnav a.signin {
-  @include borders;
+#rem_login {
+  @include login_container;
 
-  background:#88bbd4;
-  padding:4px 6px 6px;
-  text-decoration:none;
-  font-weight:bold;
-  color:white;
-  border-radius:4px;
-  *padding:4px 12px 6px;
-  position:relative;
-  margin-left:3px;
+  a { font-size:12px; }
+  .r_label { font-weight:bold; }
+  .r_submit {
+    margin-top:10px;
+    margin-bottom:50px;
+  }
+}
 
-  span {
-    background-repeat:no-repeat;
-    background-position:100% 50%;
-    padding:4px 16px 6px 0;
+#others_login {
+  @include login_container;
+
+}
+
+.container_desc {
+  margin-bottom:30px;
+}
+
+#others {
+  list-style: none;
+  padding:10px;
+  margin-left:30px;
+
+  li {
+    margin-right:15px;
+    padding: 0;
+    float: left;
+    #twitter { background:url('twitter.png'); }
+    #facebook { background:url('facebook.png'); }
   }
 
-  &:hover { background:#59B; }
+  img {
+    @include borders;
+    border-color:$dark_royal;
+  }
 }
-
-a.signin::-moz-focus-inner {
-  padding: 0;
-  border: none;
-}
-
-#topnav a.signin, #topnav a.signin:hover {
-  *background-position:0 3px!important;
-}
-
-#topnav a.menu-open {
-  background:#ddeef6!important;
-  color:#666!important;
-  outline:none;
-}
-
-#small_signup {
-  display:inline;
-  float:none;
-  line-height:23px;
-  margin:25px 0 0;
-  width:170px;
-}
-
-a.signin.menu-open span {
-  color:#789;
-}
-
-#signin_menu {
-  @include borders(5px);
-
-  display:none;
-  background-color:#ddeef6;
-  position:absolute;
-  width:210px;
-  z-index:100;
-  border:1px transparent;
-  text-align:left;
-  padding:12px;
-  top: 24.5px;
-  right: 0px;
-  margin-top:5px;
-  margin-right: 0px;
-  *margin-right: -1px;
-  color:#789;
-  font-size:11px;
-
-  p { margin:0; }
-  p.remember { padding:10px 0; }
-  label { font-weight:normal; }
-  a:hover { text-decoration:underline; }
-}
-

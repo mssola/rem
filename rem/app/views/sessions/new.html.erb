@@ -1,16 +1,32 @@
 <% title 'Log in' %>
 
-<h1>Log in</h1>
-
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= r_label :name_or_email, 'Username or email' %>
-    <%= r_field :text, :name_or_email %>
+<div id="login_page">
+  <div id="rem_login">
+    <%= form_tag sessions_path do %>
+      <div class="field">
+        <%= r_label :name_or_email, 'Username or email' %>
+        <%= r_field :text, :name_or_email %>
+      </div>
+      <div class="field">
+        <%= r_label :password %>
+        <%= link_to "(forgotten password?)", new_password_reset_path %>
+        <%= r_field :password, :password %>
+      </div>
+      <div class="actions"><%= r_submit 'Log in' %></div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= r_label :password %>
-    <%= r_field :password, :password %>
+  <div id="others_login">
+    <div id="description">
+      You can alternatively log in by using the account you may have
+      in the services shown below.
+    </div>
+    <ul id="others">
+      <li>
+        <a href=""><img id="twitter" class="tip" height="50" width="50" /></a>
+      </li>
+      <li>
+        <a href=""><img id="facebook" class="tip" height="50" width="50" /></a>
+      </li>
+    </ul>
   </div>
-  <p><%= link_to "forgotten password?", new_password_reset_path %></p>
-  <div class="actions"><%= r_submit 'Log in' %></div>
-<% end %>
+</div>

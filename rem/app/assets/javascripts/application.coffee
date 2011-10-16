@@ -49,3 +49,8 @@ $(document).ready ->
       $('.signin').removeClass 'menu-open'
       $('fieldset#signin_menu').hide()
 
+# Log in page
+$(document).ready ->
+  $("#twitter").tipsy({fallback: 'Twitter'})
+  $("#facebook").tipsy({fallback: 'Facebook'})
+
