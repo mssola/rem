@@ -53,16 +53,15 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(auth)
     @called_omniauth = true
     info = auth['user_info']
+    urls = cleanup_urls(info['urls'])
     create! do |user|
       user.name = info['nickname']
       user.name ||= info['name'] + rand(1000).to_s
       user.email = info['email']
       user.full_name = info['name']
       user.location = info['location']
-      if info['urls']
-        user.url = info['urls']['Website']
-        user.twitter_name = info['urls']['Twitter']
-      end
+      user.url = urls[:site]
+      user.twitter_name = urls[:twitter]
       user.authentications.build(provider: auth['provider'], uid: auth['uid'])
     end
     @called_omniauth = false
@@ -134,5 +133,12 @@ class User < ActiveRecord::Base
   # TODO
   def no_password_omniauth
     self.password_digest = 0 unless password_required
+  end
+
+  # TODO
+  def self.cleanup_urls(urls)
+    return {} if urls.nil?
+    urls['Twitter'].match /com\/(.+)$/
+    { :site => urls['Website'], :twitter => $1 }
   end
 end
