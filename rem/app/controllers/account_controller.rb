@@ -35,9 +35,10 @@ class AccountController < ApplicationController
   private
 
   def update_user
-    current_user.update_attributes(full_name: params[:full],
-                                   location: params[:location],
-                                   url: params[:website],
-                                   twitter_name: params[:twitter])
+    current_user.update_attributes( email: params[:email],
+                                    full_name: params[:full],
+                                    location: params[:location],
+                                    url: params[:website],
+                                    twitter_name: params[:twitter])
   end
 end
