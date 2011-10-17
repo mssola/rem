@@ -13,3 +13,4 @@ config/*.yml
 config.ru
 Gemfile.lock
 .rvmrc
+config/initializers/omniauth.rb

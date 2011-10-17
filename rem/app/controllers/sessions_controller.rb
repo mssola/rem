@@ -30,27 +30,34 @@ class SessionsController < ApplicationController
   # The _new_ method. It does nothing.
   def new; end
 
-  ##
+  ## TODO
   # The _create_ method. It creates a new session for a user. This
   # method is called when the user clicked on of the log in buttons.
   # It also handles the cookies and if a given IP should be black-listed.
   def create
-    user = find_name_or_email(params[:name_or_email])
-    if user && user.authenticate(params[:password])
-      if params[:remember_me]
-        cookies.permanent[:auth_token] = user.auth_token
+    auth_hash = request.env['omniauth.auth']
+
+    if auth_hash.nil?
+      user = find_name_or_email(params[:name_or_email])
+      if user && user.authenticate(params[:password])
+        if params[:remember_me]
+          cookies.permanent[:auth_token] = user.auth_token
+        else
+          cookies[:auth_token] = user.auth_token
+        end
+        Cerber.remove_ip request.remote_ip
+        redirect_to root_url, :notice => _('Logged in!')
       else
-        cookies[:auth_token] = user.auth_token
+        flash.now.alert = _('Invalid username, email or password')
+        if Cerber.should_continue?(request.remote_ip)
+          render 'new'
+        else
+          raise ActionController::RoutingError.new('Not Found')
+        end
       end
-      Cerber.remove_ip request.remote_ip
-      redirect_to root_url, :notice => _('Logged in!')
     else
-      flash.now.alert = _('Invalid email or password')
-      if Cerber.should_continue?(request.remote_ip)
-        render 'new'
-      else
-        raise ActionController::RoutingError.new('Not Found')
-      end
+      # TODO Set route for failures
+      other_authentication auth_hash
     end
   end
 
@@ -86,5 +93,11 @@ class SessionsController < ApplicationController
   # false otherwise.
   def valid_email?(email)
     /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.match(email)
+  end
+
+  ##
+  # TODO
+  def other_authentication(auth_hash)
+    render :text => auth_hash.inspect
   end
 end

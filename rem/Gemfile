@@ -26,6 +26,7 @@ gem "gettext", '>= 1.9.3', :require => false
 gem 'redcarpet'
 gem 'gmaps4rails'
 gem 'bcrypt-ruby'
+gem 'omniauth'
 
 # Some TDD candy
 gem "rspec-rails", :group => [:test, :development]
