@@ -30,14 +30,14 @@ class SessionsController < ApplicationController
   # The _new_ method. It does nothing.
   def new; end
 
-  ## TODO
+  ##
+#     TODO
   # The _create_ method. It creates a new session for a user. This
   # method is called when the user clicked on of the log in buttons.
   # It also handles the cookies and if a given IP should be black-listed.
   def create
-    auth_hash = request.env['omniauth.auth']
-
-    if auth_hash.nil?
+    auth = request.env['omniauth.auth']
+    unless auth
       user = find_name_or_email(params[:name_or_email])
       if user && user.authenticate(params[:password])
         if params[:remember_me]
@@ -56,8 +56,7 @@ class SessionsController < ApplicationController
         end
       end
     else
-      # TODO Set route for failures
-      other_authentication auth_hash
+      other_auth auth
     end
   end
 
@@ -97,7 +96,13 @@ class SessionsController < ApplicationController
 
   ##
   # TODO
-  def other_authentication(auth_hash)
-    render :text => auth_hash.inspect
+  def other_auth(hash)
+    auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
+    if auth.nil?
+      user = User.create_with_omniauth hash
+      auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
+    end
+    cookies[:auth_token] = auth.user.auth_token
+    redirect_to root_url, :notice => _('Logged in!')
   end
 end

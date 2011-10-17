@@ -7,6 +7,7 @@ Rem::Application.routes.draw do
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
+  match '/auth/failure' => "sessions#failure"
   match '/auth/:provider/callback' => 'sessions#create'
   root to: 'home#index'
 

@@ -28,16 +28,41 @@ class User < ActiveRecord::Base
 
   # Let's make some basic validation.
   validates_uniqueness_of :name, :email
-  validates_presence_of :name, :email, :password, :password_confirmation,
-                        :on => :create
+  validates_presence_of :name, :on => :create
+  validates_presence_of :email, :password, :password_confirmation,
+                        :password_digest, on: :create, :if => :is_rem?
+
+  has_many :authentications, :dependent => :delete_all
 
   # Rails 3.1 goodie :)
   has_secure_password
+
+  # TODO
+  @called_omniauth = false
 
   # Before creating the user, we should create an authorization token
   # for him.
   before_create do
     generate_token(:auth_token)
+  end
+
+  # TODO
+  before_validation :no_password_omniauth
+
+  # TODO
+  def self.create_with_omniauth(auth)
+    @called_omniauth = true
+    info = auth['user_info']
+    create! do |user|
+      user.name = info['nickname']
+      user.email = info['email']
+      user.full_name = info['name']
+      user.location = info['location']
+      user.url = info['urls']['Website']
+      user.twitter_name = info['urls']['Twitter']
+      user.authentications.build(provider: auth['provider'], uid: auth['uid'])
+    end
+    @called_omniauth = false
   end
 
   ##
@@ -85,5 +110,26 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  ##
+  # TODO
+  def is_rem?
+    return true if self.authentications.nil? && self.authentications.empty?
+    self.authentications.each do |auth|
+      return true if auth.provider == ""
+    end
+    false
+  end
+
+  # TODO
+  def password_required
+    return false if @called_omniauth == true
+    (authentications.empty? || !password.blank?)
+  end
+
+  # TODO
+  def no_password_omniauth
+    self.password_digest = 0 unless password_required
   end
 end
