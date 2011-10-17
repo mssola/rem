@@ -97,6 +97,7 @@ class SessionsController < ApplicationController
   ##
   # TODO
   def other_auth(hash)
+#     render :text => hash.inspect
     auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
     if auth.nil?
       user = User.create_with_omniauth hash

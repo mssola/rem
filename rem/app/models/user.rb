@@ -55,11 +55,14 @@ class User < ActiveRecord::Base
     info = auth['user_info']
     create! do |user|
       user.name = info['nickname']
+      user.name ||= info['name'] + rand(1000).to_s
       user.email = info['email']
       user.full_name = info['name']
       user.location = info['location']
-      user.url = info['urls']['Website']
-      user.twitter_name = info['urls']['Twitter']
+      if info['urls']
+        user.url = info['urls']['Website']
+        user.twitter_name = info['urls']['Twitter']
+      end
       user.authentications.build(provider: auth['provider'], uid: auth['uid'])
     end
     @called_omniauth = false

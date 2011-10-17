@@ -38,7 +38,7 @@ $(document).ready ->
 
 # Log in page
 $(document).ready ->
-  $("#twitter").tipsy({fallback: 'Twitter'})
+  $("li #twitter").tipsy({fallback: 'Twitter'})
   $("#facebook").tipsy({fallback: 'Facebook'})
   $("#google").tipsy({fallback: 'Google'})
   $("#openid").tipsy({fallback: 'OpenID'})
