@@ -86,10 +86,11 @@ a.signin.menu-open span {
   margin-right: 0px;
   *margin-right: -1px;
   color:#789;
-  font-size:11px;
+  font-size:12px;
 
   p { margin:0; }
   p.remember { padding:10px 0; }
+  a { font-size:10px; }
   label { font-weight:normal; }
   a:hover { text-decoration:underline; }
 }

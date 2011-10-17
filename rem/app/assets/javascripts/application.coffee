@@ -28,29 +28,7 @@
 #= require users
 #= require signup
 #= require account
+#= require login
 
 #= require rmaps
-
-
-# The code below handles the signin_menu
-$(document).ready ->
-  # If clicked, toogle the menu
-  $('.signin').click (e) ->
-    e.preventDefault()
-    $('fieldset#signin_menu').toggle()
-    $('.signin').toggleClass 'menu-open'
-
-  # Return false on mouseup event
-  $('fieldset#signin_menu').mouseup -> false
-
-  #Hide the menu if we are clicking to another part of the site
-  $(document).mouseup (e) ->
-    if $(e.target).parent('a.signin').length == 0
-      $('.signin').removeClass 'menu-open'
-      $('fieldset#signin_menu').hide()
-
-# Log in page
-$(document).ready ->
-  $("#twitter").tipsy({fallback: 'Twitter'})
-  $("#facebook").tipsy({fallback: 'Facebook'})
 
