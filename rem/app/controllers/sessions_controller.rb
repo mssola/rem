@@ -97,13 +97,39 @@ class SessionsController < ApplicationController
   ##
   # TODO
   def other_auth(hash)
-#     render :text => hash.inspect
     auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
     if auth.nil?
-      user = User.create_with_omniauth hash
+      info = hash['user_info']
+      account = check_account info
+      if account
+        account.name = info['nickname'] if account.name == ""
+        account.email = info['email'] if account.email == ""
+        account.location = info['location'] if account.location == ""
+        account.full_name = info['name'] if account.full_name == ""
+        if info['urls']
+          account.url = info['urls']['Website'] if account.url == ""
+          account.twitter_name = info['urls']['Twitter'] if account.twitter_name == ""
+        end
+        account.authentications.create!(:provider => hash['provider'],
+                                        :uid => hash['uid'],
+                                        :user_id => account.id)
+        account.save!
+      else
+        user = User.create_with_omniauth hash
+      end
       auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
     end
     cookies[:auth_token] = auth.user.auth_token
     redirect_to root_url, :notice => _('Logged in!')
+  end
+
+  def check_account(info)
+    user = User.find_by_name(info['nickname'])
+    user ||= User.find_by_email(info['email'])
+    if user.nil? and info['urls']
+      info['urls']['Twitter'].match /com\/(.+)$/
+      user = User.find_by_twitter_name($1)
+    end
+    user
   end
 end
