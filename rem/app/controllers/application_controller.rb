@@ -24,6 +24,8 @@
 # The ApplicationController for this website. It currently defines
 # just a single extra helper method: current_user.
 class ApplicationController < ActionController::Base
+  include Utils
+
   protect_from_forgery
   helper_method :current_user
 

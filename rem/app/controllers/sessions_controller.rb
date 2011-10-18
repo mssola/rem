@@ -26,6 +26,8 @@
 # token to the cookies. Plus, if a given IP is failing too much
 # at logging in, this IP is black-listed for security reasons.
 class SessionsController < ApplicationController
+#   include Utils
+
   ##
   # The _new_ method. It does nothing.
   def new; end
@@ -100,7 +102,7 @@ class SessionsController < ApplicationController
     auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
     if auth.nil?
       info = hash['user_info']
-      account = check_account info
+      account = check_user_account info
       if account
         account.name = info['nickname'] if account.name == ""
         account.email = info['email'] if account.email == ""
@@ -121,15 +123,5 @@ class SessionsController < ApplicationController
     end
     cookies.permanent[:auth_token] = auth.user.auth_token
     redirect_to root_url, :notice => _('Logged in!')
-  end
-
-  def check_account(info)
-    user = User.find_by_name(info['nickname'])
-    user ||= User.find_by_email(info['email'])
-    if user.nil? and info['urls']
-      info['urls']['Twitter'].match /com\/(.+)$/
-      user = User.find_by_twitter_name($1)
-    end
-    user
   end
 end
