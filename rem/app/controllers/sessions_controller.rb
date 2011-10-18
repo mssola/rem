@@ -119,7 +119,7 @@ class SessionsController < ApplicationController
       end
       auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
     end
-    cookies[:auth_token] = auth.user.auth_token
+    cookies.permanent[:auth_token] = auth.user.auth_token
     redirect_to root_url, :notice => _('Logged in!')
   end
 
