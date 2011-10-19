@@ -75,7 +75,7 @@ class UserPresenter < BasePresenter
   # Handle when we want to show an attribute that may not have been given.
   #
   # @param *String* value The attribute we want to show.
-  def handle_none(value)
+  def handle_none(value) #:doc:
     yield if value.present?
   end
 end

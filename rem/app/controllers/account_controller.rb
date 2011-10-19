@@ -41,7 +41,7 @@ class AccountController < ApplicationController
   #
   # @return *Boolean* true if the attributes have been successfully
   # updated. False otherwise.
-  def update_user
+  def update_user #:doc:
     attr = { email: params[:email], full_name: params[:full],
              location: params[:location], url: params[:website],
              twitter_name: params[:twitter]}

@@ -88,7 +88,7 @@ class SessionsController < ApplicationController
   # user was not found, a new account will be created.
   #
   # @param *Hash* h The hash with all the authentication details.
-  def other_auth(h)
+  def other_auth(h) #:doc:
     auth = Authentication.find_by_provider_and_uid(h['provider'], h['uid'])
     if auth.nil?
       info = h['user_info']

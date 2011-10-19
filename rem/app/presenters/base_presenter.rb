@@ -45,7 +45,7 @@ class BasePresenter
   # beginning of a subclass of this class.
   #
   # @param *Symbol* name The name of the object this presenter is presenting.
-  def self.presents(name)
+  def self.presents(name) #:doc:
     define_method(name) { @object }
   end
 
@@ -53,7 +53,7 @@ class BasePresenter
   # Produce some basic markdown for the given text.
   #
   # @param *String* text The text to beautify.
-  def markdown(text)
+  def markdown(text) #:doc:
     Redcarpet.new(text, :hard_wrap, :filter_html, :autolink).to_html.html_safe
   end
 
@@ -65,7 +65,7 @@ class BasePresenter
   # @param *Variable Argument List* args The arguments to the missing method.
   #
   # @param *Block* block The block given to the missing method.
-  def method_missing(*args, &block)
+  def method_missing(*args, &block) #:doc:
     @template.send(*args, &block)
   end
 end

@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
 
   ##
   # Returns the most sensitive columns in this model
-  def private_columns
+  def private_columns #:doc:
     [:updated_at, :password_digest, :password_reset_token,
      :password_reset_sent_at, :auth_token]
   end
@@ -119,7 +119,7 @@ class User < ActiveRecord::Base
   # Is this a rem account signup ?
   #
   # @return *Boolean* True if this is a rem account, false otherwise.
-  def is_rem?
+  def is_rem? #:doc:
     return true if self.authentications.nil? || self.authentications.empty?
     self.authentications.each do |auth|
       return true if auth.provider == ""
@@ -131,7 +131,7 @@ class User < ActiveRecord::Base
   # If the password is not required, tell the password_digest attribute
   # to shut up. Do nothing if this is a Rem account, so this digest
   # attribute can properly complain.
-  def password_required?
+  def password_required? #:doc:
     unless authentications.empty? || !password.blank?
       self.password_digest = 0
     end
@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
   #
   # @return *Hash* An empty hash if no urls is given at all. Otherwise
   # it will return a two-sized hash with the :site and :twitter keys.
-  def self.cleanup_urls(urls)
+  def self.cleanup_urls(urls) #:doc:
     return {} if urls.nil?
     urls['Twitter'].match /com\/(.+)$/
     { :site => urls['Website'], :twitter => $1 }
