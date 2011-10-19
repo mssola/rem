@@ -43,11 +43,8 @@ module ApplicationHelper
   # if the user has no email and it will search through Gravatar otherwise.
   #
   # @param *User* user The current user.
-  def get_avatar(user, height = 20)
-    if user.email.empty?
-      image_tag 'rem_user.png', height: height.to_s
-    else
-      image_tag current_user.gravatar_url, height: '20'
-    end
+  def get_avatar_of(user, height = 20)
+    url = (user.email.empty?) ? 'rem_user.png' : user.gravatar_url
+    image_tag url, height: height.to_s
   end
 end
