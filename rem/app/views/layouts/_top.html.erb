@@ -2,12 +2,19 @@
   <div id="top_sep">
     <a href="/" id="rem">About Rem</a>
     <% if current_user %>
-      <ul class="hot_top">
-        <%= link_to "#{current_user.name}", root_url %>
-        <%= link_to 'Profile', "#{current_user.name}" %>
-        <%= link_to 'Account Settings', account_path %>
-        <%= link_to 'Log out', logout_path %>
-      </ul>
+      <div id="top_right">
+        <div class="avatar">
+          <a href="/">
+            <%= get_avatar(current_user) %>
+          </a>
+        </div>
+        <ul id="hot_top">
+          <li><%= link_to "#{current_user.name}", root_url %></li>
+          <li><%= link_to 'Profile', "#{current_user.name}" %></li>
+          <li><%= link_to 'Account Settings', account_path %></li>
+          <li><%= link_to 'Log out', logout_path %></li>
+        </ul>
+      </div>
     <% else %>
       <%= render :template => 'layouts/_login' %>
     <% end %>

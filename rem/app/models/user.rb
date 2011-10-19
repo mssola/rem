@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   before_validation :password_required?
 
+  # We want Gravatar support :)
+  include Gravtastic
+  gravtastic :secure => true
+
   ##
   # Create a brand new user from an external service.
   #

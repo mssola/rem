@@ -37,4 +37,17 @@ module ApplicationHelper
     yield presenter if block_given?
     presenter
   end
+
+  ##
+  # Get the avatar from the current user. It will show the standard one
+  # if the user has no email and it will search through Gravatar otherwise.
+  #
+  # @param *User* user The current user.
+  def get_avatar(user, height = 20)
+    if user.email.empty?
+      image_tag 'rem_user.png', height: height.to_s
+    else
+      image_tag current_user.gravatar_url, height: '20'
+    end
+  end
 end

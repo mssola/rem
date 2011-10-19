@@ -27,6 +27,7 @@ gem 'redcarpet'
 gem 'gmaps4rails'
 gem 'bcrypt-ruby'
 gem 'omniauth'
+gem 'gravtastic'
 
 # Some TDD candy
 gem "rspec-rails", :group => [:test, :development]
