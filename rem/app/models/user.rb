@@ -23,6 +23,7 @@
 #
 # This is the User model.
 class User < ActiveRecord::Base
+  # These are the attributes ready for mass-assignment.
   attr_accessible :name, :email, :password, :password_confirmation,
                   :full_name, :twitter_name, :location, :url
 
@@ -32,26 +33,23 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :password, :password_confirmation,
                         :password_digest, on: :create, :if => :is_rem?
 
+  # If a user is destroyed, it should delete also the dependent
+  # rows in the authentications table.
   has_many :authentications, :dependent => :delete_all
 
   # Rails 3.1 goodie :)
   has_secure_password
 
-  # TODO
-  @called_omniauth = false
+  # Perform some actions before creating/validating a user.
+  before_create { generate_token(:auth_token) }
+  before_validation :password_required?
 
-  # Before creating the user, we should create an authorization token
-  # for him.
-  before_create do
-    generate_token(:auth_token)
-  end
-
-  # TODO
-  before_validation :no_password_omniauth
-
-  # TODO
+  ##
+  # Create a brand new user from an external service.
+  #
+  # @param *Hash* auth This is a hash with important info related to
+  # this new user. It follows the OAuth format.
   def self.create_with_omniauth(auth)
-    @called_omniauth = true
     info = auth['user_info']
     urls = cleanup_urls(info['urls'])
     create! do |user|
@@ -64,7 +62,6 @@ class User < ActiveRecord::Base
       user.twitter_name = urls[:twitter]
       user.authentications.build(provider: auth['provider'], uid: auth['uid'])
     end
-    @called_omniauth = false
   end
 
   ##
@@ -115,27 +112,34 @@ class User < ActiveRecord::Base
   end
 
   ##
-  # TODO
+  # Is this a rem account signup ?
+  #
+  # @return *Boolean* True if this is a rem account, false otherwise.
   def is_rem?
-    return true if self.authentications.nil? && self.authentications.empty?
+    return true if self.authentications.nil? || self.authentications.empty?
     self.authentications.each do |auth|
       return true if auth.provider == ""
     end
     false
   end
 
-  # TODO
-  def password_required
-    return false if @called_omniauth == true
-    (authentications.empty? || !password.blank?)
+  ##
+  # If the password is not required, tell the password_digest attribute
+  # to shut up. Do nothing if this is a Rem account, so this digest
+  # attribute can properly complain.
+  def password_required?
+    unless authentications.empty? || !password.blank?
+      self.password_digest = 0
+    end
   end
 
-  # TODO
-  def no_password_omniauth
-    self.password_digest = 0 unless password_required
-  end
-
-  # TODO
+  ##
+  # Prepare a hash with the urls stripped for the user.
+  #
+  # @param *Hash* urls The urls given by the external service.
+  #
+  # @return *Hash* An empty hash if no urls is given at all. Otherwise
+  # it will return a two-sized hash with the :site and :twitter keys.
   def self.cleanup_urls(urls)
     return {} if urls.nil?
     urls['Twitter'].match /com\/(.+)$/

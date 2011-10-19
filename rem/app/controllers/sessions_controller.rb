@@ -26,14 +26,11 @@
 # token to the cookies. Plus, if a given IP is failing too much
 # at logging in, this IP is black-listed for security reasons.
 class SessionsController < ApplicationController
-#   include Utils
-
   ##
   # The _new_ method. It does nothing.
   def new; end
 
   ##
-#     TODO
   # The _create_ method. It creates a new session for a user. This
   # method is called when the user clicked on of the log in buttons.
   # It also handles the cookies and if a given IP should be black-listed.
@@ -77,7 +74,7 @@ class SessionsController < ApplicationController
   # is certaintly an email or otherwise by his username.
   #
   # @param *String* param a username or an email.
-  def find_name_or_email(param)
+  def find_name_or_email(param) #:doc:
     if valid_email? param
       User.find_by_email(param)
     else
@@ -86,22 +83,15 @@ class SessionsController < ApplicationController
   end
 
   ##
-  # Checks if the given parameter is a valid email.
+  # Authenticate via another service such as Twitter or Google/OpenId.
+  # The authentication will set the auth_token to a permanent cookie. If the
+  # user was not found, a new account will be created.
   #
-  # @param *String* email The email to be checked.
-  #
-  # @return *Boolean* True if the parameter is really an email,
-  # false otherwise.
-  def valid_email?(email)
-    /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.match(email)
-  end
-
-  ##
-  # TODO
-  def other_auth(hash)
-    auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
+  # @param *Hash* h The hash with all the authentication details.
+  def other_auth(h)
+    auth = Authentication.find_by_provider_and_uid(h['provider'], h['uid'])
     if auth.nil?
-      info = hash['user_info']
+      info = h['user_info']
       account = check_user_account info
       if account
         account.name = info['nickname'] if account.name == ""
@@ -112,14 +102,13 @@ class SessionsController < ApplicationController
           account.url = info['urls']['Website'] if account.url == ""
           account.twitter_name = info['urls']['Twitter'] if account.twitter_name == ""
         end
-        account.authentications.create!(:provider => hash['provider'],
-                                        :uid => hash['uid'],
-                                        :user_id => account.id)
+        ah = { provider: h['provider'], uid: h['uid'], user_id: account.id }
+        account.authentications.create!(ah)
         account.save!
       else
-        user = User.create_with_omniauth hash
+        user = User.create_with_omniauth h
       end
-      auth = Authentication.find_by_provider_and_uid(hash['provider'], hash['uid'])
+      auth = Authentication.find_by_provider_and_uid(h['provider'], h['uid'])
     end
     cookies.permanent[:auth_token] = auth.user.auth_token
     redirect_to root_url, :notice => _('Logged in!')

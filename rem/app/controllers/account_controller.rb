@@ -19,11 +19,13 @@
 
 
 ##
-# == SessionsController Class Definition
+# == AccountController Class Definition
 #
-# TODO
+# The controller for the account settings.
 class AccountController < ApplicationController
-  # There's nothing to do here
+  ##
+  # The _update_ method. It's called when the user wants to
+  # update its settings on the account.
   def update
     if update_user
       redirect_to account_url, :notice => 'Configuration saved!'
@@ -34,11 +36,15 @@ class AccountController < ApplicationController
 
   private
 
+  ##
+  # Update the user attributes.
+  #
+  # @return *Boolean* true if the attributes have been successfully
+  # updated. False otherwise.
   def update_user
-    current_user.update_attributes( email: params[:email],
-                                    full_name: params[:full],
-                                    location: params[:location],
-                                    url: params[:website],
-                                    twitter_name: params[:twitter])
+    attr = { email: params[:email], full_name: params[:full],
+             location: params[:location], url: params[:website],
+             twitter_name: params[:twitter]}
+    current_user.update_attributes(attr)
   end
 end

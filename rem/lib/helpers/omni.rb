@@ -18,23 +18,25 @@
 
 
 ##
-# == Utils Module Definition
+# == Omni Module Definition
 #
-# This is a module that defines a set of methods that are useful
-# all across this Rails application.
-module Utils
+# A module that encapsulates all the controller helper methods related
+# to the authentication of external services such as Twitter or Google/OpenId.
+module Omni
   ##
-  # Include all the methods related to OmniAuth
-  include Omni
-
-  ##
-  # Checks if the given parameter is a valid email.
+  # Check if exists in the database a user with the given info.
   #
-  # @param *String* email The email to be checked.
+  # @param *Hash* info A hash containing the info of a user.
   #
-  # @return *Boolean* True if the parameter is really an email,
-  # false otherwise.
-  def valid_email?(email)
-    /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.match(email)
+  # @return *Boolean* True if we guess that this user already
+  # exists. False otherwise.
+  def check_user_account(info)
+    user = User.find_by_name(info['nickname'])
+    user ||= User.find_by_email(info['email'])
+    if user.nil? and info['urls']
+      info['urls']['Twitter'].match /com\/(.+)$/
+      user = User.find_by_twitter_name($1)
+    end
+    user
   end
 end
