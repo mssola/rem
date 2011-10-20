@@ -19,6 +19,31 @@
 
 
 ##
+# == UserValidator Class Definition
+#
+# The Validator class for the User model.
+class UserValidator < ActiveModel::Validator
+  ##
+  # Re-implement the validate method so it's not possible to create a user
+  # with a reserved one.
+  #
+  # @param *User* record The record to validate.
+  def validate(record)
+    if reserved_names.include? record.name
+      record.errors[:base] << "Username '#{record.name}' is not available."
+    end
+  end
+
+  private
+
+  ##
+  # Return the reserved names for this model.
+  def reserved_names
+    %W(api about overview contact help login logout signup ajax_request account)
+  end
+end
+
+##
 # == User Class Definition
 #
 # This is the User model.
@@ -32,7 +57,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :on => :create
   validates_presence_of :email, :password, :password_confirmation,
                         :password_digest, on: :create, :if => :is_rem?
-
+  validates_with UserValidator, :on => :create
   # If a user is destroyed, it should delete also the dependent
   # rows in the authentications table.
   has_many :authentications, :dependent => :delete_all

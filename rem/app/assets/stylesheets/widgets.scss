@@ -26,6 +26,7 @@
     color: white;
     cursor:pointer;
   }
+  &:active { background: darken($button_blue, 20%); }
 
   &::-moz-focus-inner {
     padding:0;
@@ -47,10 +48,6 @@
 
   padding:9px 15px 10px;
   margin:0px 5px 20px 90px;
-
-  &:active {
-    background: darken($button_blue, 20%);
-  }
 }
 
 
