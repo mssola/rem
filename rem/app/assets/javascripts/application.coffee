@@ -30,5 +30,6 @@
 #= require account
 #= require login
 
+#= require gmaps4rails/googlemaps
 #= require rmaps
 
