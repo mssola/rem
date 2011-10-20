@@ -23,6 +23,12 @@
 #user_bucket {
   @include bucket_base;
 
+  span {
+    color:#636363;
+    font-size:10px;
+    margin-left:3px;
+  }
+
   div.present {
     padding:5px;
     border:0;

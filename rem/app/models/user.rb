@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
   # Returns the most sensitive columns in this model
   def private_columns #:doc:
     [:updated_at, :password_digest, :password_reset_token,
-     :password_reset_sent_at, :auth_token]
+     :password_reset_sent_at, :auth_token, :email]
   end
 
   ##
