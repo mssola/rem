@@ -19,21 +19,24 @@
 
 
 ##
-# TODO
+# == RoutesController Class Definition
+#
+# The controller for the routes. It allows us to create/edit/destroy routes
+# and in the future it will bring some API methods.
 class RoutesController < ApplicationController
   ##
-  # TODO
+  # The _new_ method. Initializes a new empty route.
   def new
     @route = Route.new
   end
 
   ##
-  # TODO
+  # The _create_ method. It creates a new route according to the params
+  # passed by the new view.
   def create
     @route = Route.new(params[:route])
     @route.user_id, @route.rating = current_user.id, 0
     if @route.save
-      # TODO: redirect to edit page
       redirect_to edit_route_url(@route.name)
     else
       render 'new'
@@ -41,11 +44,15 @@ class RoutesController < ApplicationController
   end
 
   ##
-  # TODO
+  # The _edit_ method. It edits an existing route identified by the name
+  # passed via params.
   def edit
     @route = Route.find_by_name(params[:name])
   end
 
+  ##
+  # The _destroy_ method. It deletes all the info about a route and
+  # redirects the user to the home page.
   def destroy
     Route.find(params[:id]).destroy
     redirect_to root_url, :notice => 'Route destroyed'
