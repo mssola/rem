@@ -19,7 +19,10 @@
 
 
 ##
-# TODO
+# == Route Class Definition
+#
+# This is a model that represents a route. It belongs to
+# a user and may have multiple places.
 class Route < ActiveRecord::Base
   attr_accessible :name, :user_id, :desc, :protected, :rating
 

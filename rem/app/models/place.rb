@@ -21,6 +21,11 @@
 ##
 # TODO
 class Place < ActiveRecord::Base
+  attr_accessible :name, :route_id, :desc, :longitude, :latitude,
+                  :address, :nroutes
+
+  # TODO: validations
+
   # TODO: destroy only if there are no more routes watching this place
   belongs_to :route
 end
