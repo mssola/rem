@@ -27,5 +27,6 @@ class Route < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :user_id
   validates_length_of :desc, :maximum => 160
 
+  has_many :places
   belongs_to :user
 end
