@@ -34,9 +34,15 @@ class RoutesController < ApplicationController
     @route.user_id, @route.rating = current_user.id, 0
     if @route.save
       # TODO: redirect to edit page
-      redirect_to root_url
+      redirect_to edit_route_url(@route.name)
     else
       render 'new'
     end
+  end
+
+  ##
+  # TODO
+  def edit
+    @route = Route.find_by_name(params[:name])
   end
 end

@@ -1,0 +1,10 @@
+Let's show some info about the route <b><%= @route.name %></b>:
+
+<% @rejects = ["created_at", "updated_at"] %>
+<% @columns = Route.column_names - @rejects %>
+<% @columns.each_with_index do |c, i| %>
+  <p id="p<%= i %>" class="check">
+    <span class="title"><b><%= c %></b>:</span>
+    <span class="value"><%= @route.send(c) %></span>
+  </p>
+<% end %>

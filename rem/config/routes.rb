@@ -7,6 +7,8 @@ Rem::Application.routes.draw do
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
+  get '/routes/:name/edit' => 'routes#edit'
+
   # OAuth paths
   match '/auth/failure' => "sessions#failure"
   match '/auth/:provider/callback' => 'sessions#create'
