@@ -20,7 +20,11 @@ describe 'Rest API' do
     it 'sends a valid JSON object when a user has been requested' do
       response = Reqs.do_get("/users/#{user.name}")
       response[:name].should eql(user.attributes[:name])
-      response[:email].should eql(user.attributes[:email])
+    end
+
+    it 'does not show the user email' do
+      response = Reqs.do_get("/users/#{user.name}")
+      response[:email].should be_nil
     end
 
     it 'raises an exception when trying to access an invalid user' do
@@ -31,7 +35,6 @@ describe 'Rest API' do
     it 'sends a valid XML object when a user has been requested' do
       response = Reqs.do_get("/users/#{user.name}.xml")
       Reqs.xml_compare(response, 'name', user.attributes['name'])
-      Reqs.xml_compare(response, 'email', user.attributes['email'])
     end
   end
 end
