@@ -19,31 +19,6 @@
 
 
 ##
-# == UserValidator Class Definition
-#
-# The Validator class for the User model.
-class UserValidator < ActiveModel::Validator
-  ##
-  # Re-implement the validate method so it's not possible to create a user
-  # with a reserved one.
-  #
-  # @param *User* record The record to validate.
-  def validate(record)
-    if reserved_names.include? record.name
-      record.errors[:base] << "Username '#{record.name}' is not available."
-    end
-  end
-
-  private
-
-  ##
-  # Return the reserved names for this model.
-  def reserved_names
-    %W(api about overview contact help login logout signup ajax_request account)
-  end
-end
-
-##
 # == User Class Definition
 #
 # This is the User model.
