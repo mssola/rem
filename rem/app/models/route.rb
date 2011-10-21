@@ -17,13 +17,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-# 
-# class RouteValidator < ActiveModel::Validator
-#   def validate(record)
-#     routes = current_user.
-#   end
-# end
-
 
 ##
 # TODO
@@ -31,6 +24,7 @@ class Route < ActiveRecord::Base
   attr_accessible :name, :user_id, :desc, :protected, :rating
 
   validates_presence_of :name, :on => :create
+  validates_uniqueness_of :name, :scope => :user_id
 
   belongs_to :user
 end
