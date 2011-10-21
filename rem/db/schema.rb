@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111017113505) do
+ActiveRecord::Schema.define(:version => 20111021154402) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(:version => 20111017113505) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "routes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "protected"
+    t.integer  "rating"
   end
 
   create_table "users", :force => true do |t|

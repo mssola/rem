@@ -7,8 +7,10 @@ Rem::Application.routes.draw do
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
+  # OAuth paths
   match '/auth/failure' => "sessions#failure"
   match '/auth/:provider/callback' => 'sessions#create'
+
   root to: 'home#index'
 
   # Footer
@@ -21,7 +23,7 @@ Rem::Application.routes.draw do
   # Rest API
   get "/users/:name" => "users#show"
 
-  resources :users, :sessions, :password_resets, :account
+  resources :users, :sessions, :password_resets, :account, :routes
 
   get '/:name' => "users#edit"
 end

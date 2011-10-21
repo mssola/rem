@@ -1,0 +1,29 @@
+<% title 'New route' %>
+
+<% if @route.errors.any? %>
+  <div class="error_messages">
+    <h2>Form is invalid</h2>
+    <ul>
+      <% for message in @route.errors.full_messages %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for @route do |f| %>
+  <fieldset class="textbox">
+    <div class="prompt name">
+      <%= r_label :name_label, 'Route name' %>
+      <%= f.text_field :name, { class: 'r_text_field' } %>
+    </div>
+    <div class="prompt desc">
+      <%= r_label :desc_label, 'Description' %>
+      <%= f.text_field :desc, { class: 'r_text_field' } %>
+    </div>
+    <div class="protect_route">
+      <%= f.check_box :protected %>
+      <%= r_label :protected_label, 'Keep this route protected' %>
+    </div>
+    <%= r_submit 'Create route' %>
+  </fieldset>
+<% end %>

@@ -52,15 +52,16 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation,
                   :full_name, :twitter_name, :location, :url
 
-  # Let's make some basic validation.
+  # Let's make some validations.
   validates_uniqueness_of :name, :email
   validates_presence_of :name, :on => :create
   validates_presence_of :email, :password, :password_confirmation,
                         :password_digest, on: :create, :if => :is_rem?
   validates_with UserValidator, :on => :create
-  # If a user is destroyed, it should delete also the dependent
-  # rows in the authentications table.
-  has_many :authentications, :dependent => :delete_all
+
+  # Let's build the has_many relationships
+  has_many :authentications, :dependent => :destroy
+  has_many :routes, :dependent => :destroy
 
   # Rails 3.1 goodie :)
   has_secure_password
