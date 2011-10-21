@@ -9,3 +9,9 @@ Right now, it should somehow show a map from Google showing your location.
 
 <br>
 You can <%= link_to 'create a new route', new_route_path %>
+<br>
+This are your routes:
+<% @routes = Route.find :all, :conditions => ['user_id=?', current_user.id] %>
+<% @routes.each do |r| %>
+  <%= link_to r.name, edit_route_path(r.name) %>
+<% end %>

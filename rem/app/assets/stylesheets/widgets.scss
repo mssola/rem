@@ -54,7 +54,7 @@
 
 /* Text and password fields */
 
-.r_raw_field {
+.r_raw {
   @include borders;
 
   display:block;
@@ -62,6 +62,10 @@
   font-size:13px;
   margin:0 0 5px;
   padding:5px;
+}
+
+.r_raw_field {
+  @extend .r_raw;
   width:203px;
 }
 
@@ -72,4 +76,10 @@
 
 .r_password_field {
   @extend .r_text_field;
-} 
+}
+
+.r_text_area {
+  @extend .r_raw;
+  width:300px;
+  height:80px;
+}

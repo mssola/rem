@@ -18,7 +18,8 @@
     </div>
     <div class="prompt desc">
       <%= r_label :desc_label, 'Description' %>
-      <%= f.text_field :desc, { class: 'r_text_field' } %>
+      <span id="desc_adv">(About this route in less than 160 chars.)</span>
+      <%= f.text_area :desc, { class: 'r_text_area' } %>
     </div>
     <div class="protect_route">
       <%= f.check_box :protected %>

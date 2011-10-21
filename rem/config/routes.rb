@@ -8,6 +8,7 @@ Rem::Application.routes.draw do
   put 'account' => 'account#update'
 
   get '/routes/:name/edit' => 'routes#edit'
+  get '/delete_route/:id' => 'routes#destroy', as: 'delete_route'
 
   # OAuth paths
   match '/auth/failure' => "sessions#failure"

@@ -8,3 +8,7 @@ Let's show some info about the route <b><%= @route.name %></b>:
     <span class="value"><%= @route.send(c) %></span>
   </p>
 <% end %>
+
+<br>
+
+<%= link_to 'Delete Route', delete_route_path(@route.id) %>

@@ -45,4 +45,9 @@ class RoutesController < ApplicationController
   def edit
     @route = Route.find_by_name(params[:name])
   end
+
+  def destroy
+    Route.find(params[:id]).destroy
+    redirect_to root_url, :notice => 'Route destroyed'
+  end
 end
