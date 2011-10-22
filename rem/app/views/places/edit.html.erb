@@ -1,0 +1,14 @@
+Let's show some info about the place <b><%= @place.name %></b>:
+
+<% @rejects = ["created_at", "updated_at"] %>
+<% @columns = Place.column_names - @rejects %>
+<% @columns.each_with_index do |c, i| %>
+  <p id="p<%= i %>" class="check">
+    <span class="title"><b><%= c %></b>:</span>
+    <span class="value"><%= @place.send(c) %></span>
+  </p>
+<% end %>
+
+<br>
+
+<%= link_to 'Delete Place', delete_place_path(@place.id) %>

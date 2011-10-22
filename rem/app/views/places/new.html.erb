@@ -1,0 +1,29 @@
+<% title 'New place' %>
+
+<% if @place.errors.any? %>
+  <div class="error_messages">
+    <h2>Form is invalid</h2>
+    <ul>
+      <% for message in @place.errors.full_messages %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for @place do |f| %>
+  <fieldset class="textbox">
+    <div class="prompt name">
+      <%= r_label :name_label, 'Place name' %>
+      <%= f.text_field :name, { class: 'r_text_field' } %>
+    </div>
+    <div class="prompt desc">
+      <%= r_label :desc_label, 'Description' %>
+      <span id="desc_adv">(About this place in less than 160 chars.)</span>
+      <%= f.text_area :desc, { class: 'r_text_area' } %>
+    </div>
+    <%= r_label :combo_routes, 'Add to the following route:' %>
+    <% list = Route.all.map { |o| [o.name, o.id] } %>
+    <%= f.select(:route_id, list) %>
+    <%= r_submit 'Create place' %>
+  </fieldset>
+<% end %> 

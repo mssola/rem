@@ -10,6 +10,9 @@ Rem::Application.routes.draw do
   get '/routes/:name/edit' => 'routes#edit'
   get '/delete_route/:id' => 'routes#destroy', as: 'delete_route'
 
+  get '/places/:id/edit' => 'places#edit'
+  get '/delete_place/:id' => 'places#destroy', as: 'delete_place'
+
   # OAuth paths
   match '/auth/failure' => "sessions#failure"
   match '/auth/:provider/callback' => 'sessions#create'
@@ -26,7 +29,7 @@ Rem::Application.routes.draw do
   # Rest API
   get "/users/:name" => "users#show"
 
-  resources :users, :sessions, :password_resets, :account, :routes
+  resources :users, :sessions, :password_resets, :account, :routes, :places
 
   get '/:name' => "users#edit"
 end

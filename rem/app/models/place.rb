@@ -24,7 +24,8 @@ class Place < ActiveRecord::Base
   attr_accessible :name, :route_id, :desc, :longitude, :latitude,
                   :address, :nroutes
 
-  # TODO: validations
+  validates_presence_of :name, :on => :create
+  validates_uniqueness_of :name, :scope => :route_id
 
   # TODO: destroy only if there are no more routes watching this place
   belongs_to :route

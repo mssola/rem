@@ -11,4 +11,18 @@ Let's show some info about the route <b><%= @route.name %></b>:
 
 <br>
 
+Some places on this route:
+<% @places = Place.find :all, :conditions => ['route_id=?', @route.id] %>
+<% @places.each do |p| %>
+  <%= link_to p.name, edit_place_path(p.id) %>
+<% end %>
+
+<br>
+<br>
+
+<%= link_to 'Add places', new_place_path %>
+
+<br>
+<br>
+
 <%= link_to 'Delete Route', delete_route_path(@route.id) %>
