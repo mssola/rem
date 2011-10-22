@@ -21,15 +21,18 @@
 ##
 # == Route Class Definition
 #
-# This is a model that represents a route. It belongs to
+# This is the model that represents a route. It belongs to
 # a user and may have multiple places.
 class Route < ActiveRecord::Base
+  # Let's play with mass-assignment.
   attr_accessible :name, :user_id, :desc, :protected, :rating
 
+  # Getting some validations done.
   validates_presence_of :name, :on => :create
   validates_uniqueness_of :name, :scope => :user_id
   validates_length_of :desc, :maximum => 160
 
-  has_many :places
+  # Setting up the relationships with other tables.
+  has_many :places # TODO: see the Place model
   belongs_to :user
 end

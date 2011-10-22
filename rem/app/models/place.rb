@@ -19,13 +19,19 @@
 
 
 ##
-# TODO
+# == Place Class Definition
+#
+# This is the model that represents a place. It belongs to a route. It
+# may have a name, a description, etc. but most importantly, this model
+# is the one that will be gmapable. Therefore, it needs attributes such as
+# longitude, latitude and address.
 class Place < ActiveRecord::Base
   attr_accessible :name, :route_id, :desc, :longitude, :latitude,
                   :address, :nroutes
 
   validates_presence_of :name, :on => :create
   validates_uniqueness_of :name, :scope => :route_id
+  validates_length_of :desc, :maximum => 160
 
   # TODO: destroy only if there are no more routes watching this place
   belongs_to :route

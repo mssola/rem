@@ -19,12 +19,19 @@
 
 
 ##
-# TODO
+# == PlacesController Class Definition
+#
+# The controller for the places. It allows us to create/edit/destroy places.
 class PlacesController < ApplicationController
+  ##
+  # The _new_ method. Initializes a new empty place.
   def new
     @place = Place.new
   end
 
+  ##
+  # The _create_ method. It creates a new route with the given parameters
+  # passed by the new_place form.
   def create
     @place = Place.new(params[:place])
     @place.nroutes = 1
@@ -35,10 +42,16 @@ class PlacesController < ApplicationController
     end
   end
 
+  ##
+  # The _edit_ method. It edits an existing place identified by the
+  # id passed via params.
   def edit
     @place = Place.find(params[:id])
   end
 
+  ##
+  # The _destroy_ method. It deletes all the info about a place and
+  # redirects the user to the home page.
   def destroy
     Place.find(params[:id]).destroy
     redirect_to root_url, :notice => 'Place destroyed'
