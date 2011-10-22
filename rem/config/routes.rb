@@ -7,7 +7,7 @@ Rem::Application.routes.draw do
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
-  get '/routes/:name/edit' => 'routes#edit'
+  get '/routes/:id/edit' => 'routes#edit'
   get '/delete_route/:id' => 'routes#destroy', as: 'delete_route'
 
   get '/places/:id/edit' => 'places#edit'

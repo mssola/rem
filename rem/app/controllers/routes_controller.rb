@@ -44,10 +44,10 @@ class RoutesController < ApplicationController
   end
 
   ##
-  # The _edit_ method. It edits an existing route identified by the name
+  # The _edit_ method. It edits an existing route identified by the id
   # passed via params.
   def edit
-    @route = Route.find_by_name(params[:name])
+    @route = Route.find(params[:id])
   end
 
   ##

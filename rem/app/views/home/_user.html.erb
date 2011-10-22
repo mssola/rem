@@ -15,5 +15,5 @@ You can <%= link_to 'create a new place', new_place_path %>
 This are your routes:
 <% @routes = Route.find :all, :conditions => ['user_id=?', current_user.id] %>
 <% @routes.each do |r| %>
-  <%= link_to r.name, edit_route_path(r.name) %>
+  <%= link_to r.name, edit_route_path(r.id) %>
 <% end %>
