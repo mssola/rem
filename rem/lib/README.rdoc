@@ -3,8 +3,11 @@
 Rem uses the following libraries to fully work:
 
 Name: Hermes
+
 Author: Miquel Sabaté Solà
+
 License: LGPLv3+
+
 Description: A library that provides facilities for Ajax requests.
 
 
