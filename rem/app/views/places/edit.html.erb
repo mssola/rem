@@ -1,5 +1,7 @@
 Let's show some info about the place <b><%= @place.name %></b>:
 
+<%= gmaps4rails(@json) %>
+
 <% @rejects = ["created_at", "updated_at"] %>
 <% @columns = Place.column_names - @rejects %>
 <% @columns.each_with_index do |c, i| %>

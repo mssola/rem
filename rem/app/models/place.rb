@@ -35,4 +35,11 @@ class Place < ActiveRecord::Base
 
   # TODO: destroy only if there are no more routes watching this place
   belongs_to :route
+
+  acts_as_gmappable
+
+  def gmaps4rails_address
+    puts address
+    address
+  end
 end
