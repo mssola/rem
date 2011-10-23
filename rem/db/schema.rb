@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111021210917) do
+ActiveRecord::Schema.define(:version => 20111023171323) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20111021210917) do
     t.datetime "updated_at"
     t.integer  "nroutes"
     t.string   "address"
+    t.string   "locality"
+    t.string   "country"
   end
 
   create_table "routes", :force => true do |t|
