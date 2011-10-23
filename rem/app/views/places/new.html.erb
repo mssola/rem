@@ -23,6 +23,10 @@
       <%= r_label :name_label, 'Place name' %>
       <%= f.text_field :name, { class: 'r_text_field' } %>
     </div>
+    <div class="prompt address">
+      <%= r_label :address_label, 'Address' %>
+      <%= f.text_field :address, { class: 'r_text_field', id: 'addr' } %>
+    </div>
     <div class="prompt locality">
       <%= r_label :locality_label, 'Locality' %>
       <%= f.text_field :locality, { class: 'r_text_field', id: 'locality' } %>

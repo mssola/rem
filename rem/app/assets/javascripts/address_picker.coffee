@@ -43,6 +43,7 @@ jQuery ->
   addresspickerMap = $( "#addresspicker_map" ).addresspicker({
     elements: {
       map:      "#map",
+      addr:      "#addr",
       lat:      "#lat",
       lng:      "#lng",
       locality: '#locality',
@@ -52,4 +53,8 @@ jQuery ->
   gmarker = addresspickerMap.addresspicker( "marker")
   gmarker.setVisible(true)
   addresspickerMap.addresspicker( "updatePosition")
+
+jQuery ->
+  $("#addresspicker_map").select ->
+    alert 'a'
 

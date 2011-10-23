@@ -29,6 +29,7 @@
 
       elements:
         map: false
+        addr: false
         lat: false
         lng: false
         locality: false
@@ -59,6 +60,7 @@
 
       @lat = $(@options.elements.lat)
       @lng = $(@options.elements.lng)
+      @addr = $(@options.elements.addr)
       @locality = $(@options.elements.locality)
       @country = $(@options.elements.country)
       if @options.elements.map
@@ -114,6 +116,7 @@
         @gmarker.setVisible true
         @gmap.fitBounds address.geometry.viewport
       @_updatePosition address.geometry.location
+      @addr.val address.value  if @addr
       @locality.val @_findInfo(address, "locality")  if @locality
       @country.val @_findInfo(address, "country")  if @country
 
