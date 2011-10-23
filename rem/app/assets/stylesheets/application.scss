@@ -3,9 +3,11 @@
  * mixes all the scss's files in order to have the desired style.
  */
 
+//= require themes/base/jquery.ui.all.css
 
 @import "layout.scss";
 @import "flash.scss";
 @import "tipsy.scss";
 @import "account.scss";
 @import "gmaps4rails.scss";
+@import "addresspicker.scss";

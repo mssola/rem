@@ -1,5 +1,5 @@
 #
-# Main CoffeeScript file.
+# Let's handle the Address Picker jQuery plugin.
 #
 # Copyright (C) 2011 Miquel Sabaté <mikisabate@gmail.com>
 #
@@ -19,18 +19,21 @@
 #
 
 
-#= require jquery
-#= requrie jquery_ujs
-#= require jquery-ui
-#= require jquery.tipsy
+#= require jquery.ui.addresspicker
 
-#= require sparky
-#= require users
-#= require signup
-#= require account
-#= require login
-#= require address_picker
 
-#= require gmaps4rails/googlemaps
-#= require rmaps
+jQuery ->
+  addresspicker = $( "#addresspicker" ).addresspicker()
+  addresspickerMap = $( "#addresspicker_map" ).addresspicker({
+    elements: {
+      map:      "#map",
+      lat:      "#lat",
+      lng:      "#lng",
+      locality: '#locality',
+      country:  '#country'
+    }
+  })
+  gmarker = addresspickerMap.addresspicker( "marker")
+  gmarker.setVisible(true)
+  addresspickerMap.addresspicker( "updatePosition")
 
