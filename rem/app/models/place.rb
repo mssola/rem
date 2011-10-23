@@ -27,18 +27,18 @@
 # longitude, latitude and address.
 class Place < ActiveRecord::Base
   attr_accessible :name, :route_id, :desc, :longitude, :latitude,
-                  :address, :nroutes
+                  :address, :nroutes, :locality, :country
 
-  validates_presence_of :name, :on => :create
+  validates_presence_of :name, :address, :on => :create
   validates_uniqueness_of :name, :scope => :route_id
   validates_length_of :desc, :maximum => 160
 
   # TODO: destroy only if there are no more routes watching this place
   belongs_to :route
-
-  acts_as_gmappable
-
-  def gmaps4rails_address
-    address
-  end
+# 
+#   acts_as_gmappable
+# 
+#   def gmaps4rails_address
+#     address
+#   end
 end

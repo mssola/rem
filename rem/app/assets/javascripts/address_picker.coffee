@@ -54,7 +54,3 @@ jQuery ->
   gmarker.setVisible(true)
   addresspickerMap.addresspicker( "updatePosition")
 
-jQuery ->
-  $("#addresspicker_map").select ->
-    alert 'a'
-
