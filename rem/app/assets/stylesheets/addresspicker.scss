@@ -1,3 +1,12 @@
+
+/*
+ * The address_picker widget.
+ */
+
+
+@import "widgets.scss";
+
+
 code {
   background-color: ghostWhite;
   border: 1px solid #DEDEDE;
@@ -22,33 +31,21 @@ p {
 }
 
 .ui-autocomplete-input, .input input {
-  border: none; 
-  font-size: 14px;
-  width: 300px;
-  height: 24px;
-  margin-bottom: 5px;
-  padding-top: 2px;
+  @extend .r_text_field;
 }
-
+/*
 .ui-autocomplete-input {
   border: 1px solid #DDD !important;
   padding-top: 0px !important;
-}
+}*/
 
 #map {
   border: 1px solid #DDD; 
   width:300px;
   height: 300px;
-  float:left;  
+/*   float:left;   */
   margin: 0px 0 0 10px;
   -webkit-box-shadow: #AAA 0px 0px 15px;
-}
-
-#legend {
-  float: left;
-  font-size: 12px;
-  font-style: italic;
-  margin: 10px 0px 0px 430px;
 }
 
 .ui-menu .ui-menu-item a {
@@ -56,5 +53,5 @@ p {
 }
 
 .input {
-  float:left;  
+/*   float:left;   */
 } 
