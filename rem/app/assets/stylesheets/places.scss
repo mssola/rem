@@ -4,14 +4,54 @@
  */
 
 
+@import "widgets.scss";
+
+
 #search_map {
   float:left;
+  margin-right:50px;
+
+  .holding {
+    margin: 0px 0 0 10px;
+    padding:10px;
+
+    .holder {
+      position:absolute;
+      line-height:43px;
+      color:#DDD;
+      margin-left:8px;
+      margin-top:-8px;
+    }
+  }
 }
 
+#map {
+  border: 1px solid #DDD;
+  width:300px;
+  height: 300px;
+  margin: 0px 0 0 10px;
+
+  @include map_shadows;
+}
+
+.ui-autocomplete-input, .input input {
+  @extend .r_raw_field;
+}
+
+.ui-menu .ui-menu-item a {
+  font-size: 12px;
+}
 
 #new_place {
+  .r_label { font-weight:bold; }
   .textbox {
     border:none;
+  }
+
+  span {
+    color:#636363;
+    font-size:10px;
+    margin-left:3px;
   }
 }
 

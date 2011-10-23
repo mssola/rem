@@ -12,7 +12,10 @@
 <% end %>
 <div id="search_map">
   <div id="map"></div>
-  <input id="addresspicker_map" />
+  <div class="holding">
+    <span class="holder">Search and have fun</span>
+    <%= text_field_tag :addresspicker_map, nil %>
+  </div>
 </div>
 <%= form_for @place do |f| %>
   <fieldset class="textbox">

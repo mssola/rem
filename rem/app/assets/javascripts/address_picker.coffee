@@ -23,6 +23,22 @@
 
 
 jQuery ->
+  holding = $("#search_map").find("div.holding")
+  input = holding.find("input:eq(0)")
+  holder = holding.find("span.holder")
+
+  holder.click ->
+    input.focus()
+
+  input.bind
+    focusout: ->
+      holder.show() if $(this).val() == ""
+
+    keydown: ->
+      holder.hide() if holder.is(":visible")
+    
+
+jQuery ->
   addresspicker = $( "#addresspicker" ).addresspicker()
   addresspickerMap = $( "#addresspicker_map" ).addresspicker({
     elements: {

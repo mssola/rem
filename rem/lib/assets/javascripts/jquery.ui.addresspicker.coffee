@@ -23,8 +23,8 @@
       appendAddressString: ""
       mapOptions:
         zoom: 5
-        center: new google.maps.LatLng(46, 2)
-        scrollwheel: false
+        center: new google.maps.LatLng(0, 0)
+        scrollwheel: true
         mapTypeId: google.maps.MapTypeId.ROADMAP
 
       elements:
