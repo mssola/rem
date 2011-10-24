@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method
   def to_xml(options = {})
-    options.merge!(except: private_columns)
+    options.merge!(except: private_columns, include: :routes)
     super(options)
   end
 
@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method. Unused.
   def as_json(options = {})
-    options ||= { except: private_columns }
+    options ||= { except: private_columns, include: :routes }
     super(options)
   end
 
