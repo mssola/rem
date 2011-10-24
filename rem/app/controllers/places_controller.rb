@@ -51,6 +51,21 @@ class PlacesController < ApplicationController
   end
 
   ##
+  # *Rest API*
+  #
+  # Shows the info about the place specified on the params variable
+  # and can be accessed through /places/:name. It will return an XML if
+  # the url specifies it, otherwise it will return a JSON object.
+  def show
+    @place = Place.find_by_name(params[:name])
+    raise ActionController::RoutingError.new('Not Found') if @place.nil?
+    respond_to do |format|
+      format.json { render :json => @place.to_json }
+      format.any(:xml, :html) { render :xml => @place.to_xml }
+    end
+  end
+
+  ##
   # The _destroy_ method. It deletes all the info about a place and
   # redirects the user to the home page.
   def destroy

@@ -35,6 +35,8 @@ Rem::Application.routes.draw do
 
   # Rest API
   get "/users/:name" => "users#show"
+  get "/routes/:name" => "routes#show"
+  get "/places/:name" => "places#show"
 
   # RESTful resources
   resources :users, :sessions, :password_resets, :account, :routes, :places

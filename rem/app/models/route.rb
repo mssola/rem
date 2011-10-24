@@ -35,4 +35,30 @@ class Route < ActiveRecord::Base
   # Setting up the relationships with other tables.
   has_many :places # TODO: see the Place model
   belongs_to :user
+
+  ##
+  # Override the to_xml method to limit the fields returned
+  #
+  # @param *Hash* options Options passed to this method
+  def to_xml(options = {})
+    options.merge!(except: private_columns, include: :places)
+    super(options)
+  end
+
+  ##
+  # Override the as_json method to limit the fields returned.
+  #
+  # @param *Hash* options Options passed to this method. Unused.
+  def as_json(options = {})
+    options ||= { except: private_columns, include: :places }
+    super(options)
+  end
+
+  private
+
+  ##
+  # Returns the most sensitive columns in this model
+  def private_columns #:doc:
+    [:updated_at]
+  end
 end

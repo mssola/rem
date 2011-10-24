@@ -51,6 +51,21 @@ class RoutesController < ApplicationController
   end
 
   ##
+  # *Rest API*
+  #
+  # Shows the info about the route specified on the params variable
+  # and can be accessed through /routes/:name. It will return an XML if
+  # the url specifies it, otherwise it will return a JSON object.
+  def show
+    @route = Route.find_by_name(params[:name])
+    raise ActionController::RoutingError.new('Not Found') if @route.nil?
+    respond_to do |format|
+      format.json { render :json => @route.to_json }
+      format.any(:xml, :html) { render :xml => @route.to_xml }
+    end
+  end
+
+  ##
   # The _destroy_ method. It deletes all the info about a route and
   # redirects the user to the home page.
   def destroy
