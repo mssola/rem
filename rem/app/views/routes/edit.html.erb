@@ -25,4 +25,4 @@ Some places on this route:
 <br>
 <br>
 
-<%= link_to 'Delete Route', delete_route_path(@route.id) %>
+<%= button_to 'Delete Route', route_path(@route.id), method: :delete, class: 'r_submit' %>

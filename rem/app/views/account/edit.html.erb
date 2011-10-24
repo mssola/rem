@@ -43,7 +43,7 @@
         <% end %>
         <br>
         <%= r_label :delete, 'Delete Account' %>
-        <%= link_to 'Delete Account', delete_account_path(current_user.id) %>
+        <%= button_to 'Delete Account', user_path(current_user.id), method: :delete, class: 'r_submit' %>
         <br>
         <br>
         <%= r_label :label_username, 'Change username' %>

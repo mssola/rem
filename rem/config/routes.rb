@@ -1,24 +1,15 @@
 
-# TODO: the delete urls are a joke.
-
 Rem::Application.routes.draw do
   # RESTful resources
-  resources :users, :sessions, :password_resets, :account, :routes, :places
+  resources :users, :sessions, :password_resets, :routes, :places
 
   # Users, sessions and accounts
   get 'login' => 'sessions#new', as: 'login'
   get 'logout' => 'sessions#destroy', as: 'logout'
   get 'signup' => 'users#new', as: 'signup'
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
-  get 'delete_account/:id' => 'users#destroy', as: 'delete_account'
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
-
-  # Routes
-  get '/delete_route/:id' => 'routes#destroy', as: 'delete_route'
-
-  # Places
-  get '/delete_place/:id' => 'places#destroy', as: 'delete_place'
 
   # OAuth paths
   match '/auth/failure' => "sessions#failure"

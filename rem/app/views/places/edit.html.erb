@@ -13,4 +13,4 @@ Let's show some info about the place <b><%= @place.name %></b>:
 
 <br>
 
-<%= link_to 'Delete Place', delete_place_path(@place.id) %>
+<%= button_to 'Delete Place', place_path(@place.id), method: :delete, class: 'r_submit' %>
