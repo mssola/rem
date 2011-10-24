@@ -38,21 +38,26 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     unless auth
       user = find_name_or_email(params[:name_or_email])
-      if user && user.authenticate(params[:password])
-        if params[:remember_me]
-          cookies.permanent[:auth_token] = user.auth_token
+      begin
+        if user && user.authenticate(params[:password])
+          if params[:remember_me]
+            cookies.permanent[:auth_token] = user.auth_token
+          else
+            cookies[:auth_token] = user.auth_token
+          end
+          Cerber.remove_ip request.remote_ip
+          redirect_to root_url, :notice => _('Logged in!')
         else
-          cookies[:auth_token] = user.auth_token
+          flash.now.alert = _('Invalid username, email or password')
+          if Cerber.should_continue?(request.remote_ip)
+            render 'new'
+          else
+            raise ActionController::RoutingError.new('Not Found')
+          end
         end
-        Cerber.remove_ip request.remote_ip
-        redirect_to root_url, :notice => _('Logged in!')
-      else
-        flash.now.alert = _('Invalid username, email or password')
-        if Cerber.should_continue?(request.remote_ip)
-          render 'new'
-        else
-          raise ActionController::RoutingError.new('Not Found')
-        end
+      rescue BCrypt::Errors::InvalidHash
+        flash[:alert] = _('Login with another service')
+        render 'new'
       end
     else
       other_auth auth

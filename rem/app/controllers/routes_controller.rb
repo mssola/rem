@@ -35,7 +35,7 @@ class RoutesController < ApplicationController
   # passed by the new view.
   def create
     @route = Route.new(params[:route])
-    @route.user_id, @route.rating = current_user.id, 0
+    @route.user_id, @route.rating = current_user.id, 0 unless @route.nil?
     if @route.save
       redirect_to edit_route_url(@route.id)
     else

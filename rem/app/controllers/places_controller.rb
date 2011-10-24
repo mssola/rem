@@ -34,7 +34,7 @@ class PlacesController < ApplicationController
   # passed by the new_place form.
   def create
     @place = Place.new(params[:place])
-    @place.nroutes = 1
+    @place.nroutes = 1 unless @place.nil?
     if @place.save
       redirect_to root_url, :notice => 'Place created successfully'
     else
