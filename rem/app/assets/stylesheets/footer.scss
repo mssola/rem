@@ -33,3 +33,17 @@
     text-decoration:underline;
   }
 }
+
+#api_show {
+  border-collapse:collapse;
+  margin:25px 0 0 50px;
+
+  #path_name {
+    width:100px;
+    padding:5px;
+  }
+
+  td {
+    padding:5px;
+  }
+}
