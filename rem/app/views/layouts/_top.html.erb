@@ -15,8 +15,10 @@
           <li><%= link_to 'Log out', logout_path %></li>
         </ul>
         <div id="top_search">
-          <span>Search . . .</span>
-          <%= r_field :text, :search, 'r_raw_field' %>
+          <form accept-charset="UTF-8" action="/search" method="post">
+            <span>Search . . .</span>
+            <%= r_field :text, :search, 'r_raw_field' %>
+          </form>
         </div>
       </div>
     <% else %>

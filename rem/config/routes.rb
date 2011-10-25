@@ -6,6 +6,7 @@ Rem::Application.routes.draw do
   # Users, sessions and accounts
   get 'login' => 'sessions#new', as: 'login'
   get 'logout' => 'sessions#destroy', as: 'logout'
+  post '/search' => 'sessions#search', as: 'search'
   get 'signup' => 'users#new', as: 'signup'
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
   get 'account' => 'account#edit', as: 'account'
