@@ -34,3 +34,19 @@
 #= require gmaps4rails/googlemaps
 #= require rmaps
 
+
+# Handle the special search input on the top.
+jQuery ->
+  holder = $("#top_search").find("span")
+  input = $("#top_search").find("input:eq(0)")
+
+  holder.click ->
+    input.focus()
+
+  input.bind
+    focusout: ->
+      holder.show() if $(this).val() == ""
+
+    keydown: ->
+      holder.hide() if holder.is(":visible")
+

@@ -22,6 +22,7 @@
 #= require jquery.ui.addresspicker
 
 
+# Handle the special search input on the bottom of the map.
 jQuery ->
   holding = $("#search_map").find("div.holding")
   input = holding.find("input:eq(0)")
@@ -38,6 +39,7 @@ jQuery ->
       holder.hide() if holder.is(":visible")
     
 
+# Handle the address_picker plugin
 jQuery ->
   addresspicker = $( "#addresspicker" ).addresspicker()
   addresspickerMap = $( "#addresspicker_map" ).addresspicker({
@@ -51,6 +53,6 @@ jQuery ->
     }
   })
   gmarker = addresspickerMap.addresspicker( "marker")
-  gmarker.setVisible(true)
+  gmarker.setVisible(true) if gmarker.setVisible != undefined
   addresspickerMap.addresspicker( "updatePosition")
 

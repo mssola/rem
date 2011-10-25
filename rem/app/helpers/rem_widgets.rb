@@ -49,10 +49,13 @@ module RemWidgets
   #
   # @param *String* name The name for this tag.
   #
+  # @param *String* klass The field class property.
+  #
   # @param *String* value The value for this field. Default value of nil.
-  def r_field(kind, name, value = nil)
+  def r_field(kind, name, klass = nil, value = nil)
     aux = kind.to_s + '_field'
-    method(aux + '_tag').call(name, value, { :class => 'r_' + aux })
+    klass ||= 'r_' + aux
+    method(aux + '_tag').call(name, value, class: klass)
   end
 
   ##

@@ -49,3 +49,17 @@
     &:hover { color:$dark_royal; }
   }
 }
+
+#top_search {
+  display:block;
+  padding:5px;
+  margin-left:35px;
+
+  span {
+    position:absolute;
+    color:#636363;
+    font-size:12px;
+    padding:6px;
+    margin-left:3px;
+  }
+}
