@@ -59,6 +59,7 @@ class UsersController < ApplicationController
   # The _edit_ method. This method corresponds to the user's dashboard.
   def edit
     raise ActionController::RoutingError.new('Not Found') if current_user.nil?
+    @user = User.find_by_name(params[:name])
   end
 
   ##
