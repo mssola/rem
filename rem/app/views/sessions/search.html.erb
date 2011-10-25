@@ -1,2 +1,13 @@
 
 Here I have to display all the matches (users, routes, places...).
+
+<br>
+<br>
+
+Usernames:
+
+<% usernames = search_username(params[:search]) %>
+<% usernames.each do |u| %>
+  <%= link_to u.name, u.name %>
+<% end %>
+

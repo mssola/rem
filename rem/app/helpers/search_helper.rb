@@ -22,4 +22,8 @@
 ##
 # TODO
 module SearchHelper
+  def search_username(name)
+#     User.find_by_name(name).name
+    User.find :all, conditions: ["name like ?", params[:search]]
+  end
 end
