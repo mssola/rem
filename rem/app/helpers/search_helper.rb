@@ -20,10 +20,45 @@
 
 
 ##
-# TODO
+# == SearchHelper Module Definition
+#
+# This module is the responsible to provide methods that issue searches
+# to the DB so we can show it then with the view.
 module SearchHelper
-  def search_username(name)
-#     User.find_by_name(name).name
-    User.find :all, conditions: ["name like ?", params[:search]]
+  ##
+  # Search users.
+  #
+  # @param *String* name The name or full_name of the user we are searching.
+  def search_users(name)
+    e = escape_params name
+    User.find :all, conditions: ["name like ? or full_name like ?", e, e]
+  end
+
+  ##
+  # Search routes.
+  #
+  # @param *String* route The name of the route we are searching.
+  def search_routes(route)
+    e = escape_params route
+    Route.find :all, conditions: ["name like ?", e]
+  end
+
+  ##
+  # Search users.
+  #
+  # @param *String* place The name of the place we are searching.
+  def search_places(place)
+    e = escape_params place
+    Place.find :all, conditions: ["name like ?", e]
+  end
+
+  private
+
+  ##
+  # Escape the params passed via the search widget.
+  #
+  # @param *String* value The value given to the search widget.
+  def escape_params(value)
+    '%' + value.gsub('%', '\%').gsub('_', '\_').gsub('\\', '\\\\') + '%'
   end
 end

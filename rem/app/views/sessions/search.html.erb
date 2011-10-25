@@ -6,8 +6,32 @@ Here I have to display all the matches (users, routes, places...).
 
 Usernames:
 
-<% usernames = search_username(params[:search]) %>
+<% usernames = search_users(params[:search]) %>
 <% usernames.each do |u| %>
-  <%= link_to u.name, u.name %>
+  <%= link_to "#{u.full_name} (#{u.name})", u.name %>
 <% end %>
 
+<br>
+<br>
+
+(there's no way to show routes/places properly yet)
+
+<br>
+<br>
+
+Routes:
+
+<% routes = search_routes(params[:search]) %>
+<% routes.each do |r| %>
+  <%= r.name %>
+<% end %>
+
+<br>
+<br>
+
+Places:
+
+<% places = search_places(params[:search]) %>
+<% places.each do |p| %>
+  <%= p.name %>
+<% end %>
