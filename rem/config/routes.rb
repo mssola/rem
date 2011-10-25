@@ -1,5 +1,10 @@
 
 Rem::Application.routes.draw do
+  # Rest API
+  get "/users/:name" => "users#show"
+  get "/routes/:name" => "routes#show"
+  get "/places/:name" => "places#show"
+
   # RESTful resources
   resources :users, :sessions, :password_resets, :routes, :places
 
@@ -25,11 +30,6 @@ Rem::Application.routes.draw do
   get '/contact' => "home#contact"
   get '/api' => "home#api"
   get '/help' => "home#help"
-
-  # Rest API
-  get "/users/:name" => "users#show"
-  get "/routes/:name" => "routes#show"
-  get "/places/:name" => "places#show"
 
   # This is the last to be routed so we don't mess things up.
   get '/:name' => "users#edit"
