@@ -14,7 +14,6 @@ gem 'uglifier'
 
 # JS
 gem 'jquery-rails'
-gem 'execjs'
 gem 'therubyracer'
 
 # Internationalization
