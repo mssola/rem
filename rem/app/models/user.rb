@@ -35,8 +35,14 @@ class User < ActiveRecord::Base
   validates_with UserValidator, :on => :create
 
   # Let's build the has_many relationships
-  has_many :authentications, :dependent => :destroy
-  has_many :routes, :dependent => :destroy
+  has_many :authentications, dependent: :destroy
+  has_many :routes, dependent: :destroy
+  has_many :following, through: :relationships, source: :followed
+  has_many :relationships, foreign_key: 'follower_id', dependent: :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :reverse_relationships, :foreign_key => "followed_id",
+                                   :class_name => "Relationship",
+                                   :dependent => :destroy
 
   # Rails 3.1 goodie :)
   has_secure_password
@@ -48,6 +54,9 @@ class User < ActiveRecord::Base
   # We want Gravatar support :)
   include Gravtastic
   gravtastic :secure => true
+
+  ##
+  # Authentication with OmniAuth and sending password resets
 
   ##
   # Create a brand new user from an external service.
@@ -78,6 +87,37 @@ class User < ActiveRecord::Base
     save!
     UserMailer.password_reset(self).deliver
   end
+
+  ##
+  # Handling the following/followed functionality
+
+  ##
+  # Return true if this user is following the given user.
+  #
+  # @param *User* followed The user that we may be following.
+  def following?(followed)
+    relationships.find_by_followed_id(followed)
+  end
+
+  ##
+  # Follow the given user.
+  #
+  # @param *User* followed The user we want to follow.
+  def follow!(followed)
+    relationships.create!(followed_id: followed.id)
+  end
+
+  ##
+  # Unfollow the given user.
+  #
+  # @param *User* followed We don't want to follow this user anymore.
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
+  end
+
+  ##
+  # Overriding to_xml and as_json to indicate what should be
+  # shown from a user.
 
   ##
   # Override the to_xml method to limit the fields returned

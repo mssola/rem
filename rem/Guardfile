@@ -2,7 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 # Let's use Spork to boost up TDD
-guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, :bundler => false do
+guard 'spork', :wait => 30, :rspec_env => { 'RAILS_ENV' => 'test' }, :bundler => false do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})
