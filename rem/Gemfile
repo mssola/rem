@@ -28,6 +28,7 @@ gem 'gmaps4rails'
 gem 'bcrypt-ruby'
 gem 'omniauth'
 gem 'gravtastic'
+gem 'faker'
 
 # Some TDD candy
 gem "rspec-rails", :group => [:test, :development]
