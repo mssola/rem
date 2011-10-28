@@ -58,7 +58,7 @@ module SearchHelper
   # Escape the params passed via the search widget.
   #
   # @param *String* value The value given to the search widget.
-  def escape_params(value)
+  def escape_params(value) #:doc:
     '%' + value.gsub('%', '\%').gsub('_', '\_').gsub('\\', '\\\\') + '%'
   end
 end

@@ -47,4 +47,12 @@ module ApplicationHelper
     url = (user.email.empty?) ? 'rem_user.png' : user.gravatar_url
     image_tag url, height: height.to_s
   end
+
+  ##
+  # Return true if the given user is the current one. Return false otherwise.
+  #
+  # @param *User* user The user we're checking.
+  def current_user?(user)
+    !@current_user.nil? && @current_user.id == user.id
+  end
 end

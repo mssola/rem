@@ -3,6 +3,7 @@ Rem::Application.routes.draw do
   # RESTful resources
   resources :sessions, :password_resets
   resources :users, :routes, :places, :except => [:show] # Rest API
+  resources :relationships, :only => [:create, :destroy]
 
   # Users, sessions and accounts
   get 'login' => 'sessions#new', as: 'login'
@@ -17,7 +18,13 @@ Rem::Application.routes.draw do
   get "/users/:name" => "users#show"
   get "/routes/:name" => "routes#show"
   get "/places/:name" => "places#show"
-  
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   # OAuth paths
   match '/auth/failure' => "sessions#failure"
   match '/auth/:provider/callback' => 'sessions#create'

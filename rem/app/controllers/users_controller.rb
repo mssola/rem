@@ -87,4 +87,22 @@ class UsersController < ApplicationController
     cookies.delete(:auth_token)
     redirect_to root_url, :notice => _('Account deleted')
   end
+
+  ##
+  # TODO: will_paginate
+  def following
+    @shown = 'Following'
+    @user = User.find(params[:id])
+    @users = @user.following
+    render 'follow'
+  end
+
+  ##
+  # TODO: will_paginate
+  def followers
+    @shown = 'Followers'
+    @user = User.find(params[:id])
+    @users = @user.followers
+    render 'follow'
+  end
 end
