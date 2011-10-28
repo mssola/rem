@@ -19,10 +19,17 @@
 
 
 ##
-# TODO
+# == Relationship Class Definition
+#
+# This is a model that allows users to track who is following who.
+# It's used by the User model in a has_many-through relationship. In the
+# database it's stored the follower id and the followed id. Due its
+# simetry, you can also do the same but backwards. This property is used
+# by the User model in order to implement an optimal DB access.
 class Relationship < ActiveRecord::Base
   attr_accessible :followed_id
 
+  # A relationship is a matter of two users: the follower and the followed
   belongs_to :follower, class_name: 'User'
   belongs_to :followed, class_name: 'User'
 
