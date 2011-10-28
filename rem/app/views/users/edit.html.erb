@@ -12,16 +12,9 @@ Of course: Fuck me, I'm famous!
 <% unless current_user?(@user) %>
   <div id="follow_form">
   <% if current_user.following?(@user) %>
-    <%= form_for current_user.relationships.find_by_followed_id(@user),
-                :html => { :method => :delete } do |f| %>
-      <div class="actions"><%= f.submit "Unfollow" %></div>
-    <% end %>
+    <%= render partial: 'unfollow' %>
   <% else %>
-    <%= form_for current_user.relationships.
-                              build(:followed_id => @user.id) do |f| %>
-      <div><%= f.hidden_field :followed_id %></div>
-      <div class="actions"><%= f.submit "Follow" %></div>
-    <% end %>
+    <%= render partial: 'follow' %>
   <% end %>
   </div>
 <% end %>

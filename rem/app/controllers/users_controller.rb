@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     @shown = 'Following'
     @user = User.find(params[:id])
     @users = @user.following
-    render 'follow'
+    render 'show_follow'
   end
 
   ##
@@ -103,6 +103,6 @@ class UsersController < ApplicationController
     @shown = 'Followers'
     @user = User.find(params[:id])
     @users = @user.followers
-    render 'follow'
+    render 'show_follow'
   end
 end
