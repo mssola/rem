@@ -1,12 +1,8 @@
 
 Rem::Application.routes.draw do
-  # Rest API
-  get "/users/:name" => "users#show"
-  get "/routes/:name" => "routes#show"
-  get "/places/:name" => "places#show"
-
   # RESTful resources
-  resources :users, :sessions, :password_resets, :routes, :places
+  resources :sessions, :password_resets
+  resources :users, :routes, :places, :except => [:show] # Rest API
 
   # Users, sessions and accounts
   get 'login' => 'sessions#new', as: 'login'
@@ -17,6 +13,11 @@ Rem::Application.routes.draw do
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
+  # Rest API
+  get "/users/:name" => "users#show"
+  get "/routes/:name" => "routes#show"
+  get "/places/:name" => "places#show"
+  
   # OAuth paths
   match '/auth/failure' => "sessions#failure"
   match '/auth/:provider/callback' => 'sessions#create'
