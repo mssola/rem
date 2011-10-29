@@ -26,9 +26,9 @@ module ResponseUtils
   #
   # @param *String* element The element we are looking for.
   #
-  # @param *String* should_eql The expected value for the given element.
-  def xml_compare(doc, element, should_eql)
+  # @param *String* should The expected value for the given element.
+  def xml_compare(doc, element, should)
     e = doc.find("//#{element}").first.inner_xml
-    raise ArgumentError unless e == should_eql
+    raise ArgumentError unless should.eql?(e)
   end
 end 
