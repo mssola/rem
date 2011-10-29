@@ -43,6 +43,9 @@ Spork.prefork do
     config.include(MailerMacros)
     config.before(:each) { reset_email }
 
+    # Include ResponseUtils so we can check the Rest API
+    config.include(ResponseUtils)
+
     # Include presenters inside the test suite
     config.include ActionView::TestCase::Behavior,
         example_group: {file_path: %r{spec/presenters}}
