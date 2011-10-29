@@ -19,7 +19,8 @@ module Reqs
   end
 
   ##
-  # Do a GET request according to the Rest API specification.
+  # Do a GET request according to the Rest API specification. It raises
+  # a NoMethodError exception if the server responded a code different of 200.
   #
   # @param *String* path Relative path to the base url specified during
   # the initialization of this module.
@@ -27,6 +28,8 @@ module Reqs
   # @return A JSON or an XML object.
   def self.do_get(path)
     res = Net::HTTP.start(@url.host, @url.port) { |http| http.get(path) }
+    raise NoMethodError if res.code != '200'
+
     if path.end_with?('.xml')
       res = XML::Document.string(res.body)
     else

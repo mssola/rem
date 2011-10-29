@@ -28,8 +28,8 @@ describe 'Rest API' do
     end
 
     it 'raises an exception when trying to access an invalid user' do
-      expect { Reqs.do_get("/users/#{user.bad}") }.to raise_error(NoMethodError)
-      expect { Reqs.do_get("/users/#{user.bad}.xml") }.to raise_error(NoMethodError)
+      expect { Reqs.do_get("/users/#{bad.name}") }.to raise_error(NoMethodError)
+      expect { Reqs.do_get("/users/#{bad.name}.xml") }.to raise_error(NoMethodError)
     end
 
     it 'sends a valid XML object when a user has been requested' do
