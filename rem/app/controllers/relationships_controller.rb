@@ -21,7 +21,7 @@
 ##
 # TODO
 class RelationshipsController < ApplicationController
-  respond_to :html, :js
+#   respond_to :html, :js
 #   before_filter :authenticate
 
   def create

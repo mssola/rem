@@ -7,6 +7,10 @@
 @import "mixins.scss";
 
 
+$input_width: 382px;
+$error_color:darken(red, 10%);
+
+
 #new_user {
   margin-top:20px;
 
@@ -28,12 +32,20 @@
   }
 
   .holding {
+    .side_tip {
+      position:absolute;
+      font-size:12px;
+      margin-left:$input_width + 10px;
+      padding:10px;
+      color:$error_color;
+    }
+
     .holder {
       padding:10px;
       position:absolute;
       line-height:43px;
       color:#DDD;
-      margin-top:-10px;
+      margin-top:-11px;
     }
 
     input {
@@ -41,7 +53,7 @@
 
       outline:0;
       padding:8px 6px;
-      width:382px;
+      width:$input_width;
     }
   }
 }

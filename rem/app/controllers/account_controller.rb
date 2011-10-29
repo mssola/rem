@@ -28,9 +28,9 @@ class AccountController < ApplicationController
   # update its settings on the account.
   def update
     if update_user
-      redirect_to account_url, :notice => 'Configuration saved!'
+      redirect_to account_url, notice: 'Configuration saved!'
     else
-      render :action => 'edit', :error => 'Fuck'
+      render action: 'edit', error: 'An error occurred, please try again'
     end
   end
 

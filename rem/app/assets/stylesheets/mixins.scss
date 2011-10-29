@@ -15,12 +15,6 @@ $dark_royal: darken($royal_blue, 10%);
 
 /* And now the mixins */
 
-@mixin error-base-style {
-  display: inline;
-  color: red;
-  padding-left: 5px;
-}
-
 @mixin set_opacity($value) {
   opacity: $value;
   filter: alpha(opacity = ($value * 100));

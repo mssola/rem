@@ -28,7 +28,9 @@ Rem = (if (typeof exports != "undefined" and exports != null) then exports else 
 # Let's see if the user chooses a username that is already picked up.
 jQuery ->
   $("#user_name").blur ->
-    if @value != ''
+    if @value == ""
+      $("#existing_name").text('Username can\'t be blank.')
+    else
       $.ajax( url: 'ajax_request', data: { method: 'find_user_by_name('+@value+')', dest: 'existing_name' }, type: "GET" )
 
 

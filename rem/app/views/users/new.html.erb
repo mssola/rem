@@ -21,7 +21,7 @@
   <fieldset class="textbox">
     <div class="prompt name">
       <div class="holding" data-fieldname="name">
-        <div class="side_tip">
+        <div class="side_tip" id="existing_name">
         </div>
         <span class="holder">Username</span>
         <%= f.text_field :name, { class: 'r_raw_field' } %>
@@ -29,6 +29,8 @@
     </div>
     <div class="prompt email">
       <div class="holding" data-fieldname="email">
+        <div class="side_tip" id="email_error">
+        </div>
         <span class="holder">Email</span>
         <%= f.text_field :email, { class: 'r_raw_field' } %>
       </div>
@@ -41,11 +43,14 @@
     </div>
     <div class="prompt password_confirmation" >
       <div class="holding" data-fieldname="password_confirmation">
+        <div class="side_tip" id="password_error">
+        </div>
         <span class="holder">Confirm Password</span>
         <%= f.password_field :password_confirmation, { class: 'r_raw_field' } %>
+        </div>
       </div>
+      <%= r_check :remember_me %>
+      <%= r_label :remember_label, 'Keep me logged-in on this computer.' %>
     </div>
-    <%= r_check :remember_me %>
-    <%= r_label :remember_label, 'Keep me logged-in on this computer.' %>
   </fieldset>
 <% end %>
