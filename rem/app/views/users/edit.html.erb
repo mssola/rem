@@ -7,6 +7,27 @@
 
 <%= render partial: 'head' %>
 
+<% present @user do |u| %>
+  <div id="user_info">
+    <div id="personal_info">
+      <% unless u.full_name.nil? %>
+        <dl><dt>Full name</dt><dd><%= u.full_name %></dd></dl>
+      <% end %>
+      <% unless u.location.nil? %>
+        <dl><dt>Location</dt><dd><%= u.location %></dd></dl>
+      <% end %>
+      <% unless u.website.nil? %>
+        <dl><dt>Website</dt><dd><%= u.website %></dd></dl>
+      <% end %>
+      <% unless u.twitter.nil? %>
+        <dl><dt>Twitter</dt><dd><%= u.twitter %></dd></dl>
+      <% end %>
+      <dl><dt>Member Since</dt><dd><%= u.member_since %></dd></dl>
+    </div>
+    <div class="stretch" />
+  </div>
+<% end %>
+
 <div class="following_stats">
   <div id="following">
   You're following <%= @user.following.count %> users and

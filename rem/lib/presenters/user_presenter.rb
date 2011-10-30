@@ -32,7 +32,7 @@ class UserPresenter < BasePresenter
   ##
   # Show how long this user is registered on our website.
   def member_since
-    user.created_at.strftime("%e %B %Y")
+    user.created_at.strftime("%B %e, %Y")
   end
 
   ##

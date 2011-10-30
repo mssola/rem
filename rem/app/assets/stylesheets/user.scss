@@ -24,15 +24,14 @@
   }
 
   #user_name {
-    @include set_opacity(0.5, "no-hover");
     font-size:28px;
-    color:#4A4646;
+    color:#999;
     vertical-align:middle;
   }
 
   .stretch {
     clear:both;
-    margin:15px 0 30px;
+    margin:15px 0 20px;
     height:0;
     overflow:hidden;
     border-bottom:1px solid #ddd;
@@ -41,5 +40,26 @@
   #follow_form {
     margin:20px 20px 0 0;
     float:right;
+  }
+}
+
+#user_info {
+  display:inline;
+  position:relative;
+
+  dl {
+    margin:5px 0 0 0;
+  }
+
+  dt {
+    font-size:12px;
+    float: left;
+    color:#999;
+    text-align:right;
+  }
+
+  dd {
+    font-size:12px;
+    margin: 0 0 0 110px;
   }
 }
