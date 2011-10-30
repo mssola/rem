@@ -31,6 +31,8 @@ namespace :db do
     make_users
     puts "\033[32mPopulating the Relationship table\033[0m"
     make_relationships
+    puts "\033[32mPopulating the Routes table\033[0m"
+    make_routes
   end
 end
 
@@ -62,4 +64,34 @@ def make_relationships
   followers = users[3..40]
   following.each { |followed| user.follow!(followed) }
   followers.each { |follower| follower.follow!(user) }
+end
+
+##
+# Create 3 routes for the admin and create 297 more that are
+# going to be distributed randomly between the rest of the users.
+def make_routes
+  admin = User.all.first
+  3.times do |n|
+    name = Faker::Name.name
+    user_id = admin.id
+    prtd = false
+    rating = 0
+    route = Route.create!(name: name, user_id: user_id,
+                          :protected => prtd, rating: rating)
+    user = User.find(user_id)
+    user.route_relationships.build(followed_id: route.id)
+    user.save!
+  end
+
+  297.times do |n|
+    name = Faker::Name.name
+    user_id = rand(96) + 4
+    prtd = false
+    rating = 0
+    route = Route.create!(name: name, user_id: user_id,
+                          :protected => prtd, rating: rating)
+    user = User.find(user_id)
+    user.route_relationships.build(followed_id: route.id)
+    user.save!
+  end
 end
