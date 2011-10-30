@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   # Let's build the has_many relationships
   has_many :authentications, dependent: :destroy
   has_many :routes, dependent: :destroy
+  has_many :route_following, through: :route_relationships, source: :followed
+  has_many :route_relationships, foreign_key: 'follower_id', dependent: :destroy
   has_many :following, through: :relationships, source: :followed
   has_many :relationships, foreign_key: 'follower_id', dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
@@ -92,27 +94,41 @@ class User < ActiveRecord::Base
   # Handling the following/followed functionality
 
   ##
-  # Return true if this user is following the given user.
+  # Return true if this user is following the given user/route.
   #
-  # @param *User* followed The user that we may be following.
+  # @param *User/Route* followed The user/route that we may be following.
   def following?(followed)
-    relationships.find_by_followed_id(followed)
+    if followed.class.to_s == 'Route'
+      route_relationships.find_by_followed_id(followed)
+    else
+      relationships.find_by_followed_id(followed)
+    end
   end
 
   ##
-  # Follow the given user.
+  # Follow the given user/route.
   #
-  # @param *User* followed The user we want to follow.
+  # @param *User/Route* followed The user/route we want to follow.
   def follow!(followed)
-    relationships.create!(followed_id: followed.id)
+    if followed.class.to_s == 'Route'
+      route_relationships.create! followed_id: followed.id
+    else
+      puts '-'
+      relationships.create! followed_id: followed.id
+    end
   end
 
   ##
-  # Unfollow the given user.
+  # Unfollow the given user/route.
   #
-  # @param *User* followed We don't want to follow this user anymore.
+  # @param *User/Route* followed We don't want to follow this
+  # user/route anymore.
   def unfollow!(followed)
-    relationships.find_by_followed_id(followed).destroy
+    if followed.class.to_s == 'Route'
+      route_relationships.find_by_followed_id(followed).destroy
+    else
+      relationships.find_by_followed_id(followed).destroy
+    end
   end
 
   ##

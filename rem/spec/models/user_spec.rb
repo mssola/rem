@@ -63,4 +63,22 @@ describe User do
       @followed.followers.should include(user)
     end
   end
+
+  describe 'route relationships' do
+    let(:user) { Factory(:user) }
+    before(:each) { @followed = Factory(:route) }
+
+    it "should have a route_relationships method" do
+      user.should respond_to(:route_relationships)
+    end
+
+    it "should have a route_following method" do
+      user.should respond_to(:route_following)
+    end
+
+    it "should follow route" do
+      user.follow!(@followed)
+      user.should be_following(@followed)
+    end
+  end
 end

@@ -33,8 +33,12 @@ class Route < ActiveRecord::Base
   validates_length_of :desc, :maximum => 160
 
   # Setting up the relationships with other tables.
-  has_many :places # TODO: see the Place model
   belongs_to :user
+  has_many :places # TODO: see the Place model
+  has_many :followers, through: :reverse_route_relationships, source: :follower
+  has_many :reverse_route_relationships, foreign_key: 'followed_id',
+                                         class_name: 'RouteRelationship',
+                                         dependent: :destroy
 
   ##
   # Override the to_xml method to limit the fields returned
