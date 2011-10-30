@@ -1,15 +1,11 @@
 
-<%= render partial: 'head' %>
-
-<% unless current_user?(@user) %>
-  <div id="follow_form">
-  <% if current_user.following?(@user) %>
-    <%= render partial: 'unfollow' %>
-  <% else %>
-    <%= render partial: 'follow' %>
-  <% end %>
-  </div>
+<% if @user.name.end_with? 's' %>
+  <% title "#{@user.name}' Profile" %>
+<% else %>
+  <% title "#{@user.name}'s Profile" %>
 <% end %>
+
+<%= render partial: 'head' %>
 
 <div class="following_stats">
   <div id="following">
