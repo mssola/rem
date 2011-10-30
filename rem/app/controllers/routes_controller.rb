@@ -37,6 +37,7 @@ class RoutesController < ApplicationController
     @route = Route.new(params[:route])
     @route.user_id, @route.rating = current_user.id, 0 unless @route.nil?
     if @route.save
+      current_user.follow! @route
       redirect_to edit_route_url(@route.id)
     else
       render 'new'

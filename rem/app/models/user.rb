@@ -113,7 +113,6 @@ class User < ActiveRecord::Base
     if followed.class.to_s == 'Route'
       route_relationships.create! followed_id: followed.id
     else
-      puts '-'
       relationships.create! followed_id: followed.id
     end
   end
