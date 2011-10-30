@@ -19,11 +19,15 @@
 
 
 ##
-# TODO
+# == RouteRelationship Class Definition
+#
+# This is a model that defines the relationship between a user and a route.
+# The point is that a user can follow multiple routes and unfollow other ones
+# later on. It's clearly inspired on the Relationship model.
 class RouteRelationship < ActiveRecord::Base
   attr_accessible :followed_id
 
-  # TODO
+  # A RouteRelationship is about a User that follows a Route.
   belongs_to :follower, class_name: 'User'
   belongs_to :followed, class_name: 'Route'
 

@@ -34,11 +34,16 @@ class User < ActiveRecord::Base
                         :password_digest, on: :create, :if => :is_rem?
   validates_with UserValidator, :on => :create
 
-  # Let's build the has_many relationships
+  # A user has many ways to authenticate: via rem account or
+  # via external services (Twitter, Google/OpenID).
   has_many :authentications, dependent: :destroy
+
+  # A user has many routes and it may follow routes from other people.
   has_many :routes, dependent: :destroy
   has_many :route_following, through: :route_relationships, source: :followed
   has_many :route_relationships, foreign_key: 'follower_id', dependent: :destroy
+
+  # A user may follow/be-followed-by other users.
   has_many :following, through: :relationships, source: :followed
   has_many :relationships, foreign_key: 'follower_id', dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
