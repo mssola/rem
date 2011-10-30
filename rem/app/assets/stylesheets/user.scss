@@ -1,0 +1,40 @@
+
+/*
+ * The style applied to the user pages (profile page, following,...)
+ */
+
+
+@import "mixins.scss";
+
+
+#user_head {
+  display:inline;
+  position:relative;
+
+  span.tip {
+    display:inline-block;
+  }
+
+  #user_nickname {
+    font-weight:bold;
+    font-size:28px;
+    color:#4A4646;
+    vertical-align:middle;
+    margin-left:5px;
+  }
+
+  #user_name {
+    @include set_opacity(0.5, "no-hover");
+    font-size:28px;
+    color:#4A4646;
+    vertical-align:middle;
+  }
+
+  .stretch {
+    clear:both;
+    margin:15px 0 30px;
+    height:0;
+    overflow:hidden;
+    border-bottom:1px solid #ddd;
+  }
+}

@@ -1,13 +1,5 @@
-This is meant to be the public profile of <b><%= @user.name %></b>
 
-<br>
-<br>
-
-Of course: Fuck me, I'm famous!
-
-<div class="avatar">
-  <%= get_avatar_of @user, 48 %>
-</div>
+<%= render partial: 'head' %>
 
 <% unless current_user?(@user) %>
   <div id="follow_form">

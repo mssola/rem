@@ -1,0 +1,12 @@
+<div id="user_head">
+  <div class="avatar">
+    <span class="tip" title="Change your avatar at gravatar.com">
+      <a href="http://gravatar.com/emails/">
+        <%= get_avatar_of @user, 48 %>
+      </a>
+    </span>
+    <span id="user_nickname"><%= @user.name %></span>
+    <span id="user_name"><%= "(#{@user.full_name})" %></span>
+    <div class="stretch" />
+  </div>
+</div>
