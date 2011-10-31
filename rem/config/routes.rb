@@ -19,6 +19,7 @@ Rem::Application.routes.draw do
   get "/routes/:name" => "routes#show"
   get "/places/:name" => "places#show"
 
+  get "/users/:name/routes" => "users#routes", as: 'user_routes'
   resources :users do
     member do
       get :following, :followers

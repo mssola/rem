@@ -105,4 +105,10 @@ class UsersController < ApplicationController
     @users = @user.followers
     render 'show_follow'
   end
+
+  def routes
+    @user = User.find_by_name(params[:name])
+    @routes = @user.routes
+    render 'show_routes'
+  end
 end

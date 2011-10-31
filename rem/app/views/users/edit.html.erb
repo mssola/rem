@@ -32,7 +32,7 @@
         <ul class="stats" >
           <li>
             <% n_routes = @user.routes.count %>
-            <%= link_to n_routes, routes_path %>
+            <%= link_to n_routes, user_routes_path(@user.name) %>
             <span>routes</span>
           </li>
           <li>
