@@ -47,6 +47,33 @@
   display:inline;
   position:relative;
 
+  #personal_info {
+    float:left;
+  }
+
+  #bio_yogurt {
+    vertical-align:middle;
+    float:left;
+  }
+
+  #stats_info {
+    float:right;
+    font-size:12px;
+
+    .stats li {
+      list-style:none;
+      border-bottom:none;
+    }
+  }
+
+  #following_avatars {
+    li {
+      list-style:none;
+      display:inline;
+      margin-right:2px;
+    }
+  }
+
   dl {
     margin:5px 0 0 0;
   }
