@@ -38,7 +38,7 @@
   @extend .submit_base;
   @include my_font(11px, bold);
   
-  padding:4px 10px 5px;
+  padding:5px 10px 5px;
   margin:0 5px 0 0;
 }
 
@@ -50,6 +50,24 @@
   margin:0px 5px 20px 90px;
 }
 
+/* Same as r_submit but with normal colors changed */
+.r_follow {
+  @extend .r_submit;
+
+  background: $almost_white repeat-x scroll 0 0;
+  border:1px solid $button_blue;
+  color: $royal_blue;
+
+  &:hover, &:focus {
+    background-position:0 -5px;
+    background: darken($button_blue, 5%);
+    border:1px solid $royal_blue;
+    text-shadow:0 -1px 0 $royal_blue;
+    color: white;
+    cursor:pointer;
+  }
+  &:active { background: darken($button_blue, 20%); }
+}
 
 
 /* Text and password fields */
