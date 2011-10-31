@@ -53,6 +53,6 @@ module ApplicationHelper
   #
   # @param *User* user The user we're checking.
   def current_user?(user)
-    !@current_user.nil? && @current_user.id == user.id
+    !current_user.nil? && current_user.id == user.id
   end
 end
