@@ -53,12 +53,13 @@ class UserPresenter < BasePresenter
   # Show a link to your twitter account.
   #
   # @param *Boolean* link True to have it as a link.
-  def twitter(link = false)
+  def twitter(link = true)
     handle_none user.twitter_name do
       unless link
         user.twitter_name
       else
-        link_to(user.twitter_name, "http://twitter.com/#{user.twitter_name}")
+        url = "http://twitter.com/#{user.twitter_name}"
+        link_to(user.twitter_name, url, title: url)
       end
     end
   end
