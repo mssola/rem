@@ -47,7 +47,7 @@ class Place < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method
   def to_xml(options = {})
-    options.merge!(except: private_columns)
+    options.merge!(except: [:updated_at])
     super(options)
   end
 
@@ -56,15 +56,7 @@ class Place < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method. Unused.
   def as_json(options = {})
-    options ||= { except: private_columns }
+    options ||= { except: [:updated_at] }
     super(options)
-  end
-
-  private
-
-  ##
-  # Returns the most sensitive columns in this model
-  def private_columns #:doc:
-    [:updated_at]
   end
 end

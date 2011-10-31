@@ -48,7 +48,7 @@ class Route < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method
   def to_xml(options = {})
-    options.merge!(except: private_columns, include: :places)
+    options.merge!(except: [:updated_at], include: :places)
     super(options)
   end
 
@@ -57,15 +57,7 @@ class Route < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method. Unused.
   def as_json(options = {})
-    options ||= { except: private_columns, include: :places }
+    options ||= { except: [:updated_at], include: :places }
     super(options)
-  end
-
-  private
-
-  ##
-  # Returns the most sensitive columns in this model
-  def private_columns #:doc:
-    [:updated_at]
   end
 end
