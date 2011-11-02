@@ -68,9 +68,10 @@ class PlacesController < ApplicationController
   ##
   # TODO
   def photos
-    response = { :status => :created, 'polla' => 'gran' }
+    response = handle_upload(params['media'])
     respond_to do |format|
       format.json { render :json => response }
+      format.any(:xml, :html) { render :xml => response } # TODO: not sure
     end
   end
 

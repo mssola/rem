@@ -17,28 +17,11 @@
 #
 
 
-##
-# == Utils Module Definition
-#
-# This is a module that defines a set of methods that are useful
-# all across this Rails application.
-module Utils
-  ##
-  # Include all the methods related to OmniAuth
-  include Omni
-
-  ##
-  # Include all the methods related to photo uploading
-  include Uploader
-
-  ##
-  # Checks if the given parameter is a valid email.
-  #
-  # @param *String* email The email to be checked.
-  #
-  # @return *Boolean* True if the parameter is really an email,
-  # false otherwise.
-  def valid_email?(email)
-    /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.match(email)
+module Uploader
+  def handle_upload(file)
+    puts "****************"
+    puts file
+    puts file.original_filename
+    { :status => :ok }
   end
 end
