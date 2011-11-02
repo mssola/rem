@@ -19,6 +19,9 @@ Rem::Application.routes.draw do
   get "/routes/:name" => "routes#show"
   get "/places/:name" => "places#show"
 
+  # TODO
+  post "/:name/photos" => "places#photos"
+
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
   resources :users do
     member do

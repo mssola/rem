@@ -66,6 +66,15 @@ class PlacesController < ApplicationController
   end
 
   ##
+  # TODO
+  def photos
+    response = { :status => :created, 'polla' => 'gran' }
+    respond_to do |format|
+      format.json { render :json => response }
+    end
+  end
+
+  ##
   # The _destroy_ method. It deletes all the info about a place and
   # redirects the user to the home page.
   def destroy
