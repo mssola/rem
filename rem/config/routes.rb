@@ -20,7 +20,8 @@ Rem::Application.routes.draw do
   get "/places/:name" => "places#show"
 
   # TODO
-  post "/:name/photos" => "places#photos"
+  post "/photos/:name" => "places#photos"
+  delete "/photos/:name/:photoname" => "places#delete_photos"
 
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
   resources :users do

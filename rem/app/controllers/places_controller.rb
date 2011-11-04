@@ -68,10 +68,22 @@ class PlacesController < ApplicationController
   ##
   # TODO
   def photos
-    response = handle_upload(params['media'])
+    # TODO: not the best way
+    user = User.find_by_auth_token!(cookies[:auth_token])
+    response = Uploader.handle_upload(params['media'], user)
     respond_to do |format|
-      format.json { render :json => response }
-      format.any(:xml, :html) { render :xml => response } # TODO: not sure
+      format.json { render :json => response, status: response[:status] }
+      format.any(:xml, :html) { render :xml => response, status: response[:status] } # TODO: not sure
+    end
+  end
+
+  def delete_photos
+    user = User.find_by_auth_token!(cookies[:auth_token])
+    # TODO: There is no media
+    response = Uploader.remove_from_bucket(params['media'], user)
+    respond_to do |format|
+      format.json { render :json => response, status: response[:status] }
+      format.any(:xml, :html) { render :xml => response, status: response[:status] } # TODO: not sure
     end
   end
 

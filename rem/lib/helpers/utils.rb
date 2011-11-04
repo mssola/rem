@@ -28,10 +28,6 @@ module Utils
   include Omni
 
   ##
-  # Include all the methods related to photo uploading
-  include Uploader
-
-  ##
   # Checks if the given parameter is a valid email.
   #
   # @param *String* email The email to be checked.
