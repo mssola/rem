@@ -60,6 +60,7 @@ class UsersController < ApplicationController
   def edit
     raise ActionController::RoutingError.new('Not Found') if current_user.nil?
     @user = User.find_by_name(params[:name])
+    raise ActionController::RoutingError.new('Not Found') if @user.nil?
   end
 
   ##
