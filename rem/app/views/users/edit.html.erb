@@ -45,7 +45,7 @@
           <% m_foll = @user.following %>
           <div id="following">
           <b>
-          You're following <%= m_foll.count %> users and
+          Following <%= m_foll.count %> users and
           <%= pluralize(@user.route_following.count, 'route') %>
           </b>
           <%= link_to 'view all &rarr;'.html_safe, following_user_path(@user) %>
