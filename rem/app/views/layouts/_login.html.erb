@@ -8,10 +8,10 @@
       </p>
       <p>
         <%= r_label :password %>
-        <%= link_to _('(Forgotten password?)'), new_password_reset_path,
-              :title => 'Click here if you do not remeber your password' %>
         <%= r_field :password, :password %>
       </p>
+      <%= link_to _('Forgotten password?'), new_password_reset_path,
+      :title => 'Click here if you do not remeber your password' %>
       <p class="remember">
         <%= r_submit 'Log in' %>
         <%= r_check :remember_me %>

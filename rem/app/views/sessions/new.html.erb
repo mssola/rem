@@ -9,9 +9,9 @@
       </div>
       <div class="field">
         <%= r_label :password %>
-        <%= link_to "(forgotten password?)", new_password_reset_path %>
         <%= r_field :password, :password %>
       </div>
+      <%= link_to "Forgotten password?", new_password_reset_path %>
       <div class="actions"><%= r_submit 'Log in' %></div>
     <% end %>
   </div>
