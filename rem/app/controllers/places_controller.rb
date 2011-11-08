@@ -27,6 +27,9 @@ class PlacesController < ApplicationController
   # The _new_ method. Initializes a new empty place.
   def new
     @place = Place.new
+    @routes = Route.all(conditions: ['user_id=?', current_user.id]).map do |o|
+      [o.name, o.id]
+    end
   end
 
   ##
