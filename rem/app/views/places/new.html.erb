@@ -49,7 +49,7 @@
       <%= f.text_area :desc, { class: 'r_text_area' } %>
     </div>
     <%= r_label :combo_routes, 'Add to the following route:' %>
-    <% list = Route.all.map { |o| [o.name, o.id] } %>
+    <% list = Route.all(:conditions => ['user_id=?', current_user.id]).map { |o| [o.name, o.id] } %>
     <%= f.select(:route_id, list) %>
     <%= r_submit 'Create place' %>
   </fieldset>
