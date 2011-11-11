@@ -37,13 +37,20 @@ module Uploader
     return { :status => file }
   end
 
-  def remove_from_bucket!
+  def remove_photo!
     return { :status => :unauthorized } if current_user.nil?
 
-    m_base = File.join(BASE, current_user.id.to_s, file)
+    route, name = params['route_id'].to_i, params['photoname']
+    file = Place.all(conditions: ['route_id=? and name=?', route, name])
+    return { :status => 404 } if file.nil?
+
+    m_file = file.first.name + '.png'
+    m_base = File.join(BASE, current_user.id.to_s, route.to_s, m_file)
     return { :status => 404 } unless File.exists?(m_base)
+
+    file.first.destroy
     FileUtils.rm(m_base)
-    { :status => :created }
+    { :status => 200 }
   end
 
   def get_path(user, route, filename)
@@ -65,7 +72,7 @@ module Uploader
   end
 
   def prepare_place(route, name)
-    name.match /(.+)\.(jpg|png)/
+    name.match /(.+)\.(png)/
     {
       route_id: route, name: $1,
       longitude: params['longitude'], latitude: params['latitude']

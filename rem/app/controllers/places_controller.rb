@@ -81,7 +81,7 @@ class PlacesController < ApplicationController
   end
 
   def delete_photos
-    response = remove_from_bucket!
+    response = remove_photo!
     respond_to do |format|
       format.json { render :json => response, status: response[:status] }
       format.any(:xml, :html) { render :xml => response, status: response[:status] }
