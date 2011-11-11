@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   # Setting gettext locale
   before_filter :set_gettext_locale
 
-  private
+  protected
 
   ##
   # Get the current logged in user.
