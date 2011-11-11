@@ -37,7 +37,7 @@ class UserValidator < ActiveModel::Validator
 
   ##
   # Return the reserved names for this model.
-  def reserved_names
+  def reserved_names #:doc:
     %w(api about overview contact help login logout signup ajax_request account
     search)
   end

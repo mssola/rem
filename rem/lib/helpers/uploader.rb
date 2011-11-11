@@ -30,6 +30,7 @@ module Uploader
     file = get_path(current_user, route, upload.original_filename)
 
     if file.is_a? String
+      Place.create! prepare_place(route.to_i, file)
       FileUtils.mv upload.tempfile.path, file
       file = :created
     end
@@ -49,7 +50,7 @@ module Uploader
     return :unauthorized if user.nil?
 
     m_basepath = File.join(BASE, user.id.to_s, route.to_s)
-    FileUtils.mkdir(m_basepath) unless File.exists?(m_basepath)
+    FileUtils.mkdir_p(m_basepath) unless File.exists?(m_basepath)
     expected = File.join(m_basepath, filename)
     File.exists?(expected) ? :conflict : expected
   end
@@ -61,5 +62,12 @@ module Uploader
     return (route.user_id != current_user.id)
 
     rescue ActiveRecord::RecordNotFound; return true
+  end
+
+  def prepare_place(route, name)
+    {
+      route_id: route, name: name,
+      longitude: params['longitude'], latitude: params['latitude']
+    }
   end
 end

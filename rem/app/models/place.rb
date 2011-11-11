@@ -29,7 +29,7 @@ class Place < ActiveRecord::Base
   attr_accessible :name, :route_id, :desc, :longitude, :latitude,
                   :address, :nroutes, :locality, :country
 
-  validates_presence_of :name, :address, :on => :create
+  validates_with PlaceValidator, :on => :create
   validates_uniqueness_of :name, :scope => :route_id
   validates_length_of :desc, :maximum => 160
 
