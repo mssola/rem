@@ -23,6 +23,8 @@
 #
 # The controller for the places. It allows us to create/edit/destroy places.
 class PlacesController < ApplicationController
+  include Uploader
+
   ##
   # The _new_ method. Initializes a new empty place.
   def new
@@ -71,22 +73,20 @@ class PlacesController < ApplicationController
   ##
   # TODO
   def photos
-    # TODO: not the best way
-    user = User.find_by_auth_token!(cookies[:auth_token])
-    response = Uploader.handle_upload(params['media'], user)
+    response = handle_upload
     respond_to do |format|
       format.json { render :json => response, status: response[:status] }
-      format.any(:xml, :html) { render :xml => response, status: response[:status] } # TODO: not sure
+      format.any(:xml, :html) { render :xml => response, status: response[:status] }
     end
   end
 
   def delete_photos
     user = User.find_by_auth_token!(cookies[:auth_token])
     # TODO: There is no media
-    response = Uploader.remove_from_bucket(params['media'], user)
+    response = remove_from_bucket(params['media'], user)
     respond_to do |format|
       format.json { render :json => response, status: response[:status] }
-      format.any(:xml, :html) { render :xml => response, status: response[:status] } # TODO: not sure
+      format.any(:xml, :html) { render :xml => response, status: response[:status] }
     end
   end
 
