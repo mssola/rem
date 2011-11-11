@@ -21,7 +21,7 @@ Rem::Application.routes.draw do
 
   # TODO
   post "/photos/:route_id" => "places#photos"
-  delete "/photos/:name/:photoname" => "places#delete_photos"
+  delete "/photos/:route_id/:photoname" => "places#delete_photos"
 
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
   resources :users do

@@ -30,14 +30,14 @@ module Uploader
     file = get_path(current_user, route, upload.original_filename)
 
     if file.is_a? String
-      Place.create! prepare_place(route.to_i, file)
+      Place.create! prepare_place(route.to_i, upload.original_filename)
       FileUtils.mv upload.tempfile.path, file
       file = :created
     end
     return { :status => file }
   end
 
-  def remove_from_bucket(file, user)
+  def remove_from_bucket!
     return { :status => :unauthorized } if current_user.nil?
 
     m_base = File.join(BASE, current_user.id.to_s, file)
@@ -65,8 +65,9 @@ module Uploader
   end
 
   def prepare_place(route, name)
+    name.match /(.+)\.(jpg|png)/
     {
-      route_id: route, name: name,
+      route_id: route, name: $1,
       longitude: params['longitude'], latitude: params['latitude']
     }
   end

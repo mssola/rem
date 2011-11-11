@@ -81,9 +81,7 @@ class PlacesController < ApplicationController
   end
 
   def delete_photos
-    user = User.find_by_auth_token!(cookies[:auth_token])
-    # TODO: There is no media
-    response = remove_from_bucket(params['media'], user)
+    response = remove_from_bucket!
     respond_to do |format|
       format.json { render :json => response, status: response[:status] }
       format.any(:xml, :html) { render :xml => response, status: response[:status] }
