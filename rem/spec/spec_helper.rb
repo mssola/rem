@@ -46,6 +46,9 @@ Spork.prefork do
     # Include ResponseUtils so we can check the Rest API
     config.include(ResponseUtils)
 
+    # Testing Multipart requests
+    config.include(MPTester)
+
     # Include presenters inside the test suite
     config.include ActionView::TestCase::Behavior,
         example_group: {file_path: %r{spec/presenters}}
