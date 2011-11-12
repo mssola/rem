@@ -14,14 +14,14 @@ Rem::Application.routes.draw do
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
-  # Rest API
+  # Rest API: Show info about users, routes and places.
   get "/users/:name" => "users#show"
   get "/routes/:name" => "routes#show"
   get "/places/:name" => "places#show"
 
-  # TODO
+  # Rest API: Upload/remove photos.
   post "/photos/:route_id" => "places#photos"
-  delete "/photos/:route_id/:photoname" => "places#delete_photos"
+  delete "/photos/:route_id/:pname" => "places#delete_photos"
 
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
   resources :users do

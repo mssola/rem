@@ -82,7 +82,7 @@ module Uploader
   def remove_photo!
     return { :status => :unauthorized } if current_user.nil?
 
-    route, name = params['route_id'].to_i, params['photoname']
+    route, name = params['route_id'].to_i, params['pname']
     file = Place.all(conditions: ['route_id=? and name=?', route, name])
     return { :status => 404 } if file.nil?
 
