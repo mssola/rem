@@ -20,10 +20,39 @@
 require 'fileutils'
 
 
+##
+# == Uploader Module Definition
+#
+# This module is the responsible to upload photos and also to remove photos.
+# When a photo is uploaded, it also creates a place with the attributes
+# setted as expected. When we want to remove a photo, it also destroys the
+# place containing it.
+#
+# Be aware that this module is expected to be mixed in a controller. This is
+# because it needs to access to the params hash among other things.
 module Uploader
+  ##
+  # Constant containing the base directory for the uploads.
   BASE = 'app/uploads'
 
+  ##
+  # This method handles the upload of a photo. In order to work properly,
+  # we should have a current user authenticated and the params must be setted
+  # accordingly. If the current user is not authenticated, it will just
+  # return a 401 (Unauthorized) http response. It will return a 404 (Not found)
+  # http response if the parameters passed are incorrect
+  # (see Uploader#incorrect_params?). Moreover, it will return a 409 (Conflict)
+  # http response if the given name (taking into account its full path) already
+  # exists.
+  #
+  # If everything else is fine, we will get as a response a 201 (Created)
+  # http response. It means that a place has been created in the database and
+  # that the photo has been successfully stored in the server.
+  #
+  # @return *Hash* No matter what, the object in return is a hash containing
+  # at least the field _status_ where it's stored the http response status.
   def handle_upload
+    return { :status => :unauthorized } if current_user.nil?
     return { status: 404 } if incorrect_params?
 
     upload, route = params['media'], params['route_id']
@@ -37,6 +66,19 @@ module Uploader
     return { :status => file }
   end
 
+  ##
+  # This method removes a photo from the server and it also destroys the place
+  # that contains this photo. In order to work, it will check if the current
+  # user has been authenticated. If this fails, a 401 (Unauthorized) http
+  # response will be returned. It will return a 404 (Not found) http response
+  # whether the photo does not exist on the server or the place does not exist.
+  #
+  # If we reach this point, it means that the place will be successfully
+  # destroyed and the photo will also be removed. The returned http response
+  # in this case will be a 200 (Ok).
+  #
+  # @return *Hash* No matter what, the object in return is a hash containing
+  # at least the field _status_ where it's stored the http response status.
   def remove_photo!
     return { :status => :unauthorized } if current_user.nil?
 
@@ -53,15 +95,41 @@ module Uploader
     { :status => 200 }
   end
 
-  def get_path(user, route, filename)
-    return :unauthorized if user.nil?
+  ##
+  # Helper methods.
 
-    m_basepath = File.join(BASE, user.id.to_s, route.to_s)
+  ##
+  # Given a user, a route and a file name, try to get the path for it.
+  # We consider that this file does not exist yet, so if this is not the case,
+  # this method will only return an Integer value of 409 (the Conflict http
+  # status). Otherwise, it will create this file and all the directories if
+  # necessary.
+  #
+  # @param *User* user The current user.
+  #
+  # @param *String* route The route id.
+  #
+  # @param *String* filename The original name for the uploaded file.
+  #
+  # @return *Integer* with value 409 if something went wrong. A *String*
+  # containing the path of this file otherwise.
+  def get_path(user, route, filename)
+    m_basepath = File.join(BASE, user.id.to_s, route)
     FileUtils.mkdir_p(m_basepath) unless File.exists?(m_basepath)
     expected = File.join(m_basepath, filename)
-    File.exists?(expected) ? :conflict : expected
+    File.exists?(expected) ? 409 : expected
   end
 
+  ##
+  # Check if the given paramaters passed to the upload functionality are
+  # correct. The parameters are correct if all of the following fields are
+  # present in the params hash: media, longitude, latitude, route_id. Plus,
+  # the user_id of the identified route must be the same as the current user's
+  # id. If you don't understand this restrictions, please go to the API
+  # documentation regarding to uploading photos.
+  #
+  # @return *Boolean* True if the parameters passed are incorrrect. False
+  # otherwise.
   def incorrect_params?
     %w{media longitude latitude route_id}.each { |p| true if params[p].nil? }
 
@@ -71,6 +139,15 @@ module Uploader
     rescue ActiveRecord::RecordNotFound; return true
   end
 
+  ##
+  # Helper method that prepares the parameter passed to the Place#create!
+  # method in order to create this new place in the database.
+  #
+  # @param *Integer* route The route id.
+  #
+  # @param *String* name The name for this place.
+  #
+  # @return *Hash* a hash containing the fields we can set right now.
   def prepare_place(route, name)
     name.match /(.+)\.(png)/
     {

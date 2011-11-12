@@ -71,7 +71,11 @@ class PlacesController < ApplicationController
   end
 
   ##
-  # TODO
+  # *Rest API*
+  #
+  # Uploads a photo given through params and creates a new place also
+  # according to the given params. Please, take a look at the API documentation
+  # for more info about uploading photos.
   def photos
     response = handle_upload
     respond_to do |format|
@@ -80,6 +84,11 @@ class PlacesController < ApplicationController
     end
   end
 
+  ##
+  # *Rest API*
+  #
+  # Deletes a photo specified via params. It also removes the place. Please
+  # take a look at the API documentation for more info about deleting places.
   def delete_photos
     response = remove_photo!
     respond_to do |format|
