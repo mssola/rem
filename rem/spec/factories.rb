@@ -23,4 +23,5 @@ end
 Factory.define :place do |f|
   f.name { Factory.next(:pname) }
   f.route_id rand(42)
+  f.address 'Elmo Street'
 end

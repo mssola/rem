@@ -32,6 +32,8 @@ class PlaceValidator < ActiveModel::Validator
   def validate(record)
     if record.name.nil?
       record.errors[:base] << 'You have to provide a name for this place'
+    elsif record.route_id.nil?
+      record.errors[:base] << 'You have to provide a route_id for this place'
     elsif !address_given?(record)
       record.errors[:base] << 'You have to provide an address for this place'
     end
@@ -46,7 +48,7 @@ class PlaceValidator < ActiveModel::Validator
   #
   # @return *Boolean* True if the address was given. False otherwise.
   def address_given?(record)
-    record.address.nil? || !(record.longitude.nil? || record.latitude.nil?)
+    !record.address.nil? || !(record.longitude.nil? || record.latitude.nil?)
   end
 end
  
