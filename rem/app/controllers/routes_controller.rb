@@ -33,14 +33,23 @@ class RoutesController < ApplicationController
   ##
   # The _create_ method. It creates a new route according to the params
   # passed by the new view.
+  # TODO: Rest API
   def create
     @route = Route.new(params[:route])
-    @route.user_id, @route.rating = current_user.id, 0 unless @route.nil?
-    if @route.save
+
+    unless @route.nil? || current_user.nil?
+      @route.user_id, @route.rating = current_user.id, 0
+    end
+    if @route.save && !current_user.nil?
       current_user.follow! @route
       redirect_to edit_route_url(@route.id)
     else
-      render 'new'
+      error = current_user.nil? ? 401 : 404
+      respond_to do |format|
+        format.json { render :json => rem_error(error), :status => error }
+        format.xml  { render :xml => rem_error(error), :status => error }
+        format.html { render 'new' }
+      end
     end
   end
 

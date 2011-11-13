@@ -28,7 +28,7 @@ class Route < ActiveRecord::Base
   attr_accessible :name, :user_id, :desc, :protected, :rating
 
   # Getting some validations done.
-  validates_presence_of :name, :on => :create
+  validates_presence_of :name, :user_id, :on => :create
   validates_uniqueness_of :name, :scope => :user_id
   validates_length_of :desc, :maximum => 160
 
