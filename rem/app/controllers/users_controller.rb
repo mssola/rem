@@ -107,9 +107,18 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  ##
+  # *Rest API*
+  #
+  # Show all the routes that the user with the name passed via params
+  # actually has.
   def routes
     @user = User.find_by_name(params[:name])
     @routes = @user.routes
-    render 'show_routes'
+    respond_to do |format|
+      format.json { render :json => @routes.to_json }
+      format.xml  { render :xml => @routes.to_xml }
+      format.html { render 'show_routes' }
+    end
   end
 end

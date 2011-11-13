@@ -9,14 +9,12 @@ describe PlacesController do
     let(:route) { Factory(:route, user_id: user.id) }
     let(:place) { Factory(:place, route_id: route.id) }
 
-    before(:each) { @request.cookies['auth_token'] = 'asdasdasdasda' }
-
     it 'should be successful when requesting an existing place' do
       get :show, name: place.name
       response.should be_success
     end
 
-    it 'raises a RoutingError exception when requesting an invalid user' do
+    it 'raises a RoutingError exception when requesting an invalid place' do
       expect { get :show, name: 'i_am_not_in_the_db' }.to
         raise_error(ActionController::RoutingError)
     end

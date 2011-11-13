@@ -23,6 +23,7 @@ Rem::Application.routes.draw do
   post "/photos/:route_id" => "places#photos"
   delete "/photos/:route_id/:pname" => "places#delete_photos"
 
+  # Rest API: Show the routes of the given user
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
   resources :users do
     member do
