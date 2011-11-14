@@ -36,11 +36,10 @@ class RoutesController < ApplicationController
   # The _create_ method. It creates a new route according to the params.
   def create
     @route = Route.new(params[:route])
+    @route.user_id = current_user.id unless @route.nil? || current_user.nil?
 
-    unless @route.nil? || current_user.nil?
-      @route.user_id, @route.rating = current_user.id, 0
-    end
-    if @route.save && !current_user.nil?
+    if !current_user.nil? && @route.save
+      @route.rating = 0
       current_user.follow! @route
       respond_to do |format|
         format.json { render :json => rem_created(@route), status: 201 }
@@ -48,8 +47,13 @@ class RoutesController < ApplicationController
         format.html { redirect_to edit_route_url(@route.id) }
       end
     else
-      error = current_user.nil? ? 401 : 404
-      error = 409 unless Route.find_by_name(@route.name).nil?
+      msg = @route.errors.messages
+      if !msg.empty? && msg[:name].first == 'has already been taken'
+        error = 409
+      else
+        error = current_user.nil? ? 401 : 404
+      end
+
       respond_to do |format|
         format.json { render :json => rem_error(error), :status => error }
         format.xml  { render :xml => rem_error(error), :status => error }
