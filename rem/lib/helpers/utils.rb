@@ -28,8 +28,8 @@ module Utils
   include Omni
 
   ##
-  # Include the RemError module.
-  include RemError
+  # Include the RemResponse module.
+  include RemResponse
 
   ##
   # Checks if the given parameter is a valid email.

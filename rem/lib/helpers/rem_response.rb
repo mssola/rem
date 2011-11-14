@@ -17,15 +17,23 @@
 #
 
 
-module RemError
+module RemResponse
+  def rem_created(row)
+    msg = "#{row.class.to_s} created successfully"
+    ca = row.created_at.strftime("%B %e, %Y")
+    { status: 201, msg: msg, id: row.id, name: row.name, created_at: ca }
+  end
+
   def rem_error(status)
     res = { status: status }
     case status
     when 401
-      res[:error] = "This user is not authorized to perform such operation."
+      res[:msg] = "You're not authorized to perform such operation."
     when 404
-      res[:error] = "Resource not found. This means that you\'re accessing
-      an invalid url or that you haven't provided the right parameters."
+      res[:msg] = "Resource not found. This means that you\'re accessing" +
+      " an invalid url or that you haven't provided the right parameters."
+    when 409
+      res[:msg] = "Conflict! Already in our database"
     end
     return res
   end

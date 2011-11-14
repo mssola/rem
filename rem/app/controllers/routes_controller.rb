@@ -42,9 +42,14 @@ class RoutesController < ApplicationController
     end
     if @route.save && !current_user.nil?
       current_user.follow! @route
-      redirect_to edit_route_url(@route.id)
+      respond_to do |format|
+        format.json { render :json => rem_created(@route), status: 201 }
+        format.xml  { render :xml => rem_created(@route), status: 201  }
+        format.html { redirect_to edit_route_url(@route.id) }
+      end
     else
       error = current_user.nil? ? 401 : 404
+      error = 409 unless Route.find_by_name(@route.name).nil?
       respond_to do |format|
         format.json { render :json => rem_error(error), :status => error }
         format.xml  { render :xml => rem_error(error), :status => error }
