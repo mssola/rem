@@ -17,13 +17,34 @@
 #
 
 
+##
+# == RemResponse Module Definition
+#
+# This module is the responsible to return a proper response that will
+# be sent as an XML or JSON object. Therefore, this module is only usable
+# for calls sent via the Rest API.
 module RemResponse
+  ##
+  # Create a response for the 201 http response (Created).
+  #
+  # @param *ActiveRecord::Base* row This is the row we've created. It assumes
+  # that it responds to the _name_, _created_at_ and _id_ methods.
+  #
+  # @return *Hash* the response for this situation. This hash has the
+  # following fields: _status_, _msg_, _id_, _name_ and _created_at_.
   def rem_created(row)
     msg = "#{row.class.to_s} created successfully"
     ca = row.created_at.strftime("%B %e, %Y")
     { status: 201, msg: msg, id: row.id, name: row.name, created_at: ca }
   end
 
+  ##
+  # Create a response for a given error that we're facing.
+  #
+  # @param *Integer* status The HTTP status code.
+  #
+  # @return *Hash* the response for this situation, with just two fields:
+  # _status_ (http status code) and _msg_ (some info about the error).
   def rem_error(status)
     res = { status: status }
     case status

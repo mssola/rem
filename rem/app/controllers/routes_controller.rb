@@ -31,9 +31,9 @@ class RoutesController < ApplicationController
   end
 
   ##
-  # The _create_ method. It creates a new route according to the params
-  # passed by the new view.
-  # TODO: Rest API
+  # *Rest API*
+  #
+  # The _create_ method. It creates a new route according to the params.
   def create
     @route = Route.new(params[:route])
 
