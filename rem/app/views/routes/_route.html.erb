@@ -19,6 +19,10 @@
   </h3>
 
   <div class="route_body">
-    <p>ToDo</p>
+    <% if route.desc.nil? || route.desc.empty? %>
+      <p>No description was given.</p>
+    <% else %>
+      <p><%= route.desc %></p>
+    <% end %>
   </div>
 </li>
