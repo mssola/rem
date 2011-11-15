@@ -44,7 +44,7 @@ class RoutesController < ApplicationController
       respond_to do |format|
         format.json { render :json => rem_created(@route), status: 201 }
         format.xml  { render :xml => rem_created(@route), status: 201  }
-        format.html { redirect_to edit_route_url(@route.id) }
+        format.html { redirect_to edit_route_url(current_user.name, @route.id) }
       end
     else
       msg = @route.errors.messages
@@ -64,9 +64,10 @@ class RoutesController < ApplicationController
 
   ##
   # The _edit_ method. It edits an existing route identified by the id
-  # passed via params.
+  # passed via params of the user identified by the name passed via params.
   def edit
-    @route = Route.find(params[:id])
+    @user = User.find_by_name(params[:name])
+    @route = @user.routes.find(params[:route_id])
   end
 
   ##

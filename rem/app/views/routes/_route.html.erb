@@ -5,6 +5,6 @@
 <li class="public route">
 <% end %>
   <h3>
-    <%= link_to "#{route.name}", "/#{route.name}" %>
+    <%= link_to "#{route.name}", "/#{current_user.name}/#{route.id}" %>
   </h3>
 </li>

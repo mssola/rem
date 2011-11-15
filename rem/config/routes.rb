@@ -2,7 +2,8 @@
 Rem::Application.routes.draw do
   # RESTful resources
   resources :sessions, :password_resets
-  resources :users, :routes, :places, :except => [:show] # Rest API
+  resources :users, :places, :except => [:show] # Rest API
+  resources :routes, :except => [:show, :edit]
   resources :relationships, :only => [:create, :destroy]
 
   # Users, sessions and accounts
@@ -11,7 +12,6 @@ Rem::Application.routes.draw do
   post '/search' => 'sessions#search', as: 'search'
   get 'signup' => 'users#new', as: 'signup'
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
-  get 'route/ajax_request' => 'routes#ajax_request', as: 'ajax_request'
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
@@ -45,6 +45,8 @@ Rem::Application.routes.draw do
   get '/contact' => "home#contact"
   get '/api' => "home#api"
   get '/help' => "home#help"
+
+  get "/:name/:route_id" => "routes#edit", as: 'edit_route'
 
   # This is the last to be routed so we don't mess things up.
   get '/:name' => "users#edit"
