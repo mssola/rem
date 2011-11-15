@@ -42,10 +42,10 @@ jQuery ->
   $(".filter").click ->
     meth = sanitize_class $(this)
     if meth == 'all'
-      $("#routes_list li:hidden").show()
+      $("#routes_list .route:hidden").show()
       window.vis = "route"
     else
-      $("#routes_list li:visible").hide()
+      $("#routes_list .route:visible").hide()
       $("." + meth).show()
       window.vis = meth
     filter_text()

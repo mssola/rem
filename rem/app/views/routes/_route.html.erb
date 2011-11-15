@@ -4,7 +4,21 @@
 <% else %>
 <li class="public route">
 <% end %>
+  <ul class="route-stats">
+    <li class="watchers" title="Watchers">
+      <%= link_to route.followers.count, "/404" %>
+    </li>
+    <% if route.protected %>
+      <%= image_tag 'protected.png', height: '16', class: 'protection', title: 'Protected' %>
+    <% else %>
+      <%= image_tag 'public.png', height: '16', class: 'protection', title: 'Public' %>
+    <% end %>
+  </ul>
   <h3>
     <%= link_to "#{route.name}", "/#{current_user.name}/#{route.id}" %>
   </h3>
+
+  <div class="route_body">
+    <p>ToDo</p>
+  </div>
 </li>
