@@ -64,10 +64,8 @@ module Hermes #:nodoc:
 
     def get_list_of(model, cond = nil)
       if cond.nil?
-        puts "TOTS"
         @ajax_response[:value] = current_user.send(model)
       else
-        puts "PARTIAL"
         @ajax_response[:value] = current_user.send(model).where(cond => true)
       end
     end
