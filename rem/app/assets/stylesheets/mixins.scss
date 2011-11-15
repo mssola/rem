@@ -46,6 +46,21 @@ $almost_white: #F7ECEC;
 @mixin borders($radius: 4px) {
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin borders_bottom($radius: 4px) {
+  -webkit-border-bottom-right-radius:$radius;
+  -webkit-border-bottom-left-radius:$radius;
+  -moz-border-radius-bottomright:$radius;
+  -moz-border-radius-bottomleft:$radius;
+  border-bottom-right-radius:$radius;
+  border-bottom-left-radius:$radius;
+}
+
+@mixin gradient($from, $to) {
+  background:-webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background:-moz-linear-gradient(top, $from, $to);
 }
 
 @mixin display_inline_block {
