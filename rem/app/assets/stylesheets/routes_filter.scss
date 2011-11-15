@@ -1,0 +1,45 @@
+
+.routes_filter {
+  #filter_head {
+    margin-bottom:5px;
+
+    .title {
+      font-weight:bold;
+      font-size:16px;
+    }
+    .counter {
+      color:#999;
+      font-size:16px;
+      margin-right:-30px;
+    }
+
+    ul { display:inline; }
+    li {
+      list-style:none;
+      display:inline;
+      margin-right:10px;
+      font:12px "Helvetica Neue", Helvetica, Arial, freesans;
+      a {
+        text-decoration:none;
+        &:hover { color:$dark_royal; }
+      }
+    }
+  }
+
+  #filter_field {
+    span {
+      position:absolute;
+      color:#636363;
+      font:12px "Helvetica Neue", Helvetica, Arial, freesans;
+      margin-left:5px;
+      height:7px;
+      padding:2px;
+      width:450px;
+    }
+
+    .r_raw_field {
+      height:7px;
+      width:450px;
+    }
+  }
+}

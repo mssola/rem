@@ -30,6 +30,7 @@
 #= require account
 #= require login
 #= require address_picker
+#= require routes_filter
 
 #= require gmaps4rails/googlemaps
 #= require rmaps

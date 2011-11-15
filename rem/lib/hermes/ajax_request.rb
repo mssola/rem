@@ -35,6 +35,10 @@ module Hermes #:nodoc:
 
       if ajax_method =~ /^find_(.+)_by_(.+)\((.+)\)$/
         validate_uniqueness $1.capitalize, $2, $3
+      elsif ajax_method =~ /^list_(.+)_(.+)$/
+        get_list_of $1, $2
+      elsif ajax_method =~ /^list_(.+)$/
+        get_list_of $1
       else
         raise NoMethodError, "'#{ajax_method}' is not a valid Ajax method!"
       end
@@ -56,6 +60,16 @@ module Hermes #:nodoc:
 
       set_uniqueness_response attribute
       no_response if klass.send('find_by_' + attribute, value).nil?
+    end
+
+    def get_list_of(model, cond = nil)
+      if cond.nil?
+        puts "TOTS"
+        @ajax_response[:value] = current_user.send(model)
+      else
+        puts "PARTIAL"
+        @ajax_response[:value] = current_user.send(model).where(cond => true)
+      end
     end
 
     ##

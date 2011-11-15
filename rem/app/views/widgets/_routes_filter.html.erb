@@ -1,0 +1,21 @@
+
+<div class="routes_filter">
+  <div id="filter_head">
+    <span class="title">Routes</span>
+    <span class="counter"><%= "(#{@routes.count})" %></span>
+    <ul>
+      <li class="filter all"><a href="javascript:void(0);">All</a></li>
+      <li class="filter public"><a href="javascript:void(0);">Public</a></li>
+      <li class="filter protected"><a href="javascript:void(0);">Protected</a></li>
+    </ul>
+  </div>
+
+  <div id="filter_field" class="span_trick">
+    <span>Filter the list below</span>
+    <input class="r_raw_field" id="search" name="search" type="text" autocomplete="off" />
+  </div>
+
+  <ul id="routes_list">
+    <%= render :partial => @routes %>
+  </ul>
+</div>

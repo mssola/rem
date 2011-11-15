@@ -1,0 +1,60 @@
+<% present @user do |u| %>
+  <div id="user_info">
+    <div id="triumviri">
+      <div id="personal_info">
+        <% unless u.full_name.nil? %>
+          <dl><dt>Full name</dt><dd><%= u.full_name %></dd></dl>
+        <% end %>
+        <% unless u.location.nil? %>
+          <dl><dt>Location</dt><dd><%= u.location %></dd></dl>
+        <% end %>
+        <% unless u.website.nil? %>
+          <dl><dt>Website</dt><dd><%= u.website %></dd></dl>
+        <% end %>
+        <% unless u.twitter.nil? %>
+          <dl><dt>Twitter</dt><dd><%= u.twitter %></dd></dl>
+        <% end %>
+        <dl><dt>Member Since</dt><dd><%= u.member_since %></dd></dl>
+      </div>
+      <div id="bio_yogurt">
+<!--         Let there be the Bio -->
+      </div>
+      <div id="stats_info">
+        <ul class="stats" >
+          <li>
+            <% n_routes = @user.routes.count %>
+            <%= link_to n_routes, user_routes_path(@user.name) %>
+            <span>routes</span>
+          </li>
+          <li>
+            <% m_followers = @user.followers.count %>
+            <%= link_to m_followers, followers_user_path(@user) %>
+            <span>followers</span>
+          </li>
+        </ul>
+        <div class="following_stats">
+          <% m_foll = @user.following %>
+          <div id="following">
+          <b>
+          Following <%= m_foll.count %> users and
+          <%= pluralize(@user.route_following.count, 'route') %>
+          </b>
+          <%= link_to 'view all &rarr;'.html_safe, following_user_path(@user) %>
+          </div>
+          <ul id="following_avatars">
+            <% m_foll.slice(0...10).each do |f| %>
+              <li class="avatar">
+                <span class="tip" title=<%= f.name %>>
+                  <a href=<%= "/#{f.name}" %>>
+                    <%= get_avatar_of f, 24 %>
+                  </a>
+                </span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="stretch"></div>
+  </div>
+<% end %> 

@@ -1,0 +1,10 @@
+
+<% if route.protected %>
+<li class="protected route">
+<% else %>
+<li class="public route">
+<% end %>
+  <h3>
+    <%= link_to "#{route.name}", "/#{route.name}" %>
+  </h3>
+</li>

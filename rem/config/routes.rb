@@ -11,6 +11,7 @@ Rem::Application.routes.draw do
   post '/search' => 'sessions#search', as: 'search'
   get 'signup' => 'users#new', as: 'signup'
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
+  get 'route/ajax_request' => 'routes#ajax_request', as: 'ajax_request'
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 

@@ -29,3 +29,23 @@ jQuery ->
     $(this).show()
     $(this).delay(5000).slideUp('slow')
 
+  # Here it goes the effect for the "span trick" applied to
+  # some input widgets.
+  holder = $(".span_trick").find("span")
+  input = $(".span_trick").find("input:eq(0)")
+
+  # If the span element is clicked, focus the input.
+  holder.click ->
+    input.focus()
+
+  # Bind the focusout and the keydown events so the span element
+  # is hidden when the user is writing something and this same
+  # element gets visible when there's nothing on the input element.
+  input.bind
+    focusout: ->
+      holder.show() if $(this).val() == ""
+
+    keydown: ->
+      holder.hide() if holder.is(":visible")
+
+

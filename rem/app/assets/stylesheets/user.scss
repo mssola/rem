@@ -7,6 +7,14 @@
 @import "mixins.scss";
 
 
+.stretch {
+  clear:both;
+  margin:15px 0 20px;
+  height:0;
+  overflow:hidden;
+  border-bottom:1px solid #ddd;
+}
+
 #user_head {
   display:inline;
   position:relative;
@@ -27,14 +35,6 @@
     font-size:28px;
     color:#999;
     vertical-align:middle;
-  }
-
-  .stretch {
-    clear:both;
-    margin:15px 0 20px;
-    height:0;
-    overflow:hidden;
-    border-bottom:1px solid #ddd;
   }
 
   #follow_form {
@@ -88,5 +88,20 @@
   dd {
     font-size:12px;
     margin: 0 0 0 110px;
+  }
+}
+
+#user_body {
+  display: inline;
+  position: relative;
+
+  #user_routes {
+    float:left;
+    width:450px;
+  }
+
+  #user_activity {
+    float: right;
+    width:450px;
   }
 }
