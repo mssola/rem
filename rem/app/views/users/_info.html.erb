@@ -28,7 +28,7 @@
           </li>
           <li>
             <% m_followers = @user.followers.count %>
-            <%= link_to m_followers, followers_user_path(@user) %>
+            <%= link_to m_followers, followers_user_path(@user.name) %>
             <span>followers</span>
           </li>
         </ul>
@@ -39,7 +39,7 @@
           Following <%= m_foll.count %> users and
           <%= pluralize(@user.route_following.count, 'route') %>
           </b>
-          <%= link_to 'view all &rarr;'.html_safe, following_user_path(@user) %>
+          <%= link_to 'view all &rarr;'.html_safe, following_user_path(@user.name) %>
           </div>
           <ul id="following_avatars">
             <% m_foll.slice(0...10).each do |f| %>

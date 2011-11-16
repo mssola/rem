@@ -26,15 +26,18 @@ Rem::Application.routes.draw do
 
   # Rest API: Show the routes of the given user
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
+
+  # Following / followers
+  get '/:name/following' => "users#following", as: 'following_user'
+  get '/:name/followers' => "users#followers", as: 'followers_user'
 
   # OAuth paths
-  match '/auth/failure' => "sessions#failure"
-  match '/auth/:provider/callback' => 'sessions#create'
+  controller :sessions do
+    scope '/auth', as: 'auth' do
+      match ':provider/callback' => :create
+      match :failure
+    end
+  end
 
   # Home, sweet home :)
   root to: 'home#index'
@@ -46,7 +49,8 @@ Rem::Application.routes.draw do
   get '/api' => "home#api"
   get '/help' => "home#help"
 
-  get "/:name/:route_id" => "routes#edit", as: 'edit_route'
+  # This is quite ugly though
+  get "/:name/:route_id" => "routes#edit", as: 'edit_route', route_id: /\d/
 
   # This is the last to be routed so we don't mess things up.
   get '/:name' => "users#edit"
