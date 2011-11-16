@@ -5,6 +5,7 @@ Rem::Application.routes.draw do
   resources :users, :places, :except => [:show] # Rest API
   resources :routes, :except => [:show, :edit]
   resources :relationships, :only => [:create, :destroy]
+  resources :route_relationships, :only => [:create, :destroy]
 
   # Users, sessions and accounts
   get 'login' => 'sessions#new', as: 'login'
@@ -28,6 +29,7 @@ Rem::Application.routes.draw do
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
 
   # Following / followers
+  get '/:name/:id/followers' => 'routes#followers', as: 'followers_route'
   get '/:name/following' => "users#following", as: 'following_user'
   get '/:name/followers' => "users#followers", as: 'followers_user'
 
@@ -50,7 +52,7 @@ Rem::Application.routes.draw do
   get '/help' => "home#help"
 
   # This is quite ugly though
-  get "/:name/:route_id" => "routes#edit", as: 'edit_route', route_id: /\d/
+  get "/:name/:route_id" => "routes#edit", as: 'edit_route', route_id: /\d+/
 
   # This is the last to be routed so we don't mess things up.
   get '/:name' => "users#edit"

@@ -1,15 +1,11 @@
 
-<br>
-<b>Warning</b>: I cannot show routes properly.
-<br>
-
 <%= render partial: 'head' %>
 
 <h1>Your routes</h1>
 
 <% @routes.each do |r| %>
   <div class="user_route">
-    <%= link_to r.name, edit_route_url(@user.name, r.id) %>
+    <%= link_to r.name, "/#{@user.name}/#{r.id}" %>
     <div class="stretch" />
   </div>
 <% end %>

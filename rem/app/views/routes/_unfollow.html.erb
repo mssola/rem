@@ -1,0 +1,5 @@
+<%= form_for @user.route_relationships.find_by_followed_id(@route), :method => :delete do |f| %>
+  <div class="actions">
+    <%= f.submit "Unfollow", class: 'r_submit' %>
+  </div>
+<% end %>

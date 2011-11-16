@@ -92,4 +92,11 @@ class RoutesController < ApplicationController
     Route.find(params[:id]).destroy
     redirect_to root_url, :notice => 'Route destroyed'
   end
+
+  def followers
+    @user = User.find_by_name(params[:name])
+    @route = @user.routes.find(params[:id])
+    @followers = @route.followers
+    render 'show_follow'
+  end
 end

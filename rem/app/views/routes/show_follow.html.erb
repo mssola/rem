@@ -1,0 +1,17 @@
+
+<div id="route_head">
+  <h3>Route:</h3>
+  <span><%= @route.name %></span>
+  <% if @route.user_id != current_user.id %>
+    <div id="route_follow_form">
+      <% if current_user.following?(@route) %>
+        <%= render partial: 'unfollow' %>
+      <% else %>
+        <%= render partial: 'follow' %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="stretch"></div>
+</div>
+
+LALALa 

@@ -6,7 +6,7 @@
 <% end %>
   <ul class="route-stats">
     <li class="watchers" title="Watchers">
-      <%= link_to route.followers.count, "/404" %>
+      <%= link_to route.followers.count, followers_route_path(@user.name, route.id) %>
     </li>
     <% if route.protected %>
       <%= image_tag 'protected.png', height: '16', class: 'protection', title: 'Protected' %>
@@ -15,7 +15,7 @@
     <% end %>
   </ul>
   <h3>
-    <%= link_to "#{route.name}", "/#{current_user.name}/#{route.id}" %>
+    <%= link_to "#{route.name}", "/#{@user.name}/#{route.id}" %>
   </h3>
 
   <div class="route_body">

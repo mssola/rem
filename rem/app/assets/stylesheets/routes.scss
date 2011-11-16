@@ -15,3 +15,36 @@
     margin-left:3px;
   }
 }
+
+#route_head {
+  display: inline;
+  position:relative;
+
+  h3 {
+    display:inline-block;
+    font-weight:bold;
+    font-size:28px;
+    margin-left:5px;
+  }
+
+  span {
+    font-size:28px;
+    color:#4A4646;
+    margin-left:10px;
+  }
+
+  #route_follow_form {
+    margin:35px 30px 0 0;
+    float:right;
+    
+  }
+
+  .stretch {
+    clear:both;
+    margin:-20px 0 20px;
+    height:0;
+    overflow:hidden;
+    border-bottom:1px solid #ddd;
+  }
+}
+
