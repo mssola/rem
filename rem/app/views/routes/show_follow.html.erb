@@ -14,4 +14,7 @@
   <div class="stretch"></div>
 </div>
 
-LALALa 
+<% @route.followers.each do |u| %>
+  <%= render u %>
+  <div class="stretch"></div>
+<% end %>

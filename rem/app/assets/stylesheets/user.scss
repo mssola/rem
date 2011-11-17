@@ -105,3 +105,41 @@
     width:450px;
   }
 }
+
+._route {
+  display:inline;
+  position:relative;
+  padding-left:10px;
+
+  .avatar {
+    display:inline-block;
+    padding-right:6px;
+    img { padding:1px; }
+  }
+
+  a {
+    vertical-align:middle;
+    font-size:16px;
+    font-weight:bold;
+  }
+
+  span {
+    font-size:16px;
+    color:#4A4646;
+    margin-left:3px;
+  }
+
+  #follow_form {
+    margin:0px 30px 0 0;
+    display:inline-block;
+    float:right;
+  }
+
+  .stretch {
+    clear:both;
+    margin:-50px 0 20px;
+    height:0;
+    overflow:hidden;
+    border-bottom:1px solid #ddd;
+  }
+}
