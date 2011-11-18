@@ -10,7 +10,6 @@ doc/api
 *.sassc
 .sass-cache/
 config/*.yml
-Gemfile.lock
 .rvmrc
 config/initializers/omniauth.rb
 .rake_tasks
