@@ -30,6 +30,7 @@ gem 'bcrypt-ruby'
 gem 'omniauth'
 gem 'gravtastic'
 gem 'faker'
+gem 'heroku'
 
 # Some TDD candy
 gem "rspec-rails", :group => [:test, :development]
