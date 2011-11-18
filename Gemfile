@@ -2,7 +2,6 @@ source :rubygems
 
 # Ruby on Rails 3
 gem 'rails', '~> 3.1.0'
-gem 'mongrel', '1.2.0.pre2'
 gem 'unicorn'
 
 # DBMS
