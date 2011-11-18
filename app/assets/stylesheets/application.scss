@@ -3,7 +3,7 @@
  * mixes all the scss's files in order to have the desired style.
  */
 
-//= require themes/base/jquery.ui.all.css
+//= require_tree ../../../vendor/assets/stylesheets
 
 @import "layout.scss";
 @import "flash.scss";
