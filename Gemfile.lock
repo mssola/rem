@@ -231,6 +231,7 @@ DEPENDENCIES
   jquery-rails
   libnotify
   libxml-ruby
+  omniauth
   omniauth-openid
   omniauth-twitter
   pg

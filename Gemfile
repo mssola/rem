@@ -23,6 +23,7 @@ gem "fast_gettext", '~> 0.6.1'
 gem "gettext", '>= 1.9.3', :require => false
 
 # Omniauth
+gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-openid'
 
