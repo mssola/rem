@@ -22,11 +22,14 @@ gem 'gettext_i18n_rails'
 gem "fast_gettext", '~> 0.6.1'
 gem "gettext", '>= 1.9.3', :require => false
 
+# Omniauth
+gem 'omniauth-twitter'
+gem 'omniauth-openid'
+
 # Others
 gem 'redcarpet'
 gem 'gmaps4rails'
 gem 'bcrypt-ruby'
-gem 'omniauth', '~> 0.3.2'
 gem 'gravtastic'
 gem 'faker'
 gem 'heroku'
