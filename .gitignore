@@ -11,5 +11,4 @@ doc/api
 .sass-cache/
 config/*.yml
 .rvmrc
-config/initializers/omniauth.rb
 .rake_tasks

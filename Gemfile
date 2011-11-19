@@ -26,7 +26,7 @@ gem "gettext", '>= 1.9.3', :require => false
 gem 'redcarpet'
 gem 'gmaps4rails'
 gem 'bcrypt-ruby'
-gem 'omniauth'
+gem 'omniauth', '~> 0.3.2'
 gem 'gravtastic'
 gem 'faker'
 gem 'heroku'
