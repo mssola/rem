@@ -1,0 +1,19 @@
+
+<div class="admin password">
+  <%= r_label :password, 'Password reset' %>
+  <% if up.email.empty? %>
+    Apparently you have no email address configured.
+  <% else %>
+    <%= form_tag password_resets_path, :method => :post do %>
+      <%= r_field :text, :email, nil, up.email %>
+      <%= r_submit "Reset Password", nil %>
+    <% end %>
+  <% end %>
+  <br>
+  <%= r_label :delete, 'Delete Account' %>
+  <%= button_to 'Delete Account', user_path(current_user.id), method: :delete, class: 'r_submit' %>
+  <br>
+  <br>
+  <%= r_label :label_username, 'Change username' %>
+  <%= r_field :text, :change_username, nil, up.name %>
+</div> 

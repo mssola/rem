@@ -1,0 +1,25 @@
+
+<%= form_tag account_path, :method => 'PUT' do %>
+  <div class="present full">
+    <%= r_label :full, 'Full name' %>
+    <%= r_field :text, :full, nil, up.full_name %>
+  </div>
+  <div class="present email">
+    <%= r_label :email, 'Email' %>
+    <span id="email_adv">(email will not be publicly displayed)</span>
+    <%= r_field :text, 'email', nil, up.email %>
+  </div>
+  <div class="present location">
+    <%= r_label :location, 'Location' %>
+    <%= r_field :text, :location, nil, up.location %>
+  </div>
+  <div class="present website">
+    <%= r_label :site, 'Website' %>
+    <%= r_field :text, :website, nil, up.website %>
+  </div>
+  <div class="present twitter">
+    <%= r_label :twitter, 'Twitter account' %>
+    <%= r_field :text, :twitter, nil, up.twitter(false) %>
+  </div>
+  <%= r_submit 'Update information' %>
+<% end %>
