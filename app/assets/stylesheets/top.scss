@@ -15,7 +15,7 @@
   color:#fff;
   height:35px;
   width:70px;
-  margin-right:5px;
+  margin-left:5px;
   outline:none;
 
   &:hover {
@@ -37,8 +37,8 @@
   position:absolute;
   top:0px;
   padding-top:3px;
-  width:958px;
-  height:42px;
+  width:$body_width;
+  height:$topbar_height;
   font-size:12px;
 
   border-top:none;

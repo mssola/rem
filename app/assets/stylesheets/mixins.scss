@@ -14,6 +14,12 @@ $dark_royal: darken($royal_blue, 10%);
 $almost_white: #F7ECEC;
 
 
+/* Global variables */
+$body_width: 958px;
+$body_min_width: 950px;
+$topbar_height: 42px;
+
+
 /* And now the mixins */
 
 @mixin set_opacity($value, $hover: "") {

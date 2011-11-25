@@ -17,10 +17,9 @@
 body {
   background-color:white;
   font:14px "Helvetica Neue", Helvetica, Arial, freesans;
-  width:958px;
-/*   height:91px; */
-  min-width:950px;
-  padding-top:100px;
+  width:$body_width;
+  min-width:$body_min_width;
+  padding-top:$topbar_height;
   margin:0 auto 0 auto;
 }
 
@@ -31,9 +30,8 @@ body {
 }
 
 #main {
-  a:hover {
-    text-decoration:underline;
-  }
+  padding:20px;
+  a:hover { text-decoration:underline; }
 }
 
 a:link, a:visited {
