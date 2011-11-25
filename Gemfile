@@ -9,7 +9,7 @@ gem 'sqlite3'
 gem 'pg', :require => 'pg', :group => [:production]
 
 # Asset template engines
-gem 'sass-rails', '~> 3.1.0'
+gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
 

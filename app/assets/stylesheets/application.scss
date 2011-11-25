@@ -11,39 +11,3 @@
 @import "account.scss";
 @import "gmaps4rails.scss";
 @import "routes_filter.scss";
-
-
-/* TODO: Separate into a different scss file */
-
-.pbucket {
-  margin-top:20px;
-  display:inline-block;
-
-  .pbucket_title {
-    float:left;
-    padding:10px;
-
-    span {
-      margin-left:8px;
-      font:16px "Helvetica Neue", Helvetica, Arial, freesans;
-    }
-  }
-
-  .pbucket_body {
-    padding:30px;
-    float:right;
-    margin-left:20px;
-
-    .r_submit {
-      float:right;
-    }
-  }
-
-  .pbucket_errors {
-    margin-top:20px;
-  }
-
-  div.field {
-    margin-bottom:20px;
-  }
-}

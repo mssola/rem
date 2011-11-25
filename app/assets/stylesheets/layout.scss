@@ -11,11 +11,17 @@
 @import "routes.scss";
 @import "places.scss";
 @import "user.scss";
+@import "password_reset.scss";
 
 
 body {
   background-color:white;
   font:14px "Helvetica Neue", Helvetica, Arial, freesans;
+  width:958px;
+/*   height:91px; */
+  min-width:950px;
+  padding-top:100px;
+  margin:0 auto 0 auto;
 }
 
 .clear {
@@ -25,10 +31,6 @@ body {
 }
 
 #main {
-  width:1000px;
-  padding-top:60px;
-  margin:0 auto 0 auto;
-
   a:hover {
     text-decoration:underline;
   }
@@ -38,27 +40,3 @@ a:link, a:visited {
   color:#27b;
   text-decoration:none;
 }
-
-#rem {
-  float:left;
-  background:url('rem.svg') no-repeat;
-  text-indent:-9999px;
-  display:block;
-  color:#fff;
-  height:35px;
-  width:70px;
-  margin-right:5px;
-  outline:none;
-
-  &:hover {
-    background:url('rem-blue.svg') no-repeat;
-  }
-}
-
-.avatar img {
-  vertical-align:middle;
-  position:relative;
-  padding:2px;
-  border:1px solid #ddd;
-}
-
