@@ -3,14 +3,23 @@
  * The style for the footer of the page.
  */
 
+@import "mixins.scss";
+
 
 #footer {
-  position:relative;
-  bottom:0;
   color:#636363;
-  margin:45px 0 0 0;
   font-size:12px;
   clear:both;
+  width:$body_width;
+
+  .footer_stretch {
+    padding-top:30px;
+    clear:both;
+    height:0;
+    width:$body_width;
+    overflow:hidden;
+    border-bottom:1px solid #ddd;
+  }
 
   li {
     list-style:none;
