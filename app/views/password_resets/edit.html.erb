@@ -1,23 +1,32 @@
-<h1>Reset Password</h1>
 
-<%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="pbucket">
+  <%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
+    <div class="pbucket_title">
+      <h1>Reset your password</h1>
+      <span> Apparently, you've forgotten your password.</span>
+      <br>
+      <span>You can reset it by applying to this form.</span>
+      <% if @user.errors.any? %>
+        <div class="error_messages pbucket_errors">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @user.errors.full_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="pbucket_body">
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, { class: 'r_raw_field' } %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, { class: 'r_raw_field' } %>
+      </div>
+      <%= r_submit _('Update Password'), 'r_submit' %>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit "Update Password" %></div>
-<% end %>
+</div>

@@ -28,10 +28,6 @@
 # In the edit page the user will be able to change his password.
 class PasswordResetsController < ApplicationController
   ##
-  # The _new_ method. It does nothing.
-  def new; end
-
-  ##
   # The _create_ method. It's called when the user submitted the password
   # reset form. If everything is fine, it will send an email to the given
   # account with instructions inside on how to change his password and a link
