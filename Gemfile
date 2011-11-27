@@ -27,8 +27,12 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-openid'
 
-# Others
+# Markdown
 gem 'redcarpet'
+gem 'albino'
+gem 'nokogiri'
+
+# Others
 gem 'gmaps4rails'
 gem 'bcrypt-ruby'
 gem 'gravtastic'

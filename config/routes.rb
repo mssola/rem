@@ -47,12 +47,19 @@ Rem::Application.routes.draw do
   # Home, sweet home :)
   root to: 'home#index'
 
-  # Footer
+  # Footer pages
   get '/about' => "home#about"
   get '/overview' => "home#overview"
   get '/contact' => "home#contact"
-  get '/api' => "home#api"
   get '/help' => "home#help"
+
+  # API page
+  resources :api, :only => [:index] do
+    collection do
+      get 'basics' => 'api#basics'
+      get 'routes_places' => 'api#routes_places'
+    end
+  end
 
   # This is quite ugly though
   get "/:name/:route_id" => "routes#edit", as: 'edit_route', route_id: /\d+/

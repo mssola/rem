@@ -22,6 +22,13 @@
         </ul>
       </div>
     <% else %>
+      <% if current_controller?('api') %>
+        <ul id="api_top">
+          <li><%= link_to 'API:', '/api' %></li>
+          <li><%= link_to 'Basics', '/api/basics' %></li>
+          <li><%= link_to 'Routes & Places', '/api/routes_places' %></li>
+        </ul>        
+      <% end %>
       <%= render :template => 'layouts/_login' %>
     <% end %>
   </div>

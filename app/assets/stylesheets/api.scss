@@ -1,0 +1,31 @@
+
+/*
+ * This is the stylesheet for the API page
+ */
+
+@import "mixins.scss";
+
+
+.title {
+  font-weight:bold;
+  font-size:20px;
+  color:#4A4646;
+  margin-left:10px;
+  padding-bottom:5px;
+
+  border-bottom:1px solid #ddd;
+}
+
+.api_page {
+  margin-top:20px;
+  padding-left:20px;
+  padding-right:20px;
+  font-size:14px;
+
+  li {
+    list-style-image:url('rarrow.png');
+    width:60%;
+    margin-bottom:5px;
+  }
+}
+

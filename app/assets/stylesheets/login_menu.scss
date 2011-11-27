@@ -8,9 +8,8 @@
 
 
 #login_container {
-  width:780px;
-  margin:0 auto;
-  position: relative;
+  margin-right:20px;
+  float:right;
 }
 
 #topnav {
@@ -82,9 +81,9 @@ a.signin.menu-open span {
   padding:12px;
   top: 24.5px;
   right: 0px;
-  margin-top:5px;
-  margin-right: 0px;
-  *margin-right: -1px;
+  margin-top:10px;
+  margin-right: 20px;
+  *margin-right: 20px;
   color:#789;
   font-size:12px;
 

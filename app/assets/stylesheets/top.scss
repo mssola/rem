@@ -94,3 +94,28 @@
     margin-left:3px;
   }
 }
+
+#api_top {
+  display:inline;
+  font:12px "Helvetica Neue", Helvetica, Arial, freesans;
+  font-weight:bold;
+  position:absolute;
+  padding-left:14px;
+
+  li {
+    list-style-type:none;
+    display:inline;
+    padding-right: 5px;
+    border-right:1px solid #ddd;
+
+    &:first-child, &:last-child {
+      border:none;
+      padding-right:0px;
+    }
+  }
+
+  a {
+    padding:0 5px 0 6px;
+    &:hover { color:$dark_royal; }
+  }
+}

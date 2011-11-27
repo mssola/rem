@@ -55,4 +55,20 @@ module ApplicationHelper
   def current_user?(user)
     !current_user.nil? && current_user.id == user.id
   end
+
+  ##
+  # Return true if the given controller is the current one.
+  # Return false otherwise.
+  #
+  # @param *String* controller The given controller.
+  def current_controller?(controller)
+    request.path_parameters[:controller] == controller
+  end
+
+  ##
+  # TODO
+  def markdown(text)
+    options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
+    Redcarpet.new(text, *options).to_html.html_safe
+  end
 end
