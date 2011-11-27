@@ -16,6 +16,9 @@ Rem::Application.routes.draw do
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
 
+  # Rest API: Android login
+  post '/android' => 'sessions#android'
+
   # Rest API: Show info about users, routes and places.
   get "/users/:name" => "users#show"
   get "/routes/:name" => "routes#show"

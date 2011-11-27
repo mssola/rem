@@ -72,6 +72,34 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => _('Logged out!')
   end
 
+  ##
+  # *Rest API*
+  #
+  # It creates a new session for an Android user by returning the
+  # auth_token in a json/xml object.
+  def android
+    andr = params['android']
+    if andr.nil? || andr['name'].nil? || andr['password'].nil?
+      error_occurred(404)
+    else
+      u = User.find_by_name(andr['name'])
+      if u.nil?
+        error_occurred(401)
+      else
+        hash = BCrypt::Engine.hash_secret(andr['password'], u.password_digest)
+        if hash == u.password_digest
+          res = rem_ok(auth_token: u.auth_token)
+          respond_to do |format|
+            format.json { render json: res, status: 200 }
+            format.xml  { render xml: res, status: 200 }
+          end
+        else
+          error_occurred(404)
+        end
+      end
+    end
+  end
+
   private
 
   ##
@@ -117,5 +145,16 @@ class SessionsController < ApplicationController
     end
     cookies.permanent[:auth_token] = auth.user.auth_token
     redirect_to root_url, :notice => _('Logged in!')
+  end
+
+  ##
+  # Helper method that performs a response for a rem error.
+  #
+  # @param *Integer* status The Http status code.
+  def error_occurred(status)
+    respond_to do |format|
+      format.json { render json: rem_error(status), status: status }
+      format.xml  { render xml: rem_error(status), status: status }
+    end
   end
 end
