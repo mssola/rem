@@ -18,7 +18,7 @@
 
 .api_page {
   margin-top:20px;
-  padding-left:20px;
+  margin-left:10px;
   padding-right:20px;
   font-size:14px;
 
@@ -27,5 +27,18 @@
     width:60%;
     margin-bottom:5px;
   }
+
+  .subtitle {
+    font-weight:bold;
+    font-size:16px;
+    color:#4A4646;
+    padding-bottom:10px;
+  }
 }
 
+.api_subpage {
+  margin-bottom:20px;
+  padding-left:10px;
+  padding-right:10px;
+  font-size:14px;
+}
