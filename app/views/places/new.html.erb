@@ -11,12 +11,14 @@
   </div>
 <% end %>
 <div id="search_map">
-  <div id="map"></div>
   <div class="holding">
     <span class="holder">Search and have fun</span>
     <%= text_field_tag :addresspicker_map, nil %>
   </div>
+  <div id="map"></div>
 </div>
+<div id="new_place_page">
+
 <%= form_for @place do |f| %>
   <fieldset class="textbox">
     <div class="prompt name">
@@ -48,8 +50,12 @@
       <span id="desc_adv">(About this place in less than 160 chars.)</span>
       <%= f.text_area :desc, { class: 'r_text_area' } %>
     </div>
-    <%= r_label :combo_routes, 'Add to the following route:' %>
-    <%= f.select(:route_id, @routes) %>
+    <div class="prompt combo">
+      <%= r_label :combo_routes, 'Add to the following route:' %>
+      <%= f.select(:route_id, @routes) %>
+    </div>
     <%= r_submit 'Create place' %>
   </fieldset>
-<% end %> 
+<% end %>
+
+</div>

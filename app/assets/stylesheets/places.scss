@@ -7,18 +7,25 @@
 @import "base.scss";
 
 
+#new_place_page {
+  margin-top:10px;
+  padding:10px;
+}
+
+
 #search_map {
   float:left;
+  margin-top:20px;
   margin-right:50px;
 
   .holding {
-    margin: 0px 0 0 10px;
     padding:10px;
 
     .holder {
       position:absolute;
       line-height:43px;
-      color:#DDD;
+      font-weight:bold;
+      color:#697493;
       margin-left:8px;
       margin-top:-8px;
     }
@@ -29,7 +36,6 @@
   border: 1px solid #DDD;
   width:400px;
   height: 400px;
-  margin: 0px 0 0 10px;
 
   @include map_shadows;
 }
@@ -42,11 +48,14 @@
   font-size: 12px;
 }
 
+
 #new_place {
   .textbox {
     float:left;
     border:none;
   }
+
+  .prompt { margin-bottom:10px; }
 
   span {
     color:#636363;
