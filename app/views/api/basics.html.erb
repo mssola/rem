@@ -8,47 +8,38 @@
 
 <div class="api_subpage">
 
-There are two kinds of data that this API can return: JSON (default) and XML.
-In order to obtain an XML, you must append the .xml extension at the url.
-With that being said, now let's take a look at how to obtain information from
-this API. In general, you just have to append to the url the model name plus
-the name of the item we are consulting. With this rule we can build the
-following table:
+Let's take a look at how we can we obtain all the information of users,
+routes and places. Note that you will not retrieve the user's email
+by using this method since this is not shown publicly.
 
-<table id="api_show" border="1">
-<tr>
-<th id="path_name">Path</th>
-<th>Used for</th>
-</tr>
-<tr>
-<td class="path_column">/users/:name</td>
-<td>Obtain the info of the user with the name specified in :name</td>
-</tr>
-<tr>
-<td class="path_column">/routes/:name</td>
-<td>Obtain the info of the route with the name specified in :name</td>
-</tr>
-<tr>
-<td class="path_column">/places/:name</td>
-<td>Obtain the info of the place with the name specified in :name</td>
-</tr>
-</table>
-
-<br>
-
-So, for example if we want to obtain the information of a user named mssola,
- we could do:
-
-<br><br>
-
-curl http://rem.com/users/mssola (append .xml to obtain the same in XML format)
+<div class="code">
+  GET http://mssola.heroku.com/[users | routes | places]/:name
+</div>
 
 </div>
 
 <div class="subtitle">Remote Log in</div>
 <div class="api_subpage">
-  To Do
-</div>
+
+With this method you'll be able to log in remotely. You have to provide
+a name and password. The server will return an authorization token (auth_token)
+that will be used from now on for the methods on this API that need the user
+to be authenticated.
+
+<div class="code">
+  POST http://mssola.heroku.com/android
 </div>
 
+<div class="subsubtitle">Parameters</div>
+
+<ul>
+  <li><span>name</span>: the username for this user.</li>
+  <li><span>password</span>: the password.</li>
+</ul>
+
+<div class="subsubtitle">Response</div>
+
+
+
+</div>
 </div>

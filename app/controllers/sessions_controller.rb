@@ -78,15 +78,14 @@ class SessionsController < ApplicationController
   # It creates a new session for an Android user by returning the
   # auth_token in a json/xml object.
   def android
-    andr = params['android']
-    if andr.nil? || andr['name'].nil? || andr['password'].nil?
+    if params['name'].nil? || params['password'].nil?
       error_occurred(404)
     else
-      u = User.find_by_name(andr['name'])
+      u = User.find_by_name(params['name'])
       if u.nil?
         error_occurred(401)
       else
-        hash = BCrypt::Engine.hash_secret(andr['password'], u.password_digest)
+        hash = BCrypt::Engine.hash_secret(params['password'], u.password_digest)
         if hash == u.password_digest
           res = rem_ok(auth_token: u.auth_token)
           respond_to do |format|
