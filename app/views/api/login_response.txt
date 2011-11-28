@@ -1,0 +1,5 @@
+~~~javascript
+{
+  "auth_token" : "a random URL-safe base64 string"
+}
+~~~

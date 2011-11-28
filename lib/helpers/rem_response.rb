@@ -25,18 +25,6 @@
 # for calls sent via the Rest API.
 module RemResponse
   ##
-  # Create a response for the 200 http response (Ok)
-  #
-  # @param *Hash* opts Some additional rows.
-  #
-  # @return *Hash* the response for this situation. Only the _status_ field
-  # is mandatory although the server may set up some other fields with
-  # the given parameter _opts_.
-  def rem_ok(opts = {})
-    { status: 200 }.merge!(opts)
-  end
-
-  ##
   # Create a response for the 201 http response (Created).
   #
   # @param *ActiveRecord::Base* row This is the row we've created. It assumes
@@ -47,7 +35,7 @@ module RemResponse
   def rem_created(row)
     msg = "#{row.class.to_s} created successfully"
     ca = row.created_at.strftime("%B %e, %Y")
-    { status: 201, msg: msg, id: row.id, name: row.name, created_at: ca }
+    { msg: msg, id: row.id, name: row.name, created_at: ca }
   end
 
   ##
@@ -58,7 +46,7 @@ module RemResponse
   # @return *Hash* the response for this situation, with just two fields:
   # _status_ (http status code) and _msg_ (some info about the error).
   def rem_error(status)
-    res = { status: status }
+    res = { msg: '' }
     case status
     when 401
       res[:msg] = "You're not authorized to perform such operation."

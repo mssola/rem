@@ -64,11 +64,4 @@ module ApplicationHelper
   def current_controller?(controller)
     request.path_parameters[:controller] == controller
   end
-
-  ##
-  # TODO
-  def markdown(text)
-    options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
-    Redcarpet.new(text, *options).to_html.html_safe
-  end
 end
