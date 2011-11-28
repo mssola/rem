@@ -64,9 +64,16 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find_by_name(params[:name])
     raise ActionController::RoutingError.new('Not Found') if @place.nil?
-    respond_to do |format|
-      format.json { render :json => @place.to_json }
-      format.any(:xml, :html) { render :xml => @place.to_xml }
+    if Route.find(@place.route_id).protected and android_user.nil?
+      respond_to do |format|
+        format.json { render :json => rem_error(401), status: 401 }
+        format.any(:xml, :html) { render :xml => rem_error(401), status: 401 }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => @place.to_json }
+        format.any(:xml, :html) { render :xml => @place.to_xml }
+      end
     end
   end
 

@@ -4,20 +4,6 @@
 
 <div class="api_page">
 
-<div class="subtitle">Getting information</div>
-
-<div class="api_subpage">
-
-Let's take a look at how we can we obtain all the information of users,
-routes and places. Note that you will not retrieve the user's email
-by using this method since this is not shown publicly.
-
-<div class="code">
-  GET http://mssola.heroku.com/[users | routes | places]/:name
-</div>
-
-</div>
-
 <div class="subtitle">Remote Log in</div>
 <div class="api_subpage">
 
@@ -47,4 +33,47 @@ to be authenticated.
 </div>
 
 </div>
+
+<div class="subtitle">Getting information</div>
+
+<div class="api_subpage">
+
+Let's take a look at how we can we obtain all the information of users,
+routes and places. Note that you will not retrieve the user's email
+by using this method since this is not shown publicly.
+
+<div class="code">
+  GET http://mssola.heroku.com/[users | routes | places]/:name
+</div>
+
+<div class="subsubtitle">Parameters</div>
+
+<ul>
+  <li><span>auth_token</span>: if this parameter is not set and you requested
+  the info of a protected route, it will return a 401 Http response, and the
+  same if you requested the info of a place that belongs to a protected route.
+  This parameter will be ignored when requesting some user's info, therefore
+  this parameter is not mandatory.
+  </li>
+</ul>
+
+With the former method you're not able to list the routes of a specific user.
+However, if you really want to do so you have to call the following method:
+
+<div class="code">
+  GET http://mssola.heroku.com/users/:name/routes
+</div>
+
+<div class="subsubtitle">Parameters</div>
+
+<ul>
+  <li><span>auth_token</span>: if this parameter is properly set it will show
+  all the routes of the user with username :name. Otherwise, it will only
+  show the user's public routes. Note that this method also lists all the places
+  for each route.
+  </li>
+</ul>
+
+</div>
+
 </div>
