@@ -1,6 +1,13 @@
 <div id="top_bar">
   <div id="top_sep">
     <a href="/" id="rem">About Rem</a>
+    <% if current_controller?('api') %>
+      <ul id="api_top">
+        <li><%= link_to 'API:', '/api' %></li>
+        <li><%= link_to 'Basics', '/api/basics' %></li>
+        <li><%= link_to 'Routes & Places', '/api/routes_places' %></li>
+      </ul>
+    <% end %>
     <% if current_user %>
       <div id="top_right">
         <div id="top_search">
@@ -22,13 +29,6 @@
         </ul>
       </div>
     <% else %>
-      <% if current_controller?('api') %>
-        <ul id="api_top">
-          <li><%= link_to 'API:', '/api' %></li>
-          <li><%= link_to 'Basics', '/api/basics' %></li>
-          <li><%= link_to 'Routes & Places', '/api/routes_places' %></li>
-        </ul>        
-      <% end %>
       <%= render :template => 'layouts/_login' %>
     <% end %>
   </div>
