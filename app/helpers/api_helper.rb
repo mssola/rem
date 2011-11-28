@@ -27,8 +27,7 @@ module ApiHelper
   # Return the provided file with some markup applied.
   #
   # @param *String* file The name of the file.
-  def markdown(file)
-    text = IO.readlines("#{Rails.root}/app/views/api/#{file}.txt").join
+  def markdown(text)
     options = [:hard_wrap, :fenced_code, :gh_blockcode]
     syntax_highlighter(Redcarpet.new(text, *options).to_html).html_safe
   end
