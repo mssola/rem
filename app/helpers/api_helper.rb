@@ -40,8 +40,30 @@ module ApiHelper
   def syntax_highlighter(html)
     doc = Nokogiri::HTML(html)
     doc.search("//pre[@lang]").each do |pre|
-      pre.replace Albino.colorize(pre.text.rstrip, pre[:lang])
+      pre.replace colorize(pre.text.rstrip, pre[:lang])
     end
     doc.to_s
+  end
+
+  ##
+  # Colorize using Albino if the system has pygments. Otherwise we have
+  # to issue an http post_form to a heroku app that provides pygments.
+  #
+  # @param *String* code The code we want to colorize.
+  #
+  # @param *String* lang The language.
+  def colorize(code, lang)
+    if can_pygmentize?
+      Albino.colorize code, lang
+    else
+      Net::HTTP.post_form(URI.parse('http://pygmentize.herokuapp.com'),
+                          { 'lang' => lang, 'code' => code }).body
+    end
+  end
+
+  ##
+  # Return true if the system has pygments. Return false otherwise.
+  def can_pygmentize?
+    system 'pygmentize -V'
   end
 end
