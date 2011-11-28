@@ -55,7 +55,7 @@ module ApiHelper
     if can_pygmentize?
       Albino.colorize code, lang
     else
-      Net::HTTP.post_form(URI.parse('http://pygmentize.herokuapp.com'),
+      Net::HTTP.post_form(URI.parse('http://pygmentize.herokuapp.com/'),
                           { 'lang' => lang, 'code' => code }).body
     end
   end
