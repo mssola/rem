@@ -18,6 +18,10 @@
 #
 
 
+require 'net/http'
+require 'uri'
+
+
 ##
 # == ApiHelper Module Definition
 #
