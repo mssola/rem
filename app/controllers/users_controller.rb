@@ -116,9 +116,10 @@ class UsersController < ApplicationController
   def routes
     @user = User.find_by_name(params[:name])
     @routes = @user.routes
+    mroutes = android_user ? @routes : @user.public_routes
     respond_to do |format|
-      format.json { render :json => @routes.to_json }
-      format.xml  { render :xml => @routes.to_xml }
+      format.json { render :json => mroutes.to_json }
+      format.xml  { render :xml => mroutes.to_xml }
       format.html { render 'show_routes' }
     end
   end

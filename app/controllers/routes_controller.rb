@@ -77,11 +77,19 @@ class RoutesController < ApplicationController
   # and can be accessed through /routes/:name. It will return an XML if
   # the url specifies it, otherwise it will return a JSON object.
   def show
-    @route = Route.find_by_name(params[:name])
-    raise ActionController::RoutingError.new('Not Found') if @route.nil?
-    respond_to do |format|
-      format.json { render :json => @route.to_json }
-      format.any(:xml, :html) { render :xml => @route.to_xml }
+    route = Route.find_by_name(params[:name])
+    raise ActionController::RoutingError.new('Not Found') if route.nil?
+
+    if route.protected and android_user.nil?
+      respond_to do |format|
+        format.json { render :json => rem_error(401), status: 401 }
+        format.any(:xml, :html) { render :xml => rem_error(401), status: 401 }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => route.to_json }
+        format.any(:xml, :html) { render :xml => route.to_xml }
+      end
     end
   end
 

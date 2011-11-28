@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method
   def to_xml(options = {})
-    options.merge!(except: private_columns, include: :routes)
+    options.merge!(except: private_columns)
     super(options)
   end
 
@@ -153,8 +153,17 @@ class User < ActiveRecord::Base
   #
   # @param *Hash* options Options passed to this method. Unused.
   def as_json(options = {})
-    options ||= { except: private_columns, include: :routes }
+    options ||= { except: private_columns }
     super(options)
+  end
+
+  ##
+  # The same as the _routes_ method but showing only the public ones
+  # (thus, when protected = false).
+  #
+  # @return *Array* of all the public routes.
+  def public_routes
+    Route.where("user_id = ? AND protected = ?", self[:id], false)
   end
 
   private

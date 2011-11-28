@@ -45,4 +45,12 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find_by_auth_token!(cookies[:auth_token])
     end
   end
+
+  ##
+  # TODO
+  def android_user
+    if params[:auth_token]
+      @current_user ||= User.find_by_auth_token!(params[:auth_token])
+    end
+  end
 end
