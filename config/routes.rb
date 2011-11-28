@@ -26,7 +26,7 @@ Rem::Application.routes.draw do
 
   # Rest API: Upload/remove photos.
   post "/photos/:route_id" => "places#photos"
-  delete "/photos/:route_id/:pname" => "places#delete_photos"
+  delete "/photos/:place_id" => "places#delete_photos"
 
   # Rest API: Show the routes of the given user
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
@@ -58,6 +58,7 @@ Rem::Application.routes.draw do
     collection do
       get 'basics' => 'api#basics'
       get 'routes_places' => 'api#routes_places'
+      get 'nearby' => 'api#nearby'
     end
   end
 

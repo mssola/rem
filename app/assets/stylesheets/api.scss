@@ -75,10 +75,11 @@
   }
 }
 
-.response_code {
+@mixin here_the_code($width: 50%) {
   @include borders;
   border:1px solid #ddd;
-  width:50%;
+  background-color:#fafafa;
+  width:$width;
 
   .response_header {
     font-size:13px;
@@ -95,10 +96,23 @@
   .highlight {
     font-size:13px;
     padding-left:10px;
-    background-color:#fafafa;
 
     .p { color:$dark_royal; }
-    .s2 { color:#bf0303 }
+    .o { color:$dark_royal; }
+    .s1 { color:#bf0303; }
+    .s2 { color:#bf0303; }
+    .mi { color:$dark_royal; }
+    .no { color: #BB1188; }
+    .c1 { color: #898887; }
+    .k { font-weight:bold; }
+    .si { color: #006E28; }
   }
+}
 
+.response_code {
+  @include here_the_code;
+}
+
+.ruby_code {
+  @include here_the_code(100%);
 }

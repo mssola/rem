@@ -84,10 +84,10 @@ class PlacesController < ApplicationController
   # according to the given params. Please, take a look at the API documentation
   # for more info about uploading photos.
   def photos
-    response = handle_upload
+    response, status = handle_upload
     respond_to do |format|
-      format.json { render :json => response, status: response[:status] }
-      format.any(:xml, :html) { render :xml => response, status: response[:status] }
+      format.json { render :json => response, status: status }
+      format.any(:xml, :html) { render :xml => response, status: status }
     end
   end
 
@@ -97,10 +97,10 @@ class PlacesController < ApplicationController
   # Deletes a photo specified via params. It also removes the place. Please
   # take a look at the API documentation for more info about deleting places.
   def delete_photos
-    response = remove_photo!
+    response, status = remove_photo!
     respond_to do |format|
-      format.json { render :json => response, status: response[:status] }
-      format.any(:xml, :html) { render :xml => response, status: response[:status] }
+      format.json { render :json => response, status: status }
+      format.any(:xml, :html) { render :xml => response, status: status }
     end
   end
 

@@ -32,6 +32,10 @@ require 'fileutils'
 # because it needs to access to the params hash among other things.
 module Uploader
   ##
+  # To help on building the response hash.
+  include RemResponse
+
+  ##
   # Constant containing the base directory for the uploads.
   BASE = 'app/uploads'
 
@@ -49,21 +53,23 @@ module Uploader
   # http response. It means that a place has been created in the database and
   # that the photo has been successfully stored in the server.
   #
-  # @return *Hash* No matter what, the object in return is a hash containing
-  # at least the field _status_ where it's stored the http response status.
+  # @return *Array* a two-sized array. The first element is a *Hash* containing
+  # at least the field _msg_ where it's stored a description of what happened.
+  # The last element is an *Integer* that represents the HTTP response status.
   def handle_upload
-    return { :status => :unauthorized } if current_user.nil?
-    return { status: 404 } if incorrect_params?
+    return [rem_error(401), 401] if android_user.nil?
+    return [rem_error(404), 404] if incorrect_params?
 
     upload, route = params['media'], params['route_id']
-    file = get_path(current_user, route, upload.original_filename)
+    file = get_path(android_user, route, upload.original_filename)
 
     if file.is_a? String
-      Place.create! prepare_place(route.to_i, upload.original_filename)
+      place = Place.create!(prepare_place(route.to_i,
+                                          upload.original_filename))
       FileUtils.mv upload.tempfile.path, file
-      file = :created
+      return [rem_created(place), 201]
     end
-    return { :status => file }
+    return [rem_error(file), file]
   end
 
   ##
@@ -77,22 +83,22 @@ module Uploader
   # destroyed and the photo will also be removed. The returned http response
   # in this case will be a 200 (Ok).
   #
-  # @return *Hash* No matter what, the object in return is a hash containing
-  # at least the field _status_ where it's stored the http response status.
+  # @return *Array* a two-sized array. The first element is a *Hash* containing
+  # at least the field _msg_ where it's stored a description of what happened.
+  # The last element is an *Integer* that represents the HTTP response status.
   def remove_photo!
-    return { :status => :unauthorized } if current_user.nil?
+    return [rem_error(401), 401] if android_user.nil?
 
-    route, name = params['route_id'].to_i, params['pname']
-    file = Place.all(conditions: ['route_id=? and name=?', route, name])
-    return { :status => 404 } if file.nil?
+    place = Place.find(params['place_id'])
+    m_file = place.name + '.jpg'
+    m_base = File.join(BASE, android_user.id.to_s, place.route_id.to_s, m_file)
+    return [rem_error(404), 404] unless File.exists?(m_base)
 
-    m_file = file.first.name + '.png'
-    m_base = File.join(BASE, current_user.id.to_s, route.to_s, m_file)
-    return { :status => 404 } unless File.exists?(m_base)
-
-    file.first.destroy
+    place.destroy
     FileUtils.rm(m_base)
-    { :status => 200 }
+    [{ :msg => 'Place removed successfully' }, 200]
+
+    rescue ActiveRecord::RecordNotFound; [rem_error(404), 404]
   end
 
   ##
@@ -134,7 +140,7 @@ module Uploader
     %w{media longitude latitude route_id}.each { |p| true if params[p].nil? }
 
     route = Route.find(params['route_id'])
-    return (route.user_id != current_user.id)
+    return (route.user_id != android_user.id)
 
     rescue ActiveRecord::RecordNotFound; return true
   end
@@ -149,7 +155,7 @@ module Uploader
   #
   # @return *Hash* a hash containing the fields we can set right now.
   def prepare_place(route, name)
-    name.match /(.+)\.(png)/
+    name.match /(.+)\.(jpg)/
     {
       route_id: route, name: $1,
       longitude: params['longitude'], latitude: params['latitude']

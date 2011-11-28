@@ -34,7 +34,7 @@ module RemResponse
   # following fields: _status_, _msg_, _id_, _name_ and _created_at_.
   def rem_created(row)
     msg = "#{row.class.to_s} created successfully"
-    ca = row.created_at.strftime("%B %e, %Y")
+    ca = row.created_at.strftime('%e-%m-%YT%k:%M:%SZ%z')
     { msg: msg, id: row.id, name: row.name, created_at: ca }
   end
 

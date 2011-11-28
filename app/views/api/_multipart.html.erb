@@ -1,0 +1,16 @@
+~~~ruby
+require 'net/http/post/multipart'
+require 'addressable/uri'
+
+fix = 'k.jpg'
+auth_token = ENV['auth_token'] # We assume that we're logged in
+loc = "latitude=0.123123&longitude=0.44321"
+url = URI.parse("http://mssola.heroku.com/photos/1?#{loc}&auth_token=#{auth_token}")
+
+File.open(fix) do |f|
+  req = Net::HTTP::Post::Multipart.new url.path, 'media' => UploadIO.new(f, 'image/jpg', 'k.jpg')
+  res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
+end
+
+# And the res variable contains the HTTP response with status 201 Created.
+~~~

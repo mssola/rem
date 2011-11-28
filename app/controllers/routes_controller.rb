@@ -35,23 +35,26 @@ class RoutesController < ApplicationController
   #
   # The _create_ method. It creates a new route according to the params.
   def create
-    @route = Route.new(params[:route])
-    @route.user_id = current_user.id unless @route.nil? || current_user.nil?
+    name = params[:name].nil? ? params[:route] : { :name => params[:name] }
+    @route = Route.new(name)
 
-    if !current_user.nil? && @route.save
+    current_user || android_user
+    @route.user_id = @current_user.id unless @route.nil? || @current_user.nil?
+
+    if !@current_user.nil? && @route.save
       @route.rating = 0
-      current_user.follow! @route
+      @current_user.follow! @route
       respond_to do |format|
         format.json { render :json => rem_created(@route), status: 201 }
         format.xml  { render :xml => rem_created(@route), status: 201  }
-        format.html { redirect_to edit_route_url(current_user.name, @route.id) }
+        format.html { redirect_to edit_route_url(@current_user.name, @route.id) }
       end
     else
       msg = @route.errors.messages
       if !msg.empty? && msg[:name].first == 'has already been taken'
         error = 409
       else
-        error = current_user.nil? ? 401 : 404
+        error = @current_user.nil? ? 401 : 404
       end
 
       respond_to do |format|
@@ -94,13 +97,35 @@ class RoutesController < ApplicationController
   end
 
   ##
+  # *Rest API*
+  #
   # The _destroy_ method. It deletes all the info about a route and
   # redirects the user to the home page.
   def destroy
-    Route.find(params[:id]).destroy
-    redirect_to root_url, :notice => 'Route destroyed'
+    begin
+      route = Route.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      error_occurred 404
+      return nil
+    end
+
+    current_user || android_user
+    if @current_user.nil?
+      error_occurred 401
+    elsif route.user_id != @current_user.id
+      error_occurred 409
+    else
+      route.destroy
+      respond_to do |format|
+        format.json { render json: { 'msg' => 'Route destroyed', status: 200 }}
+        format.xml { render xml: { 'msg' => 'Route destroyed', status: 200 } }
+        format.html { redirect_to root_url, :notice => 'Route destroyed' }
+      end
+    end
   end
 
+  ##
+  # Show the followers for this route and redirect to the show_follow page.
   def followers
     @user = User.find_by_name(params[:name])
     @route = @user.routes.find(params[:id])

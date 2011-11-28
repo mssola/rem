@@ -20,7 +20,7 @@ describe PlacesController do
     end
 
     it 'does not allow a user to upload photos if not authenticated' do
-      res = upload_fixture("photos/#{route.id}", 'k.png')
+      res = upload_fixture("photos/#{route.id}", 'k.jpg')
       res.class.should be_eql(Net::HTTPUnauthorized)
     end
   end

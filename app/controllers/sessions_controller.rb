@@ -145,15 +145,4 @@ class SessionsController < ApplicationController
     cookies.permanent[:auth_token] = auth.user.auth_token
     redirect_to root_url, :notice => _('Logged in!')
   end
-
-  ##
-  # Helper method that performs a response for a rem error.
-  #
-  # @param *Integer* status The Http status code.
-  def error_occurred(status)
-    respond_to do |format|
-      format.json { render json: rem_error(status), status: status }
-      format.xml  { render xml: rem_error(status), status: status }
-    end
-  end
 end

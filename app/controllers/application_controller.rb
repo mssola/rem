@@ -53,4 +53,15 @@ class ApplicationController < ActionController::Base
       @current_user ||= User.find_by_auth_token!(params[:auth_token])
     end
   end
+
+  ##
+  # Helper method that performs a response for a rem error.
+  #
+  # @param *Integer* status The Http status code.
+  def error_occurred(status)
+    respond_to do |format|
+      format.json { render json: rem_error(status), status: status }
+      format.xml  { render xml: rem_error(status), status: status }
+    end
+  end
 end

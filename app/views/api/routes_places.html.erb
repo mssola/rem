@@ -1,1 +1,131 @@
-<% title 'API Routes & Places' %>
+<% title 'API Routes & Places'.html_safe %>
+
+<div class="title">Managing routes & places</div>
+
+<div class="api_page">
+
+<div class="subtitle">Creating and deleting routes</div>
+<div class="api_subpage">
+
+The following methods apply to creating and deleting routes. The user must
+be authenticated and the user_id of the route will be guessed from the
+current authenticated user's id. To create a route:
+
+<div class="code">
+  POST http://mssola.heroku.com/routes
+</div>
+
+<div class="subsubtitle">Parameters</div>
+
+<ul>
+  <li><span>auth_token</span>: the authorization token that allows the
+  user to create a new route.</li>
+  <li><span>name</span>: the name of the route we want to create.</li>
+</ul>
+
+<div class="subsubtitle">Response</div>
+
+<div class="response_code">
+  <div class="response_header">
+    <span>Status</span>: 201 Created
+  </div>
+<%= markdown render(partial: 'create_route') %>
+</div>
+
+<br>
+
+Deleting a route is as simple as creating it. Just call the following method:
+
+<div class="code">
+  DELETE http://mssola.heroku.com/routes/:id
+</div>
+
+<div class="subsubtitle">Parameters</div>
+
+<ul>
+  <li><span>auth_token</span>: the authorization token that allows the
+  user to delete a new route.</li>
+</ul>
+
+<div class="subsubtitle">Response</div>
+
+<div class="response_code">
+  <div class="response_header">
+    <span>Status</span>: 200 OK
+  </div>
+<%= markdown render(partial: 'delete_route') %>
+</div>
+
+</div>
+
+<div class="subtitle">Creating and deleting places</div>
+<div class="api_subpage">
+
+In this API we won't talk about creating and deleting places. Instead,
+we'll talk about uploading photos (that represent places) and deleting
+photos (also representing places). So our first step forward will be
+to upload a brand new photo:
+
+<div class="code">
+  POST http://mssola.heroku.com/photos/:route_id
+</div>
+
+<div class="subsubtitle">Parameters</div>
+
+<ul>
+  <li><span>auth_token</span>: the authorization token that allows the
+  user to delete a new route.</li>
+  <li><span>longitude</span>: the longitude for the given photo.</li>
+  <li><span>latitude</span>: the latitude for the given photo.</li>
+  <li><span>media</span>: the photo by itself (jpg format).</li>
+</ul>
+
+It may seem scary, so we can show you an example of a Ruby code that makes
+use of this method to upload a photo. We assume that exists a route with
+id = 1 and a photo named k.jpg.
+
+<br><br>
+
+<div class="ruby_code">
+  <div class="response_header">
+    <span>Ruby code</span>
+  </div>
+  <%= markdown render(partial: 'multipart') %>
+</div>
+
+<br>
+
+<div class="response_code">
+  <div class="response_header">
+    <span>Status</span>: 201 Created
+  </div>
+  <%= markdown render(partial: 'multipart_response') %>
+</div>
+
+<br>
+
+Now we know how to upload photos, and thus how to create new places and
+bind them with routes. Let's take a look at how we can delete photos
+(therefore places).
+
+<div class="code">
+  DELETE http://mssola.heroku.com/photos/:place_id
+</div>
+
+<div class="subsubtitle">Parameters</div>
+
+<ul>
+  <li><span>auth_token</span>: the authorization token that allows the
+  user to delete a new route.</li>
+</ul>
+
+<div class="response_code">
+  <div class="response_header">
+    <span>Status</span>: 200 OK
+  </div>
+  <%= markdown render(partial: 'delete_place') %>
+</div>
+
+</div>
+
+</div>
