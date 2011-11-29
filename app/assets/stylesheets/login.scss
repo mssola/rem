@@ -52,3 +52,21 @@
     border-color:$dark_royal;
   }
 }
+
+.auth_failure {
+  margin-left:auto;
+  margin-right:auto;
+  width:70%;
+  padding-top:20px;
+
+  li {
+    list-style-image:url('rarrow.png');
+    width:60%;
+    margin-bottom:10px;
+
+    span {
+      font-weight:bold;
+      color:#808080;
+    }
+  }
+}

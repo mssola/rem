@@ -99,6 +99,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  ##
+  # Called when the Twitter/Google authentication failed.
+  def failure
+    @msg = params['message'].gsub('_', ' ')
+  end
+
   private
 
   ##
