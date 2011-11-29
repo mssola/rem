@@ -1,0 +1,34 @@
+
+/*
+ * The style for the Contact page
+ */
+
+@import "mixins.scss";
+
+
+.contact_page {
+  font-size:16px;
+  padding:10px;
+  margin-left:10px;
+
+  .left_dock {
+    float:left;
+  }
+
+  .right_dock {
+    @include borders;
+    float:right;
+    padding:15px;
+    margin-right:40px;
+    font-size:14px;
+    background-color:#e2e8ee;
+    border:1px solid #c9c9c9;
+
+    span { font-weight:bold; }
+    ul { margin-left:-10px; }
+    li {
+      list-style-image:url('black_rarrow.png');
+      margin-bottom:5px;
+    }
+  }
+}
