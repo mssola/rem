@@ -1,4 +1,7 @@
 
+@import "mixins.scss";
+
+
 .routes_filter {
   #filter_head {
     margin-bottom:5px;
@@ -59,11 +62,17 @@
     overflow:hidden;
   }
 
-  h3 {
+  .route_name {
     margin:0;
     font-size:13px;
-    font-style:normal;
+    font-weight:bold;
     white-space:nowrap;
+    text-decoration:none;
+
+    &:hover {
+      color:$dark_royal;
+      text-decoration:none;
+    }
   }
 
   .route_body {
@@ -90,6 +99,8 @@
   list-style:none;
   position:relative;
   float:right;
+  padding-left:15px;
+  padding-right:10px;
   margin-right:-10px;
   border:none;
   font-size:11px;
@@ -107,4 +118,13 @@
       background-position:5px -2px;
     }
   }
+}
+
+.show_routes_page {
+  span {
+    color:#999;
+    font-size:28px;
+  }
+  #routes_list { margin-top:20px; }
+  padding-left:20px;
 }

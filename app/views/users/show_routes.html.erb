@@ -1,11 +1,25 @@
 
+<% if @user.name.end_with? 's' %>
+  <% title "#{@user.name}' routes" %>
+<% else %>
+  <% title "#{@user.name}'s routes" %>
+<% end %>
+
+
 <%= render partial: 'head' %>
 
-<h1>Your routes</h1>
+<div class="show_routes_page">
+  <% if @user.id == current_user.id %>
+    <span class="route_title">Your routes</span>
+  <% else %>
+    <span class="route_title"><%= @user.name %>'s routes</span>
+  <% end %>
 
-<% @routes.each do |r| %>
-  <div class="user_route">
-    <%= link_to r.name, "/#{@user.name}/#{r.id}" %>
-    <div class="stretch" />
+  <div id="routes_list">
+    <% @routes.each do |r| %>
+      <div class="user_route">
+        <%= render r %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
