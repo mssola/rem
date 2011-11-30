@@ -1,0 +1,33 @@
+
+/*
+ * The style for the About page.
+ */ 
+
+@import "mixins.scss";
+
+
+.about_head {
+  margin-left:20px;
+  display:inline;
+  
+  span {
+    float:left;
+    padding:10px;
+    margin-left:60px;
+    width:60%;
+    font-size:36px;
+    color:#4A4646;
+  }
+
+  img {
+    margin-left:10px;
+    padding:30px;
+  }
+}
+
+.about_page {
+  font-size:16px;
+  margin-top:20px;
+  margin-left:30px;
+  padding:0 20px;
+}
