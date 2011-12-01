@@ -12,6 +12,12 @@
   clear:both;
   width:$body_width;
 
+  .footer_dock {
+    display:inline-block;
+    padding:20px;
+    margin-left:10px;
+  }
+
   .footer_stretch {
     padding-top:30px;
     clear:both;
@@ -23,17 +29,18 @@
 
   li {
     list-style:none;
+    margin-left:-30px;
   }
 
   ul.footer_nav {
     position:relative;
     float:left;
     width:164px;
-    margin:20px 10px;
+/*     margin:20px 10px; */
   }
 
   .footer_title {
-    margin-bottom:10px;
+/*     margin-bottom:10px; */
     padding-bottom:5px;
     border-bottom:thin solid #e1e1e1;
   }
