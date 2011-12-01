@@ -111,6 +111,12 @@ class User < ActiveRecord::Base
   end
 
   ##
+  # TODO
+  def bi_following?(followed)
+    self.following?(followed) && followed.following?(self)
+  end
+
+  ##
   # Follow the given user/route.
   #
   # @param *User/Route* followed The user/route we want to follow.

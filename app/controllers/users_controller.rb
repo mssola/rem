@@ -60,7 +60,11 @@ class UsersController < ApplicationController
   def edit
     raise ActionController::RoutingError.new('Not Found') if current_user.nil?
     @user = User.find_by_name(params[:name])
-    @routes = @user.routes
+    if ((current_user.id != @user.id) && !(@user.bi_following?(current_user)))
+      @routes = @user.public_routes
+    else
+      @routes = @user.routes
+    end
     raise ActionController::RoutingError.new('Not Found') if @user.nil?
   end
 
@@ -115,8 +119,16 @@ class UsersController < ApplicationController
   # actually has.
   def routes
     @user = User.find_by_name(params[:name])
-    @routes = @user.routes
-    mroutes = android_user ? @routes : @user.public_routes
+    if android_user
+      mroutes = @user.routes
+    else
+      mroutes = @user.public_routes
+      if ((current_user.id != @user.id) && !(@user.bi_following?(current_user)))
+        @routes = @user.public_routes
+      else
+        @routes = @user.routes
+      end
+    end
     respond_to do |format|
       format.json { render :json => mroutes.to_json }
       format.xml  { render :xml => mroutes.to_xml }

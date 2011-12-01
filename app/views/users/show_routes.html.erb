@@ -9,10 +9,16 @@
 <%= render partial: 'head' %>
 
 <div class="show_routes_page">
+  <% t = '' %>
+  <% unless @user.bi_following?(current_user) %>
+    <span class="warning">You can't see its protected routes</span>
+    <br>
+  <% end %>
+
   <% if @user.id == current_user.id %>
-    <span class="route_title">Your routes</span>
+    <span class="route_title">Your routes <%= t %></span>
   <% else %>
-    <span class="route_title"><%= @user.name %>'s routes</span>
+    <span class="route_title"><%= @user.name %>'s routes <%= t %></span>
   <% end %>
 
   <div id="routes_list">
