@@ -7,9 +7,9 @@
   <%= link_to "#{route.name}", "/#{@user.name}/#{route.id}", :class => 'route_name' %>
   <ul class="route-stats">
     <% if route.protected %>
-      <li class="watchers" title="Watchers">
-    <% else %>
       <li class="protected_watchers" title="Watchers">
+    <% else %>
+      <li class="watchers" title="Watchers">
     <% end %>
       <%= link_to route.followers.count, followers_route_path(@user.name, route.id) %>
     </li>
