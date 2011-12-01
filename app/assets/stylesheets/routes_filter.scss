@@ -97,30 +97,36 @@
   }
 }
 
+@mixin watcher {
+  border:none;
+  display:inline;
+  a {
+    height:21;
+    padding-right:5px;
+    color:#666;
+    background-repeat:no-repeat;
+    background-position:5px -2px;
+  }
+}
+
 .route-stats {
   @include borders(3px);
 
   list-style:none;
   position:relative;
   float:right;
-  padding-left:15px;
-  padding-right:10px;
-  margin-right:-10px;
   border:none;
   font-size:11px;
   font-weight:bold;
-  padding:0 10px 0 15px;
   z-index:5;
 
   .watchers {
-    border:none;
-    display:inline;
-    a {
-      padding-right:5px;
-      color:#666;
-      background-repeat:no-repeat;
-      background-position:5px -2px;
-    }
+    @include watcher;
+    background-image:url('public.png');
+  }
+  .protected_watchers {
+    @include watcher;
+    background-image:url('public.png');
   }
 }
 

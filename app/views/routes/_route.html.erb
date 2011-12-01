@@ -6,14 +6,13 @@
 <% end %>
   <%= link_to "#{route.name}", "/#{@user.name}/#{route.id}", :class => 'route_name' %>
   <ul class="route-stats">
-    <li class="watchers" title="Watchers">
+    <% if route.protected %>
+      <li class="watchers" title="Watchers">
+    <% else %>
+      <li class="protected_watchers" title="Watchers">
+    <% end %>
       <%= link_to route.followers.count, followers_route_path(@user.name, route.id) %>
     </li>
-    <% if route.protected %>
-      <%= image_tag 'protected.png', height: '16', class: 'protection', title: 'Protected' %>
-    <% else %>
-      <%= image_tag 'public.png', height: '16', class: 'protection', title: 'Public' %>
-    <% end %>
   </ul>
   <div class="route_body">
     <% if route.desc.nil? || route.desc.empty? %>

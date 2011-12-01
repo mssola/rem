@@ -11,12 +11,6 @@
     <% end %>
     <% if current_user %>
       <div id="top_right">
-        <div id="top_search">
-          <form accept-charset="UTF-8" action="/search" method="post">
-            <span>Search . . .</span>
-            <%= r_field :text, :search, 'r_raw_field' %>
-          </form>
-        </div>
         <div class="avatar">
           <a href="/">
             <%= get_avatar_of current_user %>
@@ -29,6 +23,12 @@
           <li><%= link_to 'Log out', logout_path %></li>
         </ul>
       </div>
+        <div id="top_search">
+          <form accept-charset="UTF-8" action="/search" method="post">
+            <span>Search . . .</span>
+            <%= r_field :text, :search, 'r_raw_field' %>
+          </form>
+        </div>
     <% else %>
       <%= render :template => 'layouts/_login' %>
     <% end %>

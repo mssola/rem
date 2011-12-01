@@ -55,9 +55,10 @@
 #top_right {
   float:right;
   display:inline-block;
+  margin-top:6px;
 
   .avatar {
-    display:inline-block;
+    display:inline;
     padding-right:6px;
     img { padding:1px; }
   }
@@ -83,8 +84,8 @@
 
 #top_search {
   display:inline-block;
+  float:right;
   padding:5px;
-  margin-right:10px;
 
   span {
     position:absolute;
