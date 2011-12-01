@@ -6,7 +6,9 @@
       </a>
     </span>
     <span id="user_nickname"><%= @user.name %></span>
-    <span id="user_name"><%= "(#{@user.full_name})" %></span>
+    <% unless @user.full_name.nil? %>
+      <span id="user_name"><%= "(#{@user.full_name})" %></span>
+    <% end %>
     <% unless current_user?(@user) %>
       <div id="follow_form">
       <% if current_user.following?(@user) %>
