@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
 
   # We want Gravatar support :)
   include Gravtastic
-  gravtastic secure: true, default: 'http://localhost:3000/assets/rem_user.png'
+  gravtastic secure: true, default: 'http://mssola.heroku.com/assets/rem_user.png'
 
   ##
   # Authentication with OmniAuth and sending password resets
