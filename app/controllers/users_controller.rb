@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   end
 
   ##
-  # TODO: will_paginate
+  # Show the users and routes this user is following.
   def following
     @shown = 'Following'
     @user = User.find_by_name(params[:name])
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
   end
 
   ##
-  # TODO: will_paginate
+  # Show this user's followers.
   def followers
     @shown = 'Followers'
     @user = User.find_by_name(params[:name])

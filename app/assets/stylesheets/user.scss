@@ -147,4 +147,27 @@
   font-size:28px;
 }
 
+.show_following {
+  display:inline;
+  .following_users {
+    width:65%;
+    float:left;
+
+    .subtitle {
+      font-weight:bold;
+      font-size:20px;
+    }
+  }
+
+  .following_routes {
+    width:30%;
+    float:right;
+
+    .subtitle {
+      font-weight:bold;
+      font-size:20px;
+    }
+  }
+}
+
 

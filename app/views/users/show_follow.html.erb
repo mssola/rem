@@ -6,6 +6,36 @@
 
 <br><br>
 
-<% unless @users.empty? %>
-  <%= render @users %>
+<% if @shown == 'Followers' %>
+  <% unless @users.empty? %>
+    <%= render @users %>
+  <% end %>
+<% else %>
+  <% if ((current_user.id != @user.id) && !(@user.bi_following?(current_user))) %>
+    <% @routes = @user.public_routes %>
+  <% else %>
+    <% @routes = @user.routes %>
+  <% end %>
+
+  <% original = @user.name %>
+
+  <div class="show_following">
+    <div class="following_users">
+      <span class="subtitle">You're following</span>
+      <br><br>
+      <% unless @users.empty? %>
+        <%= render @users %>
+      <% end %>
+    </div>
+    <div class="following_routes">
+      <span class="subtitle">Your watched routes</span>
+      <br><br>
+      <% unless @routes.empty? %>
+        <% @routes.each do |r| %>
+          <%= link_to r.name, "/#{original}/#{r.id}" %>
+          <div class="stretch"></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
