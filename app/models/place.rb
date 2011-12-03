@@ -33,14 +33,12 @@ class Place < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :route_id
   validates_length_of :desc, :maximum => 160
 
-  # TODO: destroy only if there are no more routes watching this place
+  # A place only belongs to a single route.
   belongs_to :route
-# 
-#   acts_as_gmappable
-# 
-#   def gmaps4rails_address
-#     address
-#   end
+
+  # GMaps
+  acts_as_gmappable
+  include RemMaps
 
   ##
   # Override the to_xml method to limit the fields returned

@@ -52,7 +52,7 @@ class PlacesController < ApplicationController
   # id passed via params.
   def edit
     @place = Place.find(params[:id])
-#     @json = Place.all.to_gmaps4rails
+    @markers = @place.to_gmaps4rails
   end
 
   ##

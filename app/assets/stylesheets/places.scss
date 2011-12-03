@@ -30,14 +30,14 @@
       margin-top:-8px;
     }
   }
-}
 
-#map {
-  border: 1px solid #DDD;
-  width:400px;
-  height: 400px;
+  #map {
+    border: 1px solid #DDD;
+    width:400px;
+    height: 400px;
 
-  @include map_shadows;
+    @include map_shadows;
+  }
 }
 
 .ui-autocomplete-input, .input input {

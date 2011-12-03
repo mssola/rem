@@ -1,6 +1,6 @@
 Let's show some info about the place <b><%= @place.name %></b>:
 
-<%= gmaps4rails(@json) %>
+<%= gmaps4rails(@markers) %>
 
 <% @rejects = ["created_at", "updated_at"] %>
 <% @columns = Place.column_names - @rejects %>

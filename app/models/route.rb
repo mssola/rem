@@ -32,16 +32,16 @@ class Route < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :user_id
   validates_length_of :desc, :maximum => 160
 
-  # A route belongs to a user.
+  # The basic definition of a route is: something that belongs to a user
+  # and represents a set of places.
   belongs_to :user
+  has_many :places
 
   # A route may be followed by a certain number of users.
   has_many :followers, through: :reverse_route_relationships, source: :follower
   has_many :reverse_route_relationships, foreign_key: 'followed_id',
                                          class_name: 'RouteRelationship',
                                          dependent: :destroy
-
-  has_many :places # TODO: see the Place model
 
   ##
   # Override the to_xml method to limit the fields returned
