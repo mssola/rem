@@ -1,3 +1,10 @@
+
+<% if defined? user %>
+  <% unless user.nil? %>
+    <% @user = user %>
+  <% end %>
+<% end %>
+
 <%= form_for current_user.relationships.find_by_followed_id(@user),
                 :method => :delete do |f| %>
   <div class="actions"><%= f.submit "Unfollow", class: 'r_submit' %></div>

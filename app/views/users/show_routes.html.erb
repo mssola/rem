@@ -10,7 +10,7 @@
 
 <div class="show_routes_page">
   <% t = '' %>
-  <% unless @user.bi_following?(current_user) %>
+  <% if current_user.id != @user.id && !@user.bi_following?(current_user) %>
     <span class="warning">You can't see its protected routes</span>
     <br>
   <% end %>

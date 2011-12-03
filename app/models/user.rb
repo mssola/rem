@@ -111,7 +111,10 @@ class User < ActiveRecord::Base
   end
 
   ##
-  # TODO
+  # Return true if this user is following the given user and the given
+  # user is the following this user.
+  #
+  # @param *User* followed The user/route that we may be following.
   def bi_following?(followed)
     self.following?(followed) && followed.following?(self)
   end

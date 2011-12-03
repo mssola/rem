@@ -5,7 +5,7 @@
         <% unless u.full_name.nil? %>
           <dl><dt>Full name</dt><dd><%= u.full_name %></dd></dl>
         <% end %>
-        <% unless u.location.empty? %>
+        <% if !u.location.nil? && !u.location.empty? %>
           <dl><dt>Location</dt><dd><%= u.location %></dd></dl>
         <% end %>
         <% unless u.website.nil? %>

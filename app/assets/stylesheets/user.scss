@@ -106,7 +106,7 @@
   }
 }
 
-._route {
+.user {
   display:inline;
   position:relative;
   padding-left:10px;
@@ -137,9 +137,14 @@
 
   .stretch {
     clear:both;
-    margin:-50px 0 20px;
-    height:0;
     overflow:hidden;
     border-bottom:1px solid #ddd;
   }
 }
+
+.user_title {
+  color:#999;
+  font-size:28px;
+}
+
+

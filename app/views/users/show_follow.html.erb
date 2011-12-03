@@ -2,12 +2,10 @@
 
 <%= render partial: 'head' %>
 
-<%= @shown %>
+<span class="user_title"><%= @shown %></span>
 
-<br>
+<br><br>
 
 <% unless @users.empty? %>
   <%= render @users %>
-<% else %>
-  Forever Alone!
 <% end %>

@@ -1,16 +1,17 @@
-<div class="_route">
-  <div class="avatar"><a href="/">
+<div class="user">
+  <div class="avatar"><a href=<%="/#{user.name}"%>>
     <%= get_avatar_of user, 20 %>
   </a></div>
   <%= link_to "#{user.name}", "/#{user.name}" %>
   <span><%= "(#{user.full_name})" %></span>
-  <% unless current_user?(@user) %>
+  <% unless current_user?(user) %>
     <div id="follow_form">
-      <% if current_user.following?(@user) %>
-        <%= render partial: 'unfollow' %>
+      <% if current_user.following?(user) %>
+        <%= render partial: 'unfollow', locals: { user: user } %>
       <% else %>
-        <%= render partial: 'follow' %>
+        <%= render partial: 'follow', locals: { user: user } %>
       <% end %>
     </div>
   <% end %>
+  <div class="stretch"></div>
 </div>
