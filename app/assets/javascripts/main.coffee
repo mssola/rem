@@ -19,11 +19,6 @@
 #
 
 
-#= require jquery
-#= requrie jquery_ujs
-#= require jquery-ui
-#= require jquery.tipsy
-
 #= require sparky
 #= require users
 #= require signup
@@ -50,4 +45,9 @@ jQuery ->
 
     keydown: ->
       holder.hide() if holder.is(":visible")
+
+
+# Setup best_in_place
+jQuery ->
+  $(".best_in_place").best_in_place()
 

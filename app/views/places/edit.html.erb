@@ -1,15 +1,17 @@
-Let's show some info about the place <b><%= @place.name %></b>:
+
+<% title @place.name %>
 
 <%= gmaps4rails(@markers) %>
 
-<% @rejects = ["created_at", "updated_at"] %>
-<% @columns = Place.column_names - @rejects %>
-<% @columns.each_with_index do |c, i| %>
-  <p id="p<%= i %>" class="check">
-    <span class="title"><b><%= c %></b>:</span>
-    <span class="value"><%= @place.send(c) %></span>
-  </p>
-<% end %>
+<p>
+  <b>Name</b>:
+  <%= best_in_place @place, :name, :inner_class => 'r_raw_field' %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= best_in_place_if !current_user.nil?, @place, :desc, type: :textarea, nil: 'Click me to add content!' %>
+</p>
 
 <br>
 

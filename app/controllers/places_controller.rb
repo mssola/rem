@@ -55,6 +55,20 @@ class PlacesController < ApplicationController
     @markers = @place.to_gmaps4rails
   end
 
+  def update
+    @place = Place.find(params[:id])
+
+    respond_to do |format|
+      if @place.update_attributes(params[:place])
+        format.html { redirect_to map_place_url, :notice => 'Place updated successfully' }
+        format.json { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @place.errors.full_messages, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   ##
   # *Rest API*
   #

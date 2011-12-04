@@ -14,7 +14,7 @@ Let's show some info about the route <b><%= @route.name %></b>:
 Some places on this route:
 <% @places = Place.find :all, :conditions => ['route_id=?', @route.id] %>
 <% @places.each do |p| %>
-  <%= link_to p.name, edit_place_path(p.id) %>
+  <%= link_to p.name, map_place_path(p.id) %>
 <% end %>
 
 <br>

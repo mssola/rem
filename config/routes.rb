@@ -1,8 +1,8 @@
 
 Rem::Application.routes.draw do
   # RESTful resources
-  resources :sessions, :password_resets
-  resources :users, :places, :except => [:show] # Rest API
+  resources :sessions, :password_resets, :places
+  resources :users, :except => [:show] # Rest API
   resources :routes, :except => [:show, :edit]
   resources :relationships, :only => [:create, :destroy]
   resources :route_relationships, :only => [:create, :destroy]
@@ -15,6 +15,7 @@ Rem::Application.routes.draw do
   get 'ajax_request' => 'users#ajax_request', as: 'ajax_request'
   get 'account' => 'account#edit', as: 'account'
   put 'account' => 'account#update'
+  get '/places/id/:id' => 'places#edit', as: 'map_place'
 
   # Rest API: Android login
   post '/android' => 'sessions#android'

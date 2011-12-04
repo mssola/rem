@@ -35,6 +35,7 @@ gem 'nokogiri'
 # Others
 gem 'gmaps4rails'
 gem 'bcrypt-ruby'
+gem 'best_in_place'
 gem 'gravtastic'
 gem 'faker'
 gem 'heroku'
