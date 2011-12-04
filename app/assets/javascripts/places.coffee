@@ -1,6 +1,4 @@
 #
-# Main CoffeeScript file.
-#
 # Copyright (C) 2011 Miquel Sabaté <mikisabate@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -16,39 +14,26 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#
+# 
 
 
-#= require sparky
-#= require users
-#= require signup
-#= require account
-#= require login
-#= require address_picker
-#= require routes_filter
-#= require places
-
-#= require gmaps4rails/googlemaps
-#= require rmaps
-
-
-# Handle the special search input on the top.
 jQuery ->
-  holder = $("#top_search").find("span")
-  input = $("#top_search").find("input:eq(0)")
+  $(".editable").each ->
+    $(this).prop 'disabled', 'true'
 
-  holder.click ->
-    input.focus()
-
-  input.bind
-    focusout: ->
-      holder.show() if $(this).val() == ""
-
-    keydown: ->
-      holder.hide() if holder.is(":visible")
-
-
-# Setup best_in_place
-jQuery ->
-  $(".best_in_place").best_in_place()
-
+  $(".hide_link").click (e) ->
+    e.preventDefault()
+    if $(this).text() == 'Edit me!'
+      $(this).text 'Hide this'
+      $(".addresspicker_input").show()
+      $(".edit_place .r_submit").show()
+      $(".editable").each ->
+        $(this).removeAttr 'disabled'
+        $(this).attr 'class': 'r_raw_field editable'
+    else
+      $(this).text 'Edit me!'
+      $(".addresspicker_input").hide()
+      $(".edit_place .r_submit").hide()
+      $(".editable").each ->
+        $(this).prop 'disabled', 'true'
+        $(this).attr 'class': 'r_inv_field editable'

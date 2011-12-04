@@ -35,9 +35,12 @@ module RemWidgets
   #
   # @param *String* kind You can optionally specify a different class for
   # this submit button.
-  def r_submit(text, kind = nil)
+  #
+  # @param *Hash* opts Some additional options you can pass to this method.
+  def r_submit(text, kind = nil, opts = {})
     kind ||= 'r_submit'
-    submit_tag text, { :class => kind, :tabindex => '6' }
+    opts[:class] = kind
+    submit_tag text, opts
   end
 
   ##
@@ -69,9 +72,12 @@ module RemWidgets
   # @param *Symbol* name The name of the label.
   #
   # @param *String* text The text shown by the label tag. (_optional_)
-  def r_label(name, text = nil)
+  #
+  # @param *Hash* opts Some additional options you can pass to this method.
+  def r_label(name, text = nil, opts = {})
     text = name.to_s.capitalize.gsub('_', ' ') if text.nil?
-    label_tag name, _(text), :class => 'r_label'
+    opts[:class] = 'r_label'
+    label_tag name, _(text), opts
   end
 
   ##

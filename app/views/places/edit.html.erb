@@ -1,18 +1,65 @@
 
-<% title @place.name %>
+<% cond = (current_user.id == @route.user_id) %>
 
-<%= gmaps4rails(@markers) %>
+<% if cond %>
+  <div id="search_map" class="edit_place_searchmap">
+    <div class="edit_map_coordinates">
+      <%= link_to 'Edit me!', '#', class: 'hide_link' %>
+      <div class="addresspicker_input" hidden="true" >
+        <%= text_field_tag :addresspicker_map, nil %>
+      </div>
+    </div>
+    <div id="map"></div>
+  </div>
+<% else %>
+  <div class="edit_place_map">
+    <%= gmaps4rails(@markers) %>
+  </div>
+<% end %>
 
-<p>
-  <b>Name</b>:
-  <%= best_in_place @place, :name, :inner_class => 'r_raw_field' %>
-</p>
-
-<p>
-  <b>Desc:</b>
-  <%= best_in_place_if !current_user.nil?, @place, :desc, type: :textarea, nil: 'Click me to add content!' %>
-</p>
-
-<br>
-
-<%= button_to 'Delete Place', place_path(@place.id), method: :delete, class: 'r_submit' %>
+<div class="edit_place_form">
+  <div class="prompt name">
+    <% if cond %>
+      <%= label_tag :name_label, _('Name'), title: 'Click contents to edit', class: 'r_label stip' %>:
+    <% else %>
+      <%= label_tag :name_label, _('Name'), class: 'r_label' %>:
+    <% end %>
+    <%= best_in_place_if cond, @place, :name, :inner_class => 'r_raw_field' %>
+  </div>
+  <div class="prompt desc">
+    <% if cond %>
+      <%= label_tag :desc_label, _('Description'), title: 'Click contents to edit', class: 'r_label tip' %>:
+    <% else %>
+      <%= label_tag :desc_label, _('Description'), class: 'r_label' %>:
+    <% end %>
+    <%= best_in_place_if cond, @place, :desc, :type => :textarea, :inner_class => 'r_text_area', nil: 'Click me to add content!' %>
+  </div>
+  <%= form_for @place do |f| %>
+    <div class="prompt longitude">
+      <%= r_label :longitude_label, 'Longitude' %>
+      <%= text_field_tag 'place[longitude]', @place.longitude, { class: 'r_inv_field editable', id: 'lng' } %>
+    </div>
+    <div class="prompt longitude">
+      <%= r_label :latitude_label, 'Latitude' %>
+      <%= text_field_tag 'place[latitude]', @place.latitude, { class: 'r_inv_field editable', id: 'lat' } %>
+    </div>
+    <div class="prompt address">
+      <%= r_label :address_label, 'Address' %>
+      <%= text_field_tag 'place[address]', @place.address, { class: 'r_inv_field editable', id: 'addr' } %>
+    </div>
+    <div class="prompt locality">
+      <%= r_label :locality_label, 'Locality' %>
+      <%= text_field_tag 'place[locality]', @place.locality, { class: 'r_inv_field editable', id: 'locality' } %>
+    </div>
+    <div class="prompt country">
+      <%= r_label :country_label, 'Country' %>
+      <%= text_field_tag 'place[country]', @place.country, { class: 'r_inv_field editable', id: 'country' } %>
+    </div>
+    <%= r_submit 'Update location', nil, hidden: 'true' %>
+  <% end %>
+  <div class="danger_zone">
+    <% if cond %>
+      <%= button_to 'Delete Place', place_path(@place.id), method: :delete, class: 'r_submit' %>
+    <% end %>
+  </div>
+</div>

@@ -42,7 +42,12 @@ jQuery ->
 # Handle the address_picker plugin
 jQuery ->
   addresspicker = $( "#addresspicker" ).addresspicker()
+  lat = $("#lat").val()
+  lng = $("#lng").val()
   addresspickerMap = $( "#addresspicker_map" ).addresspicker({
+    mapOptions:
+      zoom: 10
+      center: new google.maps.LatLng(lat, lng)
     elements: {
       map:      "#map",
       addr:      "#addr",

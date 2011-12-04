@@ -65,7 +65,49 @@
   .r_label { font-weight:bold; }
 }
 
+.edit_map_coordinates {
+  margin-top:-20px;
+  padding:10px;
+
+  .hide_link {
+    float:left;
+    margin:4px 10px 10px 0px;
+  }
+
+  #addresspicker_map {
+    float:left;
+    margin-bottom:10px;
+  }
+}
+
+.edit_place_map {
+  float:left;
+  padding:20px;
+  margin-right:20px;
+  margin-bottom:10px;
+}
+
+.edit_place_searchmap {
+  margin-left:30px;
+}
+
+.edit_place_form {
+  padding:10px;
+  width:100%;
+  margin-top:50px;
+
+  .r_label { font-weight:bold; }
+  .desc { margin-bottom:20px; }
+}
+
 .edit_place {
-  float:right;
+  display:inline;
+  .prompt { display:inline-block; }
+  .r_submit { margin-left:10px; }
+}
+
+.danger_zone {
+  margin-top:50px;
+  width:100%;
 }
 

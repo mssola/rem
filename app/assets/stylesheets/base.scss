@@ -82,6 +82,12 @@
   padding:5px;
 }
 
+.r_inv_field {
+  @extend .r_raw;
+  border:none;
+  background-color:white;
+}
+
 .r_raw_field {
   @extend .r_raw;
   width:203px;

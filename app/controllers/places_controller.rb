@@ -52,6 +52,7 @@ class PlacesController < ApplicationController
   # id passed via params.
   def edit
     @place = Place.find(params[:id])
+    @route = Route.find(@place.route_id)
     @markers = @place.to_gmaps4rails
   end
 
