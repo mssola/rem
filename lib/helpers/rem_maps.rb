@@ -31,6 +31,6 @@ module RemMaps
   end
 
   def gmaps4rails_infowindow
-    "<span>Hello</span>"
+    "<span>Haaa</span>"
   end
 end

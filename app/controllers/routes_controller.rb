@@ -71,6 +71,7 @@ class RoutesController < ApplicationController
   def edit
     @user = User.find_by_name(params[:name])
     @route = @user.routes.find(params[:route_id])
+    @markers = @route.places.to_gmaps4rails
   end
 
   ##
