@@ -18,6 +18,13 @@
 <% end %>
 
 <div class="edit_place_form">
+  <div class="avatar">
+    <% if @img %>
+      <%= image_tag "#{@route.user_id}/#{@route.id}/#{@place.name}.jpg", height: '64' %>
+    <% else %>
+      <%= image_tag "rem_user.png", height: '64' %>
+    <% end %>
+  </div>
   <div class="prompt name">
     <% if cond %>
       <%= label_tag :name_label, _('Name'), title: 'Click contents to edit', class: 'r_label stip' %>:

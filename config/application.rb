@@ -48,5 +48,7 @@ module Rem
     # Autoload libraries
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    config.assets.paths << Rails.root.join("app", "uploads")
   end
 end

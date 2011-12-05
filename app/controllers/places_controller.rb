@@ -53,6 +53,9 @@ class PlacesController < ApplicationController
   def edit
     @place = Place.find(params[:id])
     @route = Route.find(@place.route_id)
+    @img = Rails.root.to_s +
+        "/app/uploads/#{@route.user_id}/#{@route.id}/#{@place.name}.jpg"
+    @img = File.exists?(@img)
     @markers = @place.to_gmaps4rails
   end
 

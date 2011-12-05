@@ -96,8 +96,12 @@
   width:100%;
   margin-top:50px;
 
+  img {
+    float:right;
+    margin-left:5px;
+  }
   .r_label { font-weight:bold; }
-  .desc { margin-bottom:20px; }
+  .desc { margin-bottom:50px; }
 }
 
 .edit_place {
