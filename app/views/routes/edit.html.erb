@@ -3,23 +3,43 @@
   <%= javascript_tag "var remMarkers = #{@markers.to_json};" %>
 <% end %>
 
+<% cond = (current_user.id == @route.user_id) %>
 
 <div id="road_map"></div>
 
-<br>
+<div class="route_rdock">
+  <div class="route_ibucket">
+    <div class="route_bucket_title">
+      <div class="prompt name">
+	<% if cond %>
+	  <%= label_tag :name_label, _('Name'), title: 'Click contents to edit', class: 'r_label stip' %>:
+	<% else %>
+	  <%= label_tag :name_label, _('Name'), class: 'r_label' %>:
+	<% end %>
+	<%= best_in_place_if cond, @route, :name, :inner_class => 'r_raw_field' %>
+      </div>
+      <div class="prompt desc">
+	<% if cond %>
+	  <%= label_tag :desc_label, _('Description'), title: 'Click contents to edit', class: 'r_label tip' %>:
+	<% else %>
+	  <%= label_tag :desc_label, _('Description'), class: 'r_label' %>:
+	<% end %>
+	<%= best_in_place_if cond, @route, :desc, :type => :textarea, :inner_class => 'r_text_area', nil: 'Click me to add content!' %>
+      </div>
+    </div>
+  </div>
 
-Some places on this route:
-<% @places = Place.find :all, :conditions => ['route_id=?', @route.id] %>
-<% @places.each do |p| %>
-  <%= link_to p.name, map_place_path(p.id) %>
-<% end %>
+  <div class="route_idock">
+    <ul id="places_sortable">
+      <% @places.each do |p| %>
+	<li class="ui-state-default"><%= p.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="route_dock_footer">
+    <%= link_to 'Add places', new_place_path %>
 
-<br>
-<br>
-
-<%= link_to 'Add places', new_place_path %>
-
-<br>
-<br>
-
-<%= button_to 'Delete Route', route_path(@route.id), method: :delete, class: 'r_submit' %>
+    <%= button_to 'Delete Route', route_path(@route.id), method: :delete, class: 'r_submit' %>
+  </div>
+</div>

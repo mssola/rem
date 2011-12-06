@@ -71,7 +71,25 @@ class RoutesController < ApplicationController
   def edit
     @user = User.find_by_name(params[:name])
     @route = @user.routes.find(params[:route_id])
-    @markers = @route.places.to_gmaps4rails
+    @places = @route.places
+    @markers = @places.to_gmaps4rails
+  end
+
+  ##
+  # The _update_ method. Can be called for the json format when best_in_place
+  # is requesting it. Otherwise, the response format will be html.
+  def update
+    @route = Route.find(params[:id])
+
+    respond_to do |format|
+      if @route.update_attributes(params[:route])
+        format.html { redirect_to map_place_url, :notice => 'Route updated successfully' }
+        format.json { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @route.errors.full_messages, :status => :unprocessable_entity }
+      end
+    end
   end
 
   ##

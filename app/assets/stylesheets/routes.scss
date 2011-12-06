@@ -53,6 +53,8 @@
   border: 1px solid #DDD;
   width:400px;
   height: 400px;
+  margin-left:-20px;
+  float:left;
 
   @include map_shadows;
 }
@@ -70,3 +72,19 @@
   }
 }
 
+.route_rdock {
+  border:0px;
+  float:right;
+}
+
+.route_idock {
+  ul {
+    list-style-type:none;
+  }
+
+  li {
+    margin:5px;
+    padding:5px;
+    width:150px;
+  }
+}
