@@ -3,6 +3,8 @@
  * This is the style applied to the routes.
  */
 
+@import "mixins.scss";
+ 
 
 #new_route {
   .textbox {
@@ -44,6 +46,27 @@
     height:0;
     overflow:hidden;
     border-bottom:1px solid #ddd;
+  }
+}
+
+#road_map {
+  border: 1px solid #DDD;
+  width:400px;
+  height: 400px;
+
+  @include map_shadows;
+}
+
+.infodiv {
+  img {
+    float:left;
+    width:32px;
+  }
+  
+  span {
+    padding:10px;
+    margin-left:20px;
+    font-size:16px;
   }
 }
 

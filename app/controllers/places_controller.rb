@@ -59,6 +59,9 @@ class PlacesController < ApplicationController
     @markers = @place.to_gmaps4rails
   end
 
+  ##
+  # The _update_ method. Can be called for the json format when best_in_place
+  # is requesting it. Otherwise, the response format will be html.
   def update
     @place = Place.find(params[:id])
 

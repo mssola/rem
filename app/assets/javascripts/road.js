@@ -1,41 +1,57 @@
 
+function contents_for(mk)
+{
+  string = '<div class="infodiv"> <span>' + mk.title + '</span>' + 
+    '<img src="' + mk.description + '" /></div>';
+    
+  return string;
+}
 
 $(document).ready(function() {
-  var directionsDisplay;
-var directionsService = new google.maps.DirectionsService();
-var map;
-var haight = new google.maps.LatLng(37.7699298, -122.4469157);
-var oceanBeach = new google.maps.LatLng(37.7683909618184, -122.51089453697205);
+  var gmap, markers = '', locs = [];
+  var directionsService = new google.maps.DirectionsService();
+  var directionsDisplay = new google.maps.DirectionsRenderer();
 
-function initialize() {
-  alert('asd');
-  directionsDisplay = new google.maps.DirectionsRenderer();
+  if (typeof(remMarkers) != 'undefined')
+    markers = JSON.parse(remMarkers);
+
+  // Initialize the bounds with the first element.
+  first = new google.maps.LatLng(markers[0].lat, markers[0].lng);
+  var bounds = new google.maps.LatLngBounds(first, first);
+
+  // Initialize the GMap.
   var myOptions = {
-    zoom: 14,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: haight
+    center: first,
+    zoom: 5
   }
-  map = new google.maps.Map(document.getElementById("road_map"), myOptions);
-  directionsDisplay.setMap(map);
-}
+  gmap = new google.maps.Map(document.getElementById("road_map"), myOptions);
+  directionsDisplay.setMap(gmap);
 
-function calcRoute() {
-  var selectedMode = document.getElementById("mode").value;
+  // Setup markers and adjust the bounds.
+  $.each(markers, function(index, mk) {
+    pos = new google.maps.LatLng(mk.lat, mk.lng);
+    locs.push(pos);
+    bounds.extend(pos);
+
+    var info = new google.maps.InfoWindow({ content: contents_for(mk) });
+    var mark = new google.maps.Marker({ position: pos, map: gmap });
+    google.maps.event.addListener(mark, 'click', function() {
+      info.open(gmap, mark);
+    });
+  });
+  gmap.fitBounds(bounds);
+
+  // Direction request
   var request = {
-      origin: haight,
-      destination: oceanBeach,
-      // Note that Javascript allows us to access the constant
-      // using square brackets and a string value as its
-      // "property."
-      travelMode: google.maps.TravelMode[selectedMode]
+    origin:locs[0],
+    destination:locs[1],
+    travelMode: google.maps.TravelMode.DRIVING
   };
-  directionsService.route(request, function(response, status) {
+  directionsService.route(request, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
+      directionsDisplay.setDirections(result);
     }
   });
-}
-
-initialize();
 });
   

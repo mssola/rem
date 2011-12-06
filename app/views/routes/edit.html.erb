@@ -1,5 +1,10 @@
 
-  <div id="road_map"></div>
+<% content_for(:head) do %>
+  <%= javascript_tag "var remMarkers = #{@markers.to_json};" %>
+<% end %>
+
+
+<div id="road_map"></div>
 
 <br>
 
