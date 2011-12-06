@@ -1,10 +1,24 @@
 
 function contents_for(mk)
 {
-  string = '<div class="infodiv"> <span>' + mk.title + '</span>' + 
-    '<img src="' + mk.description + '" /></div>';
+  ary = mk.title.split('|');
+  string = '<div class="infodiv"> <a href="' + ary[1] + '">'
+    + ary[0] + '</a>' + '<img src="' + mk.description + '" /></div>';
     
   return string;
+}
+
+function generate_waypoints(locations)
+{
+  var waypts = [];
+  locs = locations.slice(1, -1);
+  $.each(locs, function(index, lc) {
+    waypts.push({
+      location:lc,
+      stopover:true
+    });
+  });
+  return waypts;
 }
 
 $(document).ready(function() {
@@ -44,9 +58,10 @@ $(document).ready(function() {
 
   // Direction request
   var request = {
-    origin:locs[0],
-    destination:locs[1],
-    travelMode: google.maps.TravelMode.DRIVING
+    origin:locs.first(),
+    destination:locs.last(),
+    travelMode: google.maps.TravelMode.DRIVING,
+    waypoints: generate_waypoints(locs)
   };
   directionsService.route(request, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
