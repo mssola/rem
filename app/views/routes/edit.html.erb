@@ -9,33 +9,37 @@
 
 <div class="route_rdock">
   <div class="route_ibucket">
-    <div class="route_bucket_title">
-      <div class="prompt name">
+    <ul class="route_bucket_title">
+      <li class="prompt name">
 	<% if cond %>
 	  <%= label_tag :name_label, _('Name'), title: 'Click contents to edit', class: 'r_label stip' %>:
 	<% else %>
 	  <%= label_tag :name_label, _('Name'), class: 'r_label' %>:
 	<% end %>
 	<%= best_in_place_if cond, @route, :name, :inner_class => 'r_raw_field' %>
-      </div>
-      <div class="prompt desc">
+      </li>
+      <li class="prompt desc">
 	<% if cond %>
 	  <%= label_tag :desc_label, _('Description'), title: 'Click contents to edit', class: 'r_label tip' %>:
 	<% else %>
 	  <%= label_tag :desc_label, _('Description'), class: 'r_label' %>:
 	<% end %>
 	<%= best_in_place_if cond, @route, :desc, :type => :textarea, :inner_class => 'r_text_area', nil: 'Click me to add content!' %>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 
   <div class="route_idock">
     <ul id="places_sortable">
       <% @places.each do |p| %>
-	<li class="ui-state-default"><%= p.name %></li>
+	<li class="<%= "ui-state-default #{p.id}" %>"><%= p.name %></li>
       <% end %>
     </ul>
   </div>
+
+  <%= form_for @route do |f| %>
+    <%= r_submit 'Save changes', nil, hidden: 'true', id: 'save_changes' %>
+  <% end %>
   
   <div class="route_dock_footer">
     <%= link_to 'Add places', new_place_path %>

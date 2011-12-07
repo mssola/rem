@@ -29,7 +29,6 @@
 #= require places
 
 #= require gmaps4rails/googlemaps
-#= require rmaps
 
 
 # Handle the special search input on the top.
