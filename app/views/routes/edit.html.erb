@@ -37,7 +37,10 @@
     </ul>
   </div>
 
-  <%= r_submit 'Save changes', nil, hidden: 'true', id: 'save_changes' %>
+  <div id="save_changes" hidden="true">
+    <%= r_submit 'Save changes', nil %>
+    <span></span>
+  </div>
   
   <div class="route_dock_footer">
     <%= link_to 'Add places', new_place_path %>

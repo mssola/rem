@@ -19,8 +19,16 @@
 #
 
 
-flash_light = (str) ->
-  alert str
+flash_light = (bool) ->
+  if bool
+    str = 'Route updated successfully!'
+    $("#save_changes span").css 'color', 'green'
+  else
+    str = 'We weren\'t able to save your changes, sorry.'
+    $("#save_changes span").css 'color', 'red'
+  $("#save_changes span").text str
+  $('#save_changes').delay(2000).fadeOut 'slow', ->
+    $("#save_changes span").text ''
 
 
 jQuery ->
@@ -33,6 +41,8 @@ jQuery ->
         indexs.push $(this).attr("class").split(" ")[1]
       update_directions(indexs) # defined in road.js
       $("#save_changes").show() unless $("#save_changes").is(":visible")
+    start: (event, ui) ->
+      # TODO
 
   $("#save_changes").click (e) ->
     e.preventDefault()
@@ -42,6 +52,6 @@ jQuery ->
       type: "POST",
       complete: (xhr, status) ->
         if xhr.status == 200
-          flash_light 'we fucking rock!'
+          flash_light true
         else
-          flash_light 'ooops'
+          flash_light false

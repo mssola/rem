@@ -73,8 +73,9 @@ class RoutesController < ApplicationController
     @route = @user.routes.find(params[:route_id])
     @places = @route.places.sort do |a, b|
       # Sort handling nil values
-      (a && b ) ? a <=> b : ( a ? -1 : 1 )
+      (a.index && b.index ) ? a.index <=> b.index : ( a.index ? -1 : 1 )
     end
+    @places.each { |p| puts p.name }
     @markers = @places.to_gmaps4rails
   end
 
