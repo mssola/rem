@@ -17,6 +17,8 @@ Rem::Application.routes.draw do
   put 'account' => 'account#update'
   get '/places/id/:id' => 'places#edit', as: 'map_place'
 
+  post '/ajax/update_places' => 'routes#update_places'
+
   # Rest API: Android login
   post '/android' => 'sessions#android'
 

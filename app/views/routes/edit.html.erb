@@ -37,9 +37,7 @@
     </ul>
   </div>
 
-  <%= form_for @route do |f| %>
-    <%= r_submit 'Save changes', nil, hidden: 'true', id: 'save_changes' %>
-  <% end %>
+  <%= r_submit 'Save changes', nil, hidden: 'true', id: 'save_changes' %>
   
   <div class="route_dock_footer">
     <%= link_to 'Add places', new_place_path %>

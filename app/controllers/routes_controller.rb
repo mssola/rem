@@ -71,7 +71,10 @@ class RoutesController < ApplicationController
   def edit
     @user = User.find_by_name(params[:name])
     @route = @user.routes.find(params[:route_id])
-    @places = @route.places
+    @places = @route.places.sort do |a, b|
+      # Sort handling nil values
+      (a && b ) ? a <=> b : ( a ? -1 : 1 )
+    end
     @markers = @places.to_gmaps4rails
   end
 
@@ -150,5 +153,18 @@ class RoutesController < ApplicationController
     @route = @user.routes.find(params[:id])
     @followers = @route.followers
     render 'show_follow'
+  end
+
+  ##
+  # Update the index of the places of the currently shown route. This is
+  # a method called via AJAX, so the response follows the JSON format.
+  def update_places
+    params['res'].each_with_index do |i, j|
+      place = Place.find(i.to_i)
+      unless place.update_attribute('index',  j)
+        respond_to { |f| f.json { head 404 } }
+      end
+    end
+    respond_to { |f| f.json { head :ok } }
   end
 end

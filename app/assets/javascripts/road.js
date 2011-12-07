@@ -22,7 +22,7 @@
 // Global variables
 var directionsService = new google.maps.DirectionsService();
 var directionsDisplay = new google.maps.DirectionsRenderer();
-var locs = [], markers = '';
+var locs = [], changes, markers = '';
 
 
 /*
@@ -35,10 +35,12 @@ var locs = [], markers = '';
 function update_directions(indexs)
 {
   var aux = [];
+  changes = [];
   $.each(indexs, function(indexi, j) {
     $.each(locs, function(indexl, val) {
       if (val[1] == j) {
         aux.push(val);
+        changes.push(val[1]);
         return false;
       }
     });
@@ -134,8 +136,8 @@ $(document).ready(function() {
     locs.push([pos, get_marker_id(mk)]);
     bounds.extend(pos);
 
-    var info = new google.maps.InfoWindow({ content: contents_for(mk) });
-    var mark = new google.maps.Marker({ position: pos, map: gmap });
+    info = new google.maps.InfoWindow({ content: contents_for(mk) });
+    mark = new google.maps.Marker({ position: pos, map: gmap });
     google.maps.event.addListener(mark, 'click', function() {
       info.open(gmap, mark);
     });

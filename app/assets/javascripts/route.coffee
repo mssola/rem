@@ -19,6 +19,10 @@
 #
 
 
+flash_light = (str) ->
+  alert str
+
+
 jQuery ->
   $("ul, li").disableSelection()
   $("#places_sortable").sortable
@@ -30,3 +34,14 @@ jQuery ->
       update_directions(indexs) # defined in road.js
       $("#save_changes").show() unless $("#save_changes").is(":visible")
 
+  $("#save_changes").click (e) ->
+    e.preventDefault()
+    $.ajax
+      url: '/ajax/update_places',
+      data: { res: changes },
+      type: "POST",
+      complete: (xhr, status) ->
+        if xhr.status == 200
+          flash_light 'we fucking rock!'
+        else
+          flash_light 'ooops'
