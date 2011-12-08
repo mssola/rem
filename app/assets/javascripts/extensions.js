@@ -43,6 +43,13 @@ if (!document.extendedJS) {
     return this[this.length - 1];
   }
 
+  /*
+   * @return true if this array is empty. False otherwise.
+   */
+  ap.empty = function() {
+    return this.length == 0;
+  }
+
   // Extending String.
 
   /*

@@ -115,31 +115,42 @@ $(document).ready(function() {
   if (typeof(remMarkers) != 'undefined')
     markers = JSON.parse(remMarkers);
   else
-    return;
+    return false;
 
-  // Initialize the bounds with the first element.
-  first = new google.maps.LatLng(markers[0].lat, markers[0].lng);
-  var bounds = new google.maps.LatLngBounds(first, first);
+  if (markers.empty()) {
+    // Initialize an empty GMap.
+    dummy = new google.maps.LatLng(0, 0);
+    var myOptions = {
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: dummy,
+      zoom: 1
+    }
+    gmap = new google.maps.Map(document.getElementById("road_map"), myOptions);
+  } else {
+    // Initialize the bounds with the first element.
+    first = new google.maps.LatLng(markers[0].lat, markers[0].lng);
+    var bounds = new google.maps.LatLngBounds(first, first);
 
-  // Initialize the GMap.
-  var myOptions = {
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: first,
-    zoom: 5
+    // Initialize the GMap.
+    var myOptions = {
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: first,
+      zoom: 5
+    }
+    gmap = new google.maps.Map(document.getElementById("road_map"), myOptions);
+    directionsDisplay.setMap(gmap);
+
+    // Setup markers and adjust the bounds.
+    $.each(markers, function(index, mk) {
+      pos = new google.maps.LatLng(mk.lat, mk.lng);
+      locs.push([pos, get_marker_id(mk)]);
+      bounds.extend(pos);
+      var mark = new google.maps.Marker({ position: pos, map: gmap });
+    });
+    gmap.fitBounds(bounds);
+
+    // Direction request
+    direction_request(locs);
   }
-  gmap = new google.maps.Map(document.getElementById("road_map"), myOptions);
-  directionsDisplay.setMap(gmap);
-
-  // Setup markers and adjust the bounds.
-  $.each(markers, function(index, mk) {
-    pos = new google.maps.LatLng(mk.lat, mk.lng);
-    locs.push([pos, get_marker_id(mk)]);
-    bounds.extend(pos);
-    var mark = new google.maps.Marker({ position: pos, map: gmap });
-  });
-  gmap.fitBounds(bounds);
-
-  // Direction request
-  direction_request(locs);
 });
   

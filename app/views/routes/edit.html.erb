@@ -3,11 +3,18 @@
   <%= javascript_tag "var remMarkers = #{@markers.to_json};" %>
 <% end %>
 
-<% cond = (current_user.id == @route.user_id) %>
+<% if current_user.nil? || (current_user.id != @user.id) %>
+  <% cond = false %>
+<% else %>
+  <% cond = (current_user.id == @route.user_id) %>
+<% end %>
 
 <div id="road_map"></div>
 
-<%= render :partial => 'action_buttons' %>
+<% if cond %>
+  <%= render :partial => 'action_buttons' %>
+<% end %>
+
 <div class="route_rdock">
   <div class="route_ibucket">
     <ul class="route_bucket_title">
@@ -31,10 +38,21 @@
   </div>
 
   <div class="route_idock">
-    <span class="idock_desc">
-      Drag & Drop the items on the list below to change the order you want
-    </span>
-     <span class="idock_desc">the places to have in this route.</span>
+    <% if cond %>
+      <% unless @places.empty? %>
+        <span class="idock_desc">
+          Drag & Drop the items on the list below to change the order you want
+        </span>
+        <span class="idock_desc">the places to have in this route.</span>
+      <% else %>
+        <span class="idock_desc">
+          This route is empty! Please add new places by clicking on the
+        </span>
+        <span class="idock_desc">
+          'More actions' button above and then selecting 'Add places'.
+        </span>
+      <% end %>
+    <% end %>
     <div class="idock_info" hidden="true">
       <span class="idock_title"></span>
       <a href="">go &rarr;</a>
@@ -49,8 +67,10 @@
     </ul>
   </div>
 
-  <div id="save_changes" hidden="true">
-    <%= r_submit 'Save changes', nil %>
-    <span></span>
-  </div>
+  <% if cond %>
+    <div id="save_changes" hidden="true">
+      <%= r_submit 'Save changes', nil %>
+      <span></span>
+    </div>
+  <% end %>
 </div>
