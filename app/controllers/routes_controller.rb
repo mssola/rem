@@ -46,7 +46,6 @@ class RoutesController < ApplicationController
       @current_user.follow! @route
       respond_to do |format|
         format.json { render :json => rem_created(@route), status: 201 }
-        format.xml  { render :xml => rem_created(@route), status: 201  }
         format.html { redirect_to edit_route_url(@current_user.name, @route.id) }
       end
     else
@@ -59,7 +58,6 @@ class RoutesController < ApplicationController
 
       respond_to do |format|
         format.json { render :json => rem_error(error), :status => error }
-        format.xml  { render :xml => rem_error(error), :status => error }
         format.html { render 'new' }
       end
     end
@@ -109,15 +107,9 @@ class RoutesController < ApplicationController
     raise ActionController::RoutingError.new('Not Found') if route.nil?
 
     if route.protected and android_user.nil?
-      respond_to do |format|
-        format.json { render :json => rem_error(401), status: 401 }
-        format.any(:xml, :html) { render :xml => rem_error(401), status: 401 }
-      end
+      respond_to { |f| f.json { render :json => rem_error(401), status: 401 } }
     else
-      respond_to do |format|
-        format.json { render :json => route.to_json }
-        format.any(:xml, :html) { render :xml => route.to_xml }
-      end
+      respond_to { |f| f.json { render :json => route.to_json } }
     end
   end
 
@@ -143,7 +135,6 @@ class RoutesController < ApplicationController
       route.destroy
       respond_to do |format|
         format.json { render json: { 'msg' => 'Route destroyed', status: 200 }}
-        format.xml { render xml: { 'msg' => 'Route destroyed', status: 200 } }
         format.html { redirect_to root_url, :notice => 'Route destroyed' }
       end
     end

@@ -47,7 +47,10 @@ class ApplicationController < ActionController::Base
   end
 
   ##
-  # TODO
+  # Get the current logged in Android user.
+  #
+  # @return *User* The current logged in Android user or nil if there's
+  # no currently logged in Android user.
   def android_user
     if params[:auth_token]
       @current_user ||= User.find_by_auth_token!(params[:auth_token])

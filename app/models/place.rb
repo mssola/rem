@@ -45,15 +45,6 @@ class Place < ActiveRecord::Base
   after_validation :geocode, :if => :address_changed?
 
   ##
-  # Override the to_xml method to limit the fields returned
-  #
-  # @param *Hash* options Options passed to this method
-  def to_xml(options = {})
-    options.merge!(except: [:updated_at])
-    super(options)
-  end
-
-  ##
   # Override the as_json method to limit the fields returned.
   #
   # @param *Hash* options Options passed to this method. Unused.

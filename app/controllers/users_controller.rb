@@ -77,10 +77,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_name(params[:name])
     raise ActionController::RoutingError.new('Not Found') if @user.nil?
-    respond_to do |format|
-      format.json { render :json => @user.to_json }
-      format.any(:xml, :html) { render :xml => @user.to_xml }
-    end
+    respond_to { |f| f.json { render :json => @user.to_json } }
   end
 
   ##
@@ -131,7 +128,6 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.json { render :json => mroutes.to_json }
-      format.xml  { render :xml => mroutes.to_xml }
       format.html { render 'show_routes' }
     end
   end

@@ -88,10 +88,7 @@ class SessionsController < ApplicationController
         hash = BCrypt::Engine.hash_secret(params['password'], u.password_digest)
         if hash == u.password_digest
           res = { auth_token: u.auth_token }
-          respond_to do |format|
-            format.json { render json: res, status: 200 }
-            format.xml  { render xml: res, status: 200 }
-          end
+          respond_to { |f| f.json { render json: res, status: 200 } }
         else
           error_occurred(404)
         end

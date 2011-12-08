@@ -80,18 +80,15 @@ class PlacesController < ApplicationController
   # *Rest API*
   #
   # Shows the info about the place specified on the params variable
-  # and can be accessed through /places/:name. It will return an XML if
-  # the url specifies it, otherwise it will return a JSON object.
+  # and can be accessed through /places/:name. See the API documentation
+  # for further information.
   def show
     @place = Place.find_by_name(params[:name])
     raise ActionController::RoutingError.new('Not Found') if @place.nil?
     if Route.find(@place.route_id).protected and android_user.nil?
       handle_error(401)
     else
-      respond_to do |format|
-        format.json { render :json => @place.to_json }
-        format.any(:xml, :html) { render :xml => @place.to_xml }
-      end
+      respond_to { |f| f.json { render :json => @place.to_json } }
     end
   end
 
@@ -103,10 +100,7 @@ class PlacesController < ApplicationController
   # for more info about uploading photos.
   def photos
     response, status = handle_upload
-    respond_to do |format|
-      format.json { render :json => response, status: status }
-      format.any(:xml, :html) { render :xml => response, status: status }
-    end
+    respond_to { |f| f.json { render :json => response, status: status } }
   end
 
   ##
@@ -116,10 +110,7 @@ class PlacesController < ApplicationController
   # take a look at the API documentation for more info about deleting places.
   def delete_photos
     response, status = remove_photo!
-    respond_to do |format|
-      format.json { render :json => response, status: status }
-      format.any(:xml, :html) { render :xml => response, status: status }
-    end
+    respond_to { |f| f.json { render :json => response, status: status } }
   end
 
   ##
@@ -165,7 +156,6 @@ class PlacesController < ApplicationController
   def handle_error(status)
     respond_to do |format|
       format.json { render :json => rem_error(status), status: status }
-      format.any(:xml, :html) { render :xml => rem_error(status), status: status }
     end
   end
 end
