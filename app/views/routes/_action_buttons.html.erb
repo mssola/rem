@@ -1,0 +1,9 @@
+
+
+<div id="action_container">
+  <div id="action_nav"><a href="#" class="acting"><span>More actions</span></a></div>
+  <fieldset id="action_menu">
+    <%= button_to 'Add places', new_place_path, method: :get, class: "action_button" %>
+    <%= button_to 'Delete Route', route_path(@route.id), method: :delete, class: "action_button" %>
+  </fieldset>
+</div>

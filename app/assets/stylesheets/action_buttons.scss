@@ -1,0 +1,84 @@
+
+@import "base.scss";
+
+
+#action_container {
+  margin-right:20px;
+  float:right;
+}
+
+#action_nav {
+  padding:10px 0px 12px;
+  font-size:11px;
+  line-height:23px;
+  text-align:right;
+
+  a.acting {
+    @include borders;
+
+    background:#88bbd4;
+    padding:4px 6px 6px;
+    text-decoration:none;
+    font-weight:bold;
+    color:white;
+    border-radius:4px;
+    *padding:4px 12px 6px;
+    position:relative;
+    margin-left:3px;
+
+    span {
+      background-image:url("mactions_light.png");
+      background-repeat:no-repeat;
+      background-position:0% 50%;
+      padding:4px 0px 6px 18px;
+    }
+
+    &:hover { background:#59B; }
+  }
+
+  a.menu-open {
+    background:#ddeef6!important;
+    color:#666!important;
+    outline:none;
+    span {
+      background-image:url("mactions_dark.png");
+      color:#789;
+    }
+  }
+}
+
+#action_nav a.acting, #action_nav a.acting:hover {
+  *background-position:0 3px!important;
+}
+
+#action_menu {
+  @include borders(5px);
+
+  display:none;
+  background-color:#ddeef6;
+  position:absolute;
+  z-index:100;
+  border:1px transparent;
+  text-align:left;
+  top: 92px;
+  color:#789;
+  font-size:12px;
+
+  .action_button {
+    @include borders;
+    @include my_font(11px, bold);
+    padding:5px 10px 5px;
+    margin:10px 2px 0px 2px;
+    background: $almost_white repeat-x scroll 0 0;
+    border:1px solid $button_blue;
+    color: $royal_blue;
+    &:hover, &:focus {
+      background-position:0 -5px;
+      background: darken($button_blue, 5%);
+      border:1px solid $royal_blue;
+      color: white;
+      cursor:pointer;
+    }
+    &:active { background: darken($button_blue, 20%); }
+  }
+}

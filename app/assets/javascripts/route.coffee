@@ -19,9 +19,6 @@
 #
 
 
-base = ''
-
-
 flash_light = (bool) ->
   if bool
     str = 'Route updated successfully!'
@@ -60,7 +57,7 @@ jQuery ->
   $(".ui-state-default").mousedown ->
     txt = $(this).text()
     id = $(this).attr("class").split(" ")[1]
-    base = $(".idock_info img").attr "src" if base == ''
+    base = $(".idock_info .img_base").text()
 
     $(".idock_title").text $(this).text()
     $(".idock_info a").attr "href", "/places/id/" + id

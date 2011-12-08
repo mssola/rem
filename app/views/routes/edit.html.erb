@@ -7,11 +7,8 @@
 
 <div id="road_map"></div>
 
+<%= render :partial => 'action_buttons' %>
 <div class="route_rdock">
-  <ul class="route_buttons">
-    <li><%= link_to 'Add places', new_place_path %></li>
-    <li><%= link_to 'Delete Route', route_path(@route.id), method: :delete %></li>
-  </ul>
   <div class="route_ibucket">
     <ul class="route_bucket_title">
       <li class="prompt name">
@@ -42,7 +39,8 @@
       <span class="idock_title"></span>
       <a href="">go &rarr;</a>
       <br>
-      <img src="<%= "/assets/#{@route.user_id}/#{@route.id}/" %>" width="132"></img>
+      <span class="img_base" hidden="true"><%= "/assets/#{@route.user_id}/#{@route.id}/" %></span>
+      <img src="" width="132"></img>
     </div>
     <ul id="places_sortable">
       <% @places.each do |p| %>
