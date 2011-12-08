@@ -19,13 +19,15 @@
  */
 
 
-/*
- * Extending Array.
- */
-var ap = Array.prototype;
-if (!ap.extended) {
+if (!document.extendedJS) {
   // Ensure this is only done once.
-  ap.extended = true;
+  document.extendedJS = true;
+
+  // Defining some shortcuts.
+  var ap = Array.prototype;
+  var sp = String.prototype;
+
+  // Extending Array.
 
   /*
    * @return the first element of the Array.
@@ -39,5 +41,15 @@ if (!ap.extended) {
    */
   ap.last = function() {
     return this[this.length - 1];
+  }
+
+  // Extending String.
+
+  /*
+   * @return true if this string ends with the given @p suffix.
+   * False otherwise.
+   */
+  sp.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
   }
 }

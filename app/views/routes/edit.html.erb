@@ -8,6 +8,10 @@
 <div id="road_map"></div>
 
 <div class="route_rdock">
+  <ul class="route_buttons">
+    <li><%= link_to 'Add places', new_place_path %></li>
+    <li><%= link_to 'Delete Route', route_path(@route.id), method: :delete %></li>
+  </ul>
   <div class="route_ibucket">
     <ul class="route_bucket_title">
       <li class="prompt name">
@@ -30,6 +34,16 @@
   </div>
 
   <div class="route_idock">
+    <span class="idock_desc">
+      Drag & Drop the items on the list below to change the order you want
+    </span>
+     <span class="idock_desc">the places to have in this route.</span>
+    <div class="idock_info" hidden="true">
+      <span class="idock_title"></span>
+      <a href="">go &rarr;</a>
+      <br>
+      <img src="<%= "/assets/#{@route.user_id}/#{@route.id}/" %>" width="132"></img>
+    </div>
     <ul id="places_sortable">
       <% @places.each do |p| %>
 	<li class="<%= "ui-state-default #{p.id}" %>"><%= p.name %></li>
@@ -40,11 +54,5 @@
   <div id="save_changes" hidden="true">
     <%= r_submit 'Save changes', nil %>
     <span></span>
-  </div>
-  
-  <div class="route_dock_footer">
-    <%= link_to 'Add places', new_place_path %>
-
-    <%= button_to 'Delete Route', route_path(@route.id), method: :delete, class: 'r_submit' %>
   </div>
 </div>

@@ -19,6 +19,9 @@
 #
 
 
+base = ''
+
+
 flash_light = (bool) ->
   if bool
     str = 'Route updated successfully!'
@@ -41,8 +44,6 @@ jQuery ->
         indexs.push $(this).attr("class").split(" ")[1]
       update_directions(indexs) # defined in road.js
       $("#save_changes").show() unless $("#save_changes").is(":visible")
-    start: (event, ui) ->
-      # TODO
 
   $("#save_changes").click (e) ->
     e.preventDefault()
@@ -55,3 +56,13 @@ jQuery ->
           flash_light true
         else
           flash_light false
+
+  $(".ui-state-default").mousedown ->
+    txt = $(this).text()
+    id = $(this).attr("class").split(" ")[1]
+    base = $(".idock_info img").attr "src" if base == ''
+
+    $(".idock_title").text $(this).text()
+    $(".idock_info a").attr "href", "/places/id/" + id
+    $(".idock_info img").attr "src", base + txt + ".jpg"
+    $(".idock_info").show()

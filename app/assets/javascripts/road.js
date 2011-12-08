@@ -136,8 +136,8 @@ $(document).ready(function() {
     locs.push([pos, get_marker_id(mk)]);
     bounds.extend(pos);
 
-    info = new google.maps.InfoWindow({ content: contents_for(mk) });
-    mark = new google.maps.Marker({ position: pos, map: gmap });
+    var info = new google.maps.InfoWindow({ content: contents_for(mk) });
+    var mark = new google.maps.Marker({ position: pos, map: gmap });
     google.maps.event.addListener(mark, 'click', function() {
       info.open(gmap, mark);
     });

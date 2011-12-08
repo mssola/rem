@@ -76,17 +76,55 @@
   border:0px;
   float:right;
   width:55%;
-  margin-top:10px;
+  margin-top:20px;
 
   .prompt {
     list-style-image:url('rarrow.png');
     margin-bottom:5px;
     label { font-weight:bold; }
   }
+
+  .route_buttons {
+    float:right;
+    margin-top:-10px;
+
+    li {
+      list-style-type:none;
+      display:inline;
+      &:first-child {
+        padding-right: 5px;
+        border-right:1px solid #ddd;
+      }
+    }
+  }
 }
 
 .route_idock {
+  padding:5px;
+
+  .idock_info {
+    float:right;
+    width:50%;
+    margin-top:30px;
+
+    span {
+      font-size:18px;
+      font-weight:bold;
+      color:#4A4646;
+      border-bottom:1px solid #ddd;
+      margin-right:10px;
+    }
+
+    img {
+      padding:12px;
+      margin:8px 0 0 15px;
+    }
+  }
+
+  .idock_desc { margin-left:40px; }
+
   ul {
+    margin-top:20px;
     list-style-type:none;
   }
 
@@ -95,4 +133,9 @@
     padding:5px;
     width:150px;
   }
+}
+
+#save_changes {
+  padding:20px;
+  margin-left:30px;
 }
