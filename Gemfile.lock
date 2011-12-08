@@ -65,6 +65,7 @@ GEM
       i18n (~> 0.4)
     fast_gettext (0.6.2)
     ffi (1.0.11)
+    geocoder (1.1.0)
     gettext (2.1.0)
       locale (>= 2.0.5)
     gettext_i18n_rails (0.3.0)
@@ -226,6 +227,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fast_gettext (~> 0.6.1)
+  geocoder
   gettext (>= 1.9.3)
   gettext_i18n_rails
   gmaps4rails

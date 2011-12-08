@@ -4,7 +4,46 @@
 
 <div class="api_page">
 
-To be implemented :)
+<div class="api_subpage">
+  If you're an Android developer, you may want to obtain all the nearby
+  places from your current location. In order to do this, there are two
+  modalities of the same method:
+
+  <br><br>
+
+  <div class="subsubtitle">From a known place</div>
+
+  <div class="code">
+    GET http://mssola.heroku.com/places/nearby/:id
+  </div>
+
+  <div class="subsubtitle">Parameters</div>
+
+  <ul>
+    <li><span>auth_token</span>: the authorization token that allows the
+    user to access the information of places that may be protected.</li>
+    <li><span>distance</span>: the distance from your location to the
+    possible nearby places.</li>
+  </ul>
+
+  <div class="subsubtitle">With Latitude & Longitude</div>
+
+  In order to perform this other version of this same method, you have
+  to specify two parameters: longitude and latitude. Note that you also
+  have to specify the :id on the url. If you are using this version, you
+  can set a random number to it. However, if the parameters longitude and
+  latitude are wrong (i.e. one of them is missing) this method is going to
+  fallback to the former version (thus picking the :id on the url).
+
+  <br><br>
+
+  <div class="subsubtitle">Parameters</div>
+
+  <ul>
+    <li><span>longitude</span>: your current longitude.</li>
+    <li><span>latitude</span>: your current latitude.</li>
+  </ul>
+</div>
 
 </div>
 

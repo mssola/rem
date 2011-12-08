@@ -24,6 +24,7 @@
 # The controller for the places. It allows us to create/edit/destroy places.
 class PlacesController < ApplicationController
   include Uploader
+  include RemGeocoder
 
   ##
   # The _new_ method. Initializes a new empty place.
@@ -85,10 +86,7 @@ class PlacesController < ApplicationController
     @place = Place.find_by_name(params[:name])
     raise ActionController::RoutingError.new('Not Found') if @place.nil?
     if Route.find(@place.route_id).protected and android_user.nil?
-      respond_to do |format|
-        format.json { render :json => rem_error(401), status: 401 }
-        format.any(:xml, :html) { render :xml => rem_error(401), status: 401 }
-      end
+      handle_error(401)
     else
       respond_to do |format|
         format.json { render :json => @place.to_json }
@@ -130,5 +128,44 @@ class PlacesController < ApplicationController
   def destroy
     Place.find(params[:id]).destroy
     redirect_to root_url, :notice => 'Place destroyed'
+  end
+
+  ##
+  # *Rest API*
+  #
+  # Get the nearby locations from a given place. An optional parameter
+  # _distance_ can be set. It can also be passed a pair of
+  # longitude-latitude.
+  def nearby
+    # Do not access if the user is not authenticated
+    (handle_error(401); return) if android_user.nil?
+
+    dist = (params[:distance]) ? params[:distance].to_i : 1
+    if params[:longitude].nil? || params[:latitude].nil?
+      place = Place.find(params[:id])
+      data = place.nearby(android_user, dist).to_json
+    else
+      addr = [params[:latitude], params[:longitude]]
+      place = Place.create!(address: reverse_geocode(addr),
+                            name: 'fake', route_id: -1)
+      data = place.nearby(android_user, dist).to_json
+      place.destroy
+    end
+
+    respond_to { |f| f.json { render :json => data } }
+    rescue ActiveRecord::RecordNotFound; handle_error(404)
+  end
+
+  private
+
+  ##
+  # Helper method that calls respond_to with the given status.
+  #
+  # @param *Integer* status The HTTP status code.
+  def handle_error(status)
+    respond_to do |format|
+      format.json { render :json => rem_error(status), status: status }
+      format.any(:xml, :html) { render :xml => rem_error(status), status: status }
+    end
   end
 end

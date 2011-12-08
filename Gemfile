@@ -32,8 +32,11 @@ gem 'redcarpet'
 gem 'albino'
 gem 'nokogiri'
 
-# Others
+# Maps & locations
 gem 'gmaps4rails'
+gem 'geocoder'
+
+# Others
 gem 'bcrypt-ruby'
 gem 'best_in_place'
 gem 'gravtastic'

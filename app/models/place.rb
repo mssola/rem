@@ -40,6 +40,10 @@ class Place < ActiveRecord::Base
   acts_as_gmappable
   include RemMaps
 
+  # Geocoder
+  geocoded_by :address
+  after_validation :geocode, :if => :address_changed?
+
   ##
   # Override the to_xml method to limit the fields returned
   #
@@ -56,5 +60,23 @@ class Place < ActiveRecord::Base
   def as_json(options = {})
     options ||= { except: [:updated_at] }
     super(options)
+  end
+
+  ##
+  # Get the places nearby this one.
+  #
+  # @param *User* cu The current user.
+  #
+  # @param *Integer* distance The distance in km where this method should
+  # be aware of.
+  def nearby(cu, distance)
+    nearbys((distance * 0.6214).round(4)).map do |n|
+      user = User.find(Route.find(n.route_id).user_id)
+      if user.id == cu.id || cu.bi_following?(user)
+        n
+      else
+        nil
+      end
+    end.compact
   end
 end

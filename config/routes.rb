@@ -34,6 +34,9 @@ Rem::Application.routes.draw do
   # Rest API: Show the routes of the given user
   get "/users/:name/routes" => "users#routes", as: 'user_routes'
 
+  # Rest API: Get nearby locations
+  get "/places/nearby/:id" => "places#nearby"
+
   # Following / followers
   get '/:name/:id/followers' => 'routes#followers', as: 'followers_route'
   get '/:name/following' => "users#following", as: 'following_user'
