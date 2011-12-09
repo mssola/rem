@@ -40,7 +40,7 @@ module SearchHelper
   # @param *String* route The name of the route we are searching.
   def search_routes(route)
     e = escape_params route
-    Route.find :all, conditions: ["name like ?", e]
+    Route.find :all, conditions: ["name like ? and protected = 'false'", e]
   end
 
   ##
@@ -49,7 +49,9 @@ module SearchHelper
   # @param *String* place The name of the place we are searching.
   def search_places(place)
     e = escape_params place
-    Place.find :all, conditions: ["name like ?", e]
+    Place.find(:all, conditions: ["name like ?", e]).select do |x|
+      x.route.protected == false
+    end
   end
 
   private

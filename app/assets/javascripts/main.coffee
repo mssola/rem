@@ -36,6 +36,10 @@ jQuery ->
   holder = $("#top_search").find("span")
   input = $("#top_search").find("input:eq(0)")
 
+  # If the user comes from the home page, he may set some values already.
+  holder.hide() if input.val() != ""
+  $("#search_tabs").tabs() # jquery ui tabs
+
   holder.click ->
     input.focus()
 

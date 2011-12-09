@@ -1,37 +1,24 @@
 
-Here I have to display all the matches (users, routes, places...).
+<% title 'Search results' %>
 
-<br>
-<br>
-
-Usernames:
-
-<% usernames = search_users(params[:search]) %>
-<% usernames.each do |u| %>
-  <%= link_to "#{u.full_name} (#{u.name})", u.name %>
-<% end %>
-
-<br>
-<br>
-
-(there's no way to show routes/places properly yet)
-
-<br>
-<br>
-
-Routes:
-
-<% routes = search_routes(params[:search]) %>
-<% routes.each do |r| %>
-  <%= r.name %>
-<% end %>
-
-<br>
-<br>
-
-Places:
-
-<% places = search_places(params[:search]) %>
-<% places.each do |p| %>
-  <%= p.name %>
-<% end %>
+<div id="search_tabs">
+  <ul>
+    <li><a href="#tabs-1">Users</a></li>
+    <li><a href="#tabs-2">Routes</a></li>
+    <li><a href="#tabs-3">Places</a></li>
+  </ul>
+    <div id="tabs-1">
+      <% users = search_users(params[:search]) %>
+      <%= render users %>
+    </div>
+    <div id="tabs-2">
+      <% routes = search_routes(params[:search]) %>
+      <div id="routes_list">
+        <%= render routes %>
+      </div>
+    </div>
+    <div id="tabs-3">
+      <% places = search_places(params[:search]) %>
+      <%= render places %>
+    </div>
+</div>
