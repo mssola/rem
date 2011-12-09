@@ -29,6 +29,9 @@ $(document).ready ->
     input = $(this).find("input:eq(0)")
     holder = $(this).find("span.holder")
 
+    # If the user comes from the home page, he may set some values already.
+    holder.hide() if input.val() != ""
+
     # If the span element is clicked, focus the input.
     holder.click ->
       input.focus()

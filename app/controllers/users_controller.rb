@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   # an empty user.
   def new
     @user = User.new
+    @name, @email = params[:name], params[:email]
   end
 
   ##

@@ -24,7 +24,7 @@
         <div class="side_tip" id="existing_name">
         </div>
         <span class="holder">Username</span>
-        <%= f.text_field :name, { class: 'r_raw_field' } %>
+        <%= f.text_field :name, { class: 'r_raw_field', value: @name } %>
       </div>
     </div>
     <div class="prompt email">
@@ -32,7 +32,7 @@
         <div class="side_tip" id="email_error">
         </div>
         <span class="holder">Email</span>
-        <%= f.text_field :email, { class: 'r_raw_field' } %>
+        <%= f.text_field :email, { class: 'r_raw_field', value: @email } %>
       </div>
     </div>
     <div class="prompt password">

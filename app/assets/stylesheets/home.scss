@@ -1,0 +1,64 @@
+
+/*
+ * The style for the home page.
+ */
+
+@import "mixins.scss";
+
+
+.home {
+  padding:20px;
+}
+
+#lhome {
+  float:left;
+  width:50%;
+
+  span {
+    font-size:26px;
+    color:#4A4646;
+  }
+
+  p {
+    font-weight:normal;
+    font-size:18px;
+  }
+}
+
+#rhome {
+  float:right;
+  padding-top:10px;
+  padding-right:100px;
+
+  b { color:#4A4646 }
+
+  fieldset {
+    margin-top:10px;
+    border:none;
+    .prompt { margin-bottom: 10px; }
+    .holding {
+      .side_tip {
+        position:absolute;
+        font-size:12px;
+        margin-left:213px;
+        padding:10px;
+        color:$error_color;
+      }
+
+      .holder {
+        padding:6px;
+        position:absolute;
+        line-height:43px;
+        color:#DDD;
+        margin-top:-11px;
+      }
+
+      input {
+        @include shadows;
+
+        outline:0;
+        padding:8px 6px;
+      }
+    }
+  }
+}
