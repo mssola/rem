@@ -72,5 +72,13 @@
       <%= r_submit 'Save changes', nil %>
       <span></span>
     </div>
+  <% elsif !current_user.nil? && (current_user.id != @user.id) %>
+    <div class="follow_route_button">
+      <% if current_user.following?(@route) %>
+        <%= render :partial => 'unfollow' %>
+      <% else %>
+        <%= render :partial => 'follow' %>
+      <% end %>
+    </div>
   <% end %>
 </div>

@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
 
+  def handle_unverified_request
+    true
+end
+
   # Setting gettext locale
   before_filter :set_gettext_locale
 
