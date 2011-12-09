@@ -35,7 +35,7 @@ class Route < ActiveRecord::Base
   # The basic definition of a route is: something that belongs to a user
   # and represents a set of places.
   belongs_to :user
-  has_many :places
+  has_many :places, dependent: :destroy
 
   # A route may be followed by a certain number of users.
   has_many :followers, through: :reverse_route_relationships, source: :follower
