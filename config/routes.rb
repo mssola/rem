@@ -1,10 +1,11 @@
 
 Rem::Application.routes.draw do
-  # Select http or https depending on the rails environment.
-  protocol = Rails.env.development? ? "http" : "https"
+  # SSL for the sessions resource
+  scope :protocol => 'https://', :constraints => { :protocol => Rails.env.production? ? 'https'  : 'http' } do
+    resources :sessions
+  end
 
   # RESTful resources
-  resources :sessions, :protocol => protocol
   resources :password_resets, :places
   resources :users, :except => [:show] # Rest API
   resources :routes, :except => [:show, :edit]
