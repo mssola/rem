@@ -64,4 +64,14 @@ module ApplicationHelper
   def current_controller?(controller)
     request.path_parameters[:controller] == controller
   end
+
+  ##
+  # Override the url_for method to ensure http when we're leaving
+  # SSL only pages.
+  def url_for(options = nil)
+    if Hash === options
+      options[:protocol] ||= 'http'
+    end
+    super(options)
+  end
 end
