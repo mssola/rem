@@ -11,11 +11,15 @@
       <%= r_submit _('Update Password'), 'r_submit' %>
     </div>
   <% end %>
+
+  <%= form_tag account_path, :method => 'PUT', :id => 'change_username' do %>
+    <strong>Change username</strong>
+    <div>
+      <%= r_field :text, :username, nil, up.name %>
+      <%= r_submit _('Update Password'), 'r_submit' %>
+    </div>
+  <% end %>
   <br>
-  <%= r_label :delete, 'Delete Account' %>
+  <strong>Delete Account</strong>
   <%= button_to 'Delete Account', user_path(current_user.id), method: :delete, class: 'r_submit' %>
-  <br>
-  <br>
-  <%= r_label :label_username, 'Change username' %>
-  <%= r_field :text, :change_username, nil, up.name %>
 </div> 

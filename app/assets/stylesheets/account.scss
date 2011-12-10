@@ -67,10 +67,12 @@
   .r_raw_field { margin-top:5px; }
   strong { color:#636363; }
   form { margin-top:10px; }
+  #change_username input { display:inline; }
 }
 
 .password_pair {
   margin-top:5px;
+  margin-bottom:10px;
 
   input[type=password] {
     @extend .r_raw;
