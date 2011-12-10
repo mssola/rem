@@ -60,6 +60,7 @@ class UsersController < ApplicationController
   # The _edit_ method. This method corresponds to the user's dashboard.
   def edit
     @user = User.find_by_name(params[:name])
+    raise ActionController::RoutingError.new('Not Found') if @user.nil?
     if current_user.nil?
       @routes = @user.public_routes
     elsif ((current_user.id != @user.id) && !(@user.bi_following?(current_user)))
@@ -67,7 +68,6 @@ class UsersController < ApplicationController
     else
       @routes = @user.routes
     end
-    raise ActionController::RoutingError.new('Not Found') if @user.nil?
   end
 
   ##
@@ -146,10 +146,10 @@ class UsersController < ApplicationController
   def get_routes
     if current_user.nil? || current_user.id != @user.id
       return @user.route_following.map do |x|
-        [x, x.user.name] if x.protected == false
+        x if x.protected == false
       end.compact
     else
-      res = @user.route_following.map { |x| [x, x.user.name] }
+      res = @user.route_following
     end
   end
 end
