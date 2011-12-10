@@ -1,13 +1,15 @@
 
 <div class="admin password">
-  <%= r_label :password, 'Password reset' %>
-  <% if up.email.empty? %>
-    Apparently you have no email address configured.
-  <% else %>
-    <%= form_tag password_resets_path, :method => :post do %>
-      <%= r_field :text, :email, nil, up.email %>
-      <%= r_submit "Reset Password", nil %>
-    <% end %>
+  <strong>Change your Password</strong>
+  <%= form_tag auth_change_path, :method => :post do %>
+    <%= r_label :old_password, 'Old Password' %>
+    <%= password_field_tag :old_password, nil, { class: 'r_raw_field' } %>
+    <%= r_label :new_password, 'Enter a new password and confirm it' %>
+    <div class="password_pair">
+      <%= password_field_tag 'user[password]' %>
+      <%= password_field_tag 'user[password_confirmation]' %>
+      <%= r_submit _('Update Password'), 'r_submit' %>
+    </div>
   <% end %>
   <br>
   <%= r_label :delete, 'Delete Account' %>

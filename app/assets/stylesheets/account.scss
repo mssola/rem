@@ -25,10 +25,6 @@
   }
 }
 
-#account_content {
-  
-}
-
 @mixin bucket_base {
   @include borders;
   border:1px solid #ddd;
@@ -43,7 +39,6 @@
 #user_bucket {
   @include bucket_base;
   padding-left:50px;
-  width:60%;
 
   span {
     color:#636363;
@@ -67,6 +62,20 @@
 
 #admin_bucket {
   @include bucket_base;
+  padding-left:50px;
+  .r_label { font-weight:normal; }
+  .r_raw_field { margin-top:5px; }
+  strong { color:#636363; }
+  form { margin-top:10px; }
+}
+
+.password_pair {
+  margin-top:5px;
+
+  input[type=password] {
+    @extend .r_raw;
+    display:inline;
+  }
 }
 
 #notification_bucket {

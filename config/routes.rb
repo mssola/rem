@@ -19,6 +19,8 @@ Rem::Application.routes.draw do
 
   post '/ajax/update_places' => 'routes#update_places'
 
+  post '/change_password' => 'password_resets#auth_change', as: 'auth_change'
+
   # Rest API: Android login
   post '/android' => 'sessions#android'
 

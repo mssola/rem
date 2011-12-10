@@ -6,17 +6,15 @@
     <li><a href="account/admin">Account Admin</a></li>
     <li><a href="account/notification">Notifications</a></li>
   </ul>
-  <div id="account_content">
-    <% present current_user do |up| %>
-      <fieldset id="user_bucket">
-        <%= render partial: 'user_bucket', locals: { up: up } %>
-      </fieldset>
-      <fieldset id="admin_bucket" type="hidden">
-        <%= render partial: 'admin_bucket', locals: { up: up } %>
-      </fieldset>
-      <fieldset id="notification_bucket" type="hidden">
-        <%= render partial: 'notification_bucket', locals: { up: up } %>
-      </fieldset>
-    <% end %>
-  </div>
+  <% present current_user do |up| %>
+    <fieldset id="user_bucket">
+      <%= render partial: 'user_bucket', locals: { up: up } %>
+    </fieldset>
+    <fieldset id="admin_bucket" type="hidden">
+      <%= render partial: 'admin_bucket', locals: { up: up } %>
+    </fieldset>
+    <fieldset id="notification_bucket" type="hidden">
+      <%= render partial: 'notification_bucket', locals: { up: up } %>
+    </fieldset>
+  <% end %>
 </div>
