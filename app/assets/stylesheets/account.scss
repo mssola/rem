@@ -3,24 +3,47 @@
 @import "mixins.scss";
 
 #account_page {
+  padding:20px;
 }
 
 #account_tabs {
   text-decoration:none;
   list-style-type:none;
-  margin-right:100px;
   float:left;
+
+  li {
+    @include borders-left;
+    padding:12px 8px;
+    a:hover { color:$dark-royal; }
+    &:hover { background-color:$almost_white; }
+  }
+
+  li.selected {
+    @include gradient(#fafafa, #efefef);
+    border:1px solid #ddd;
+    border-right:none;
+  }
+}
+
+#account_content {
+  
 }
 
 @mixin bucket_base {
-  border:1px transparent;
-  float:left;
+  @include borders;
+  border:1px solid #ddd;
+  border-right:none;
+  border-bottom:none;
+  padding:10px;
+  margin-right:50px;
 
   .r_label { font-weight:bold; }
 }
 
 #user_bucket {
   @include bucket_base;
+  padding-left:50px;
+  width:60%;
 
   span {
     color:#636363;
@@ -34,8 +57,7 @@
   }
 
   .r_submit {
-    float:right;
-    margin-top:20px;
+    margin-top:10px;
   }
 
   .r_text_field {

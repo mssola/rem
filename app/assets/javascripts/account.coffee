@@ -39,7 +39,6 @@ getBucket = (str) ->
     id = id + '_bucket'
   return $("#account_page").find('fieldset[id=' + id + ']')
 
-
 ##
 # On page load check the buckets we have to hide. Obviously, do nothing
 # if this page has nothing to do with the account settings page.
@@ -61,6 +60,9 @@ jQuery ->
       visible = $("fieldset:visible")
       path = $(this).find('a').attr('href')
       bucket = getBucket(path)
+
+      $("li.selected").removeClass 'selected'
+      $(this).addClass 'selected'
 
       return false if bucket.attr('id') == visible.attr('id')
       visible.hide()
