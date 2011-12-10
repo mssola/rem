@@ -28,8 +28,6 @@ class ApplicationController < ActionController::Base
   include Utils
 
   protect_from_forgery
-  force_ssl
-  
   helper_method :current_user
 
   # Setting gettext locale

@@ -50,5 +50,7 @@ module Rem
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     config.assets.paths << Rails.root.join("app", "uploads")
+
+    config.force_ssl = false
   end
 end
