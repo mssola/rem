@@ -61,6 +61,7 @@ jQuery ->
       path = $(this).find('a').attr('href')
       bucket = getBucket(path)
 
+      # Handle tabs colouring
       $("li.selected").removeClass 'selected'
       $(this).addClass 'selected'
 
