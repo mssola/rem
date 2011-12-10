@@ -93,21 +93,6 @@ function get_marker_id(mk)
   return mk.title.split("|")[1].match(/^\/places\/id\/(.+)$/)[1];
 }
 
-/*
- * Set the contents of the infowindow for the given @p marker.
- *
- * @return a string with the html code that goes inside the infowindow
- * of the given marker.
- */
-function contents_for(mk)
-{
-  ary = mk.title.split('|');
-  string = '<div class="infodiv"> <a href="' + ary[1] + '">'
-    + ary[0] + '</a>' + '<img src="' + mk.description + '" /></div>';
-
-  return string;
-}
-
 /* When document is ready, initialize all the GMaps stuff. */
 $(document).ready(function() {
   var gmap;
@@ -127,11 +112,8 @@ $(document).ready(function() {
     }
     gmap = new google.maps.Map(document.getElementById("road_map"), myOptions);
   } else {
-    // Initialize the bounds with the first element.
-    first = new google.maps.LatLng(markers[0].lat, markers[0].lng);
-    var bounds = new google.maps.LatLngBounds(first, first);
-
     // Initialize the GMap.
+    first = new google.maps.LatLng(markers[0].lat, markers[0].lng);
     var myOptions = {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       center: first,
@@ -140,14 +122,11 @@ $(document).ready(function() {
     gmap = new google.maps.Map(document.getElementById("road_map"), myOptions);
     directionsDisplay.setMap(gmap);
 
-    // Setup markers and adjust the bounds.
+    // Setup the position of the markers.
     $.each(markers, function(index, mk) {
       pos = new google.maps.LatLng(mk.lat, mk.lng);
       locs.push([pos, get_marker_id(mk)]);
-      bounds.extend(pos);
-      var mark = new google.maps.Marker({ position: pos, map: gmap });
     });
-    gmap.fitBounds(bounds);
 
     // Direction request
     direction_request(locs);
