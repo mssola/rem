@@ -136,6 +136,12 @@ class UsersController < ApplicationController
 
   private
 
+  ##
+  # Get the routes that can be displayed this user is following according
+  # to our privacity policies.
+  #
+  # @return *Array* a two-sized array that has the route as its first element
+  # and the owner's name as its last element.
   def get_routes
     if current_user.nil? || current_user.id != @user.id
       return @user.route_following.map do |x|
