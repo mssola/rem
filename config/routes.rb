@@ -1,9 +1,10 @@
 
 Rem::Application.routes.draw do
-
+  # SSL for the sessions resource
   scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
     resources :sessions
   end
+
   # RESTful resources
   resources :password_resets, :places
   resources :users, :except => [:show] # Rest API

@@ -72,7 +72,7 @@ class SessionsController < ApplicationController
   # cookies and redirects the user to the root url.
   def destroy
     cookies.delete(:auth_token)
-    redirect_to root_url, :notice => _('Logged out!')
+    redirect_to root_url, :protocol => 'http', :notice => _('Logged out!')
   end
 
   ##
