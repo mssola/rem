@@ -9,15 +9,17 @@
     <% unless @user.full_name.nil? %>
       <span id="user_name"><%= "(#{@user.full_name})" %></span>
     <% end %>
-    <% unless current_user?(@user) %>
-      <div id="follow_form">
-      <% if current_user.following?(@user) %>
-        <%= render partial: 'unfollow' %>
-      <% else %>
-        <%= render partial: 'follow' %>
+    <% unless current_user.nil? %>
+      <% unless current_user?(@user) %>
+        <div id="follow_form">
+        <% if current_user.following?(@user) %>
+          <%= render partial: 'unfollow' %>
+        <% else %>
+          <%= render partial: 'follow' %>
+        <% end %>
+        </div>
       <% end %>
-      </div>
     <% end %>
-    <div class="stretch"></div>
+      <div class="stretch"></div>
   </div>
 </div>

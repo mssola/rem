@@ -37,7 +37,12 @@
           <div id="following">
           <b>
           Following <%= m_foll.count %> users and
-          <%= pluralize(@user.route_following.count, 'route') %>
+          <% if current_user.nil? || (current_user.id != @user.id) %>
+            <% fing = @user.route_following.select { |x| x.protected == false } %>
+          <% else %>
+            <% fing = @user.route_following %>
+          <% end %>
+          <%= pluralize(fing.count, 'route') %>
           </b>
           <%= link_to 'view all &rarr;'.html_safe, following_user_path(@user.name) %>
           </div>
