@@ -58,7 +58,7 @@ class UserPresenter < BasePresenter
       unless link
         user.twitter_name
       else
-        url = "http://twitter.com/#{user.twitter_name}"
+        url = "https://twitter.com/#{user.twitter_name}"
         link_to(user.twitter_name, url, title: url)
       end
     end
