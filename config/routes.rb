@@ -1,7 +1,11 @@
 
 Rem::Application.routes.draw do
+
+  scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
+    resources :sessions
+  end
   # RESTful resources
-  resources :sessions, :password_resets, :places
+  resources :password_resets, :places
   resources :users, :except => [:show] # Rest API
   resources :routes, :except => [:show, :edit]
   resources :relationships, :only => [:create, :destroy]
