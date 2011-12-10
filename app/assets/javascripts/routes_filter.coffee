@@ -39,7 +39,8 @@ jQuery ->
   window.vis = "route"
 
   # Let's handle the clicking on the "tabs"
-  $(".filter").click ->
+  $(".filter").click (e) ->
+    e.preventDefault()
     meth = sanitize_class $(this)
     if meth == 'all'
       $("#routes_list .route:hidden").show()
