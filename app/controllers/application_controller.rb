@@ -28,11 +28,9 @@ class ApplicationController < ActionController::Base
   include Utils
 
   protect_from_forgery
+  force_ssl
+  
   helper_method :current_user
-
-  def handle_unverified_request
-    true
-end
 
   # Setting gettext locale
   before_filter :set_gettext_locale

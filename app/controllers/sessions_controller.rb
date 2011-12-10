@@ -26,9 +26,6 @@
 # token to the cookies. Plus, if a given IP is failing too much
 # at logging in, this IP is black-listed for security reasons.
 class SessionsController < ApplicationController
-  # Force ssl when the user is logged in
-  before_filter :force_ssl
-
   ##
   # The _new_ method. It does nothing.
   def new; end
@@ -150,11 +147,5 @@ class SessionsController < ApplicationController
     end
     cookies.permanent[:auth_token] = auth.user.auth_token
     redirect_to root_url, :notice => _('Logged in!')
-  end
-
-  ##
-  # Force ssl when the user is logged in.
-  def force_ssl
-    redirect_to :protocol => 'https' unless request.ssl?
   end
 end
