@@ -66,7 +66,7 @@
   <% end %>
   <div class="danger_zone">
     <% if cond %>
-      <%= button_to 'Delete Place', place_path(@place.id), method: :delete, class: 'r_submit' %>
+      <%= button_to 'Delete Place', place_url(@place.id), method: :delete, class: 'r_submit' %>
     <% end %>
   </div>
 </div>

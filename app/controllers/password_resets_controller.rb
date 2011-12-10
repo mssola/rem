@@ -52,7 +52,7 @@ class PasswordResetsController < ApplicationController
   def update
     @user = User.find_by_password_reset_token!(params[:id])
     if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to new_password_reset_path, :alert => _('Password reset has expired.')
+      redirect_to new_password_reset_url, :alert => _('Password reset has expired.')
     elsif @user.update_attributes(params[:user])
       redirect_to root_url, :notice => _('Password has been reset!')
     else
@@ -66,12 +66,12 @@ class PasswordResetsController < ApplicationController
   def auth_change
     if current_user && current_user.authenticate(params[:old_password])
       if current_user.update_attributes(params[:user])
-        redirect_to account_path, :notice => 'Password updated successfully.'
+        redirect_to account_url, :notice => 'Password updated successfully.'
       else
-        redirect_to account_path, :alert => 'The password and its confirmation do not match.'
+        redirect_to account_url, :alert => 'The password and its confirmation do not match.'
       end
     else
-      redirect_to account_path, :alert => 'Dude, the old password you submitted is wrong.'
+      redirect_to account_url, :alert => 'Dude, the old password you submitted is wrong.'
     end
   end
 end

@@ -1,7 +1,7 @@
 
 <div class="admin password">
   <strong>Change your Password</strong>
-  <%= form_tag auth_change_path, :method => :post do %>
+  <%= form_tag auth_change_url, :method => :post do %>
     <%= r_label :old_password, 'Old Password' %>
     <%= password_field_tag :old_password, nil, { class: 'r_raw_field' } %>
     <%= r_label :new_password, 'Enter a new password and confirm it' %>
@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <%= form_tag account_path, :method => 'PUT', :id => 'change_username' do %>
+  <%= form_tag account_url, :method => 'PUT', :id => 'change_username' do %>
     <strong>Change username</strong>
     <div>
       <%= r_field :text, :username, nil, up.name %>
@@ -21,5 +21,5 @@
   <% end %>
   <br>
   <strong>Delete Account</strong>
-  <%= button_to 'Delete Account', user_path(current_user.id), method: :delete, class: 'r_submit' %>
+  <%= button_to 'Delete Account', user_url(current_user.id), method: :delete, class: 'r_submit' %>
 </div> 

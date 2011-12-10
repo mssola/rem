@@ -11,7 +11,7 @@
     <% else %>
       <li class="watchers" title="Watchers">
     <% end %>
-      <%= link_to route.followers.count, followers_route_path(@user.name, route.id) %>
+      <%= link_to route.followers.count, followers_route_url(@user.name, route.id) %>
     </li>
   </ul>
   <div class="route_body">
