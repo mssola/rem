@@ -10,7 +10,7 @@
 
 <div id="user_body">
   <div id="user_routes">
-    <%= render partial: 'widgets/routes_filter' %>
+    <%= render partial: 'widgets/routes_filter', locals: { routes: @routes } %>
   </div>
   <div id="user_activity">
     <b>Under construction</b>: This is your public activity.

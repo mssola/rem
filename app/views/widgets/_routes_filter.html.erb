@@ -1,21 +1,29 @@
 
 <div class="routes_filter">
-  <div id="filter_head">
-    <span class="filter_title">Routes</span>
-    <span class="counter"><%= "(#{@routes.count})" %></span>
+  <div class="filter_head">
+    <% if defined? filter_title %>
+      <span class="filter_title"><%= filter_title %></span>
+    <% else %>
+      <span class="filter_title">Routes</span>
+    <% end %>
+    <span class="counter"><%= "(#{routes.count})" %></span>
     <ul>
-      <li class="filter all"><a href="/mssola">All</a></li>
-      <li class="filter public"><a href="/mssola;">Public</a></li>
-      <li class="filter protected"><a href="/mssola">Protected</a></li>
+      <li class="filter all"><a href="#">All</a></li>
+      <li class="filter public"><a href="#">Public</a></li>
+      <li class="filter protected"><a href="#">Protected</a></li>
     </ul>
   </div>
 
-  <div id="filter_field" class="span_trick">
+  <div class="filter_field" class="span_trick">
     <span>Filter the list below</span>
     <input class="r_raw_field" name="filter_search" type="text" autocomplete="off" />
   </div>
 
-  <ul id="routes_list">
-    <%= render :partial => @routes %>
+  <ul class="routes_list">
+    <% if defined? home %>
+      <%= render :partial => routes, locals: { home: home } %>
+    <% else %>
+      <%= render :partial => routes %>
+    <% end %>
   </ul>
 </div>

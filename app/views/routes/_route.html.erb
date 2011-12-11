@@ -14,11 +14,15 @@
       <%= link_to route.followers.count, followers_route_url(@user.name, route.id) %>
     </li>
   </ul>
-  <div class="route_body">
-    <% if route.desc.nil? || route.desc.empty? %>
-      <p>No description was given.</p>
-    <% else %>
-      <p><%= route.desc %></p>
-    <% end %>
-  </div>
+  <% if defined? home %>
+    <br><br>
+  <% else %>
+    <div class="route_body">
+      <% if route.desc.nil? || route.desc.empty? %>
+        <p>No description was given.</p>
+      <% else %>
+        <p><%= route.desc %></p>
+      <% end %>
+    </div>
+  <% end %>
 </li>

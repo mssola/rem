@@ -1,14 +1,17 @@
 <% title 'Home' %>
 
-<p>Hi <b><%= current_user.name %></b>, this is your home page</p>
-
-<br>
-Before this webpage really takes off, we have to deal what it's capable of.
-Right now, it should somehow show a map from Google showing your location.
-<br>
-
-<br>
-You can <%= link_to 'create a new route', new_route_url %>
-<br>
-You can <%= link_to 'create a new place', new_place_url %>
-<br>
+<div id="home_logged">
+  <div id="home_activity">
+    <b>TODO</b>: Here it goes the user activity.
+    <%= link_to 'New route', new_route_url %>
+  </div>
+  <div id="home_routes">
+    <div id="user_routes">
+      <%= render partial: 'widgets/routes_filter', locals: { routes: @routes, home: true, filter_title: 'Your routes' } %>
+    </div>
+    <div id="user_publicroutes">
+      <% @routes = current_user.route_following - current_user.routes %>
+      <%= render partial: 'widgets/routes_filter', locals: { routes: @routes, home: true, filter_title: 'Watched routes' } %>
+    </div>
+  </div>
+</div>

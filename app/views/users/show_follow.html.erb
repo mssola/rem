@@ -34,7 +34,7 @@
       <br><br>
       <% unless @routes.empty? %>
         <% @routes.each do |r| %>
-          <a href=<%= "/#{r.user.name}/#{r.id}" %>><b><%= r.user.name %></b>/<%= r.name %></a>
+          <a href=<%= "/#{r.user.name}/#{r.id}" %>><%= r.user.name %>/<b><%= r.name %></b></a>
           <div class="stretch"></div>
         <% end %>
       <% end %>

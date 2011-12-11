@@ -3,7 +3,7 @@
 
 
 .routes_filter {
-  #filter_head {
+  .filter_head {
     margin-bottom:5px;
 
     .filter_title {
@@ -29,7 +29,7 @@
     }
   }
 
-  #filter_field {
+  .filter_field {
     span {
       position:absolute;
       color:#636363;
@@ -51,7 +51,7 @@
   }
 }
 
-#routes_list {
+.routes_list {
   list-style:none;
   padding:0px;
 
@@ -142,6 +142,6 @@
     color:#999;
     font-size:28px;
   }
-  #routes_list { margin-top:20px; }
+  .routes_list { margin-top:20px; }
   padding-left:20px;
 }

@@ -62,3 +62,27 @@
     }
   }
 }
+
+#home_logged {
+  display: inline;
+  position: relative;
+
+  #home_activity {
+    float:left;
+    width:600px;
+  }
+
+  #home_routes {
+    width:300px;
+    float:right;
+    .filter_field span { width:285px; }
+    .filter_field .r_raw_field { width:285px; }
+  }
+
+  #user_routes {
+    margin-top:10px;
+  }
+  #user_publicroutes {
+    margin-top:30px;
+  }
+}

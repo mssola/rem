@@ -26,8 +26,8 @@ sanitize_class = (klass) ->
 
 # Filter the list of routes with the text on tje input field.
 filter_text = ->
-  actual = $("#routes_list ." + window.vis)
-  input = $("#filter_field .r_raw_field").val()
+  actual = $(".routes_list ." + window.vis)
+  input = $(".filter_field .r_raw_field").val()
   actual.each ->
     txt = $(this).text()
     if txt.match(input) == null
@@ -43,14 +43,14 @@ jQuery ->
     e.preventDefault()
     meth = sanitize_class $(this)
     if meth == 'all'
-      $("#routes_list .route:hidden").show()
+      $(".routes_list .route:hidden").show()
       window.vis = "route"
     else
-      $("#routes_list .route:visible").hide()
+      $(".routes_list .route:visible").hide()
       $("." + meth).show()
       window.vis = meth
     filter_text()
 
   # In the input field, on keyup filter the text.
-  $("#filter_field .r_raw_field").keyup ->
+  $(".filter_field .r_raw_field").keyup ->
     filter_text()

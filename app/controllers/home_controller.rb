@@ -23,5 +23,10 @@
 #
 # Controller for the Home page.
 class HomeController < ApplicationController
-  # There's nothing to do here
+  def index
+    unless current_user.nil?
+      @routes = current_user.routes
+      @user = current_user
+    end
+  end
 end
