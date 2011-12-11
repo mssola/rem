@@ -50,22 +50,6 @@ jQuery ->
     keydown: ->
       holder.hide() if holder.is(":visible")
 
-# TODO: ugly
-jQuery ->
-  holder = $(".holding").find("span")
-  input = $(".holding").find(".r_raw_field")
-
-  holder.click ->
-    input.focus()
-
-  input.bind
-    focusout: ->
-      holder.show() if $(this).val() == ""
-
-    keydown: ->
-      holder.hide() if holder.is(":visible")
-
-
 # Setup best_in_place
 jQuery ->
   $(".best_in_place").best_in_place()
