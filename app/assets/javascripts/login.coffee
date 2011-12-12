@@ -35,9 +35,3 @@ $(document).ready ->
     if $(e.target).parent('a.signin').length == 0
       $('.signin').removeClass 'menu-open'
       $('fieldset#signin_menu').hide()
-
-# Log in page
-$(document).ready ->
-  $("#twitter_logo").tipsy({fallback: 'Log in with your Twitter account'})
-  $("#google_logo").tipsy({fallback: 'Log in with your Google account'})
- 

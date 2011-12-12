@@ -1,4 +1,6 @@
 #
+# Handle all the effects related to the edit place page.
+#
 # Copyright (C) 2011 Miquel Sabaté <mikisabate@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify

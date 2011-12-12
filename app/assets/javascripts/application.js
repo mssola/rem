@@ -28,3 +28,4 @@
 //= require extensions
 
 //= require_tree .
+//= require gmaps4rails/googlemaps

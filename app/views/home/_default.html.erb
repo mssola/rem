@@ -12,14 +12,14 @@
     <form method="get" action="signup" >
       <fieldset id="new_user">
         <div class="prompt name">
-          <div class="holding" data-fieldname="name">
+          <div class="holding span_trick" data-fieldname="name">
             <div class="side_tip" id="existing_name">
             </div>
             <span class="holder">Username</span>
             <%= text_field_tag :name, nil, { class: 'r_raw_field', id: 'user_name' } %>
           </div>
         </div>
-        <div class="prompt email">
+        <div class="prompt email span_trick">
           <div class="holding" data-fieldname="email">
             <div class="side_tip" id="email_error">
             </div>

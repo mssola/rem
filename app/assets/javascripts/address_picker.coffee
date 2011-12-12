@@ -22,23 +22,6 @@
 #= require jquery.ui.addresspicker
 
 
-# Handle the special search input on the bottom of the map.
-jQuery ->
-  holding = $("#search_map").find("div.holding")
-  input = holding.find("input:eq(0)")
-  holder = holding.find("span.holder")
-
-  holder.click ->
-    input.focus()
-
-  input.bind
-    focusout: ->
-      holder.show() if $(this).val() == ""
-
-    keydown: ->
-      holder.hide() if holder.is(":visible")
-    
-
 # Handle the address_picker plugin
 jQuery ->
   addresspicker = $( "#addresspicker" ).addresspicker()

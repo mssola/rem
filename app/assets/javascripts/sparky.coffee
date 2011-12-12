@@ -30,23 +30,30 @@ jQuery ->
     $(this).show()
     $(this).delay(5000).slideUp('slow')
 
+  # Handle JQuery UI tabs
+  $("#search_tabs").tabs()
+
+  # Setup the best_in_place feature
+  $(".best_in_place").best_in_place()
+
   # Here it goes the effect for the "span trick" applied to
   # some input widgets.
-  holder = $(".span_trick").find("span")
-  input = $(".span_trick").find("input:eq(0)")
+  $(".span_trick").each ->
+    holder = $(this).find("span")
+    input = $(this).find(".r_raw_field")
+    input = $(this).find("#addresspicker_map") if input.length == 0
 
-  # If the span element is clicked, focus the input.
-  holder.click ->
-    input.focus()
+    holder.hide() if input.val() != ""
 
-  # Bind the focusout and the keydown events so the span element
-  # is hidden when the user is writing something and this same
-  # element gets visible when there's nothing on the input element.
-  input.bind
-    focusout: ->
-      holder.show() if $(this).val() == ""
+    holder.click ->
+      input.focus()
 
-    keydown: ->
-      holder.hide() if holder.is(":visible")
+    # Bind the focusout and the keydown events so the span element
+    # is hidden when the user is writing something and this same
+    # element gets visible when there's nothing on the input element.
+    input.bind
+      focusout: ->
+        holder.show() if $(this).val() == ""
 
-
+      keydown: ->
+        holder.hide() if holder.is(":visible")
