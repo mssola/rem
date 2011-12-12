@@ -6,10 +6,10 @@
     <%= link_to 'New route', new_route_url %>
   </div>
   <div id="home_routes">
-    <div id="user_routes">
+    <div id="user_routes" class="home_filter">
       <%= render partial: 'widgets/routes_filter', locals: { routes: @routes, home: true, filter_title: 'Your routes' } %>
     </div>
-    <div id="user_publicroutes">
+    <div id="user_publicroutes" class="home_filter">
       <% @routes = current_user.route_following - current_user.routes %>
       <%= render partial: 'widgets/routes_filter', locals: { routes: @routes, home: true, filter_title: 'Watched routes' } %>
     </div>
