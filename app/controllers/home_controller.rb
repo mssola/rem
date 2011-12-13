@@ -23,10 +23,23 @@
 #
 # Controller for the Home page.
 class HomeController < ApplicationController
+  # TODO: this code is garbage!
   def index
     unless current_user.nil?
       @routes = current_user.routes
       @user = current_user
+      following = @user.following.map { |u| u if u.id != @user.id }.compact
+      if following.empty?
+        @activities = nil
+      else
+        @activities = following[0].activities
+        unless following[1].nil?
+          following[1..-1].each do |f|
+            @activities += f.activities
+          end
+        end
+        @activities.sort { |a, b| b.created_at <=> a.created_at }
+      end
     end
   end
 end

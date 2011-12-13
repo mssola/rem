@@ -17,8 +17,19 @@
 #
 
 
-# TODO
+##
+# == RemActivities module description
+#
+# Defines a helper method that creates activities.
 module RemActivities
+  ##
+  # Create an activity.
+  #
+  # @param *ActiveRecord::Base* model The implied model.
+  #
+  # @param *String* action The action (created/destroyed, followed/unfollowed)
+  #
+  # @param *Integer* owner The id of the integer.
   def create_activity!(model, action, owner = nil)
     if model.is_a? Route
       return if model.protected == true

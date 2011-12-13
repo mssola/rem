@@ -1,0 +1,21 @@
+
+<div class="activity">
+
+<div class="avatar">
+  <%= get_avatar_of activity.user, 32 %>
+</div>
+
+<% mention = activity.mention %>
+<% to = '' %>
+<% to, ment = case mention[0] %>
+<% when 'u'; [User.find(mention[1..-1]), 'user'] %>
+<% when 'r'; [Route.find(mention[1..-1]), 'route'] %>
+<% when 'p'; [Place.find(mention[1..-1]), 'place'] %>
+<% end %>
+
+<div class="activity_desc">
+  <%= activity.user.name %> <%= activity.action %> <%= ment %> <%= to.name %>.
+  <div class="stretch"></div>
+</div>
+
+</div>

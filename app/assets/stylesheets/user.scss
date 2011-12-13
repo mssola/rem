@@ -103,8 +103,14 @@
 
   #user_activity {
     float: right;
-    width:450px;
+    width:430px;
+    span {
+      font-weight:bold;
+      font-size:16px;
+    }
   }
+
+  #activity_list { padding:5px 0px 0px 15px; }
 }
 
 .user {

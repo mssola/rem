@@ -1,9 +1,15 @@
 <% title 'Home' %>
 
 <div id="home_logged">
+  <%= link_to 'Create a new route!', new_route_url, id: 'home_new_route' %>
   <div id="home_activity">
-    <b>TODO</b>: Here it goes the user activity.
-    <%= link_to 'New route', new_route_url %>
+    <span>News feed</span>
+    <br><br>
+    <div id="home_activity_list">
+      <% unless @activities.nil? %>
+        <%= render @activities %>
+      <% end %>
+    </div>
   </div>
   <div id="home_routes">
     <div id="user_routes" class="home_filter">

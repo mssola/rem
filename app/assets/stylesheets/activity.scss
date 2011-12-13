@@ -1,0 +1,21 @@
+
+
+@import "mixins.scss";
+
+
+.activity {
+  display:inline;
+  position:relative;
+
+  .avatar {
+    display:inline-block;
+    padding-right:3px;
+    img { padding:1px; }
+  }
+
+  .activity_desc {
+    display:inline;
+    font:12px "Helvetica Neue", Helvetica, Arial, freesans;
+  }
+}
+

@@ -70,6 +70,16 @@
   #home_activity {
     float:left;
     width:600px;
+    margin-top:15px;
+
+    span {
+      font-weight:bold;
+      font-size:16px;
+    }
+
+    #home_activity_list {
+      padding:10px;
+    }
   }
 
   #home_routes {
@@ -84,5 +94,11 @@
   }
   #user_publicroutes {
     margin-top:30px;
+  }
+
+  #home_new_route {
+    margin-top:-5px;
+    float:right;
+    &:hover { text-decoration:underline; }
   }
 }

@@ -68,6 +68,7 @@ class UsersController < ApplicationController
     else
       @routes = @user.routes
     end
+    @activities = @user.activities.sort { |a,b| b.created_at <=> a.created_at }
   end
 
   ##
