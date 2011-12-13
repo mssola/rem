@@ -41,7 +41,9 @@ class PlacesController < ApplicationController
   def create
     @place = Place.new(params[:place])
     if @place.save
-      redirect_to root_url, :notice => 'Place created successfully'
+      create_activity! @place, 'created'
+      redirect_to edit_route_url(current_user.name, @place.route_id),
+                  :notice => 'Place created successfully'
     else
       redirect_to new_place_url, :alert => 'Place already exists'
     end
@@ -117,7 +119,9 @@ class PlacesController < ApplicationController
   # The _destroy_ method. It deletes all the info about a place and
   # redirects the user to the home page.
   def destroy
-    Place.find(params[:id]).destroy
+    place = Place.find(params[:id])
+    create_activity! place, 'destroyed'
+    place.destroy
     redirect_to root_url, :notice => 'Place destroyed'
   end
 

@@ -24,6 +24,10 @@ module RemActivities
       return if model.protected == true
       mention = "r#{model.id}"
       opts = { user_id: model.user_id, mention: mention, action: action }
+    elsif model.is_a? Place
+      mention = "p#{model.id}"
+      route = Route.find(model.route_id)
+      opts = { user_id: route.user_id, mention: mention, action: action }
     end
     Activity.create!(opts)
   end
