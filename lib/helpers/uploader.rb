@@ -36,6 +36,10 @@ module Uploader
   include RemResponse
 
   ##
+  # Let's include the helper method create_activity!
+  include RemActivities
+
+  ##
   # Constant containing the base directory for the uploads.
   BASE = 'app/uploads'
 
@@ -66,6 +70,7 @@ module Uploader
     if file.is_a? String
       place = Place.create!(prepare_place(route.to_i,
                                           upload.original_filename))
+      create_activity! place, 'created'
       FileUtils.mv upload.tempfile.path, file
       return [rem_created(place), 201]
     end
@@ -94,6 +99,7 @@ module Uploader
     m_base = File.join(BASE, android_user.id.to_s, place.route_id.to_s, m_file)
     return [rem_error(404), 404] unless File.exists?(m_base)
 
+    create_activity! place, 'destroyed'
     place.destroy
     FileUtils.rm(m_base)
     [{ :msg => 'Place removed successfully' }, 200]

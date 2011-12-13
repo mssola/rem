@@ -19,15 +19,20 @@
 
 # TODO
 module RemActivities
-  def create_activity!(model, action)
+  def create_activity!(model, action, owner = nil)
     if model.is_a? Route
       return if model.protected == true
       mention = "r#{model.id}"
-      opts = { user_id: model.user_id, mention: mention, action: action }
+      owner ||= model.user_id
+      opts = { user_id: owner, mention: mention, action: action }
     elsif model.is_a? Place
       mention = "p#{model.id}"
       route = Route.find(model.route_id)
       opts = { user_id: route.user_id, mention: mention, action: action }
+    else
+      mention = "u#{model.id}"
+      owner ||= model.id
+      opts = { user_id: owner, mention: mention, action: action }
     end
     Activity.create!(opts)
   end

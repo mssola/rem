@@ -121,6 +121,9 @@ class User < ActiveRecord::Base
     self.following?(followed) && followed.following?(self)
   end
 
+  # Include the create_activity! helper method
+  include RemActivities
+
   ##
   # Follow the given user/route.
   #
@@ -131,6 +134,7 @@ class User < ActiveRecord::Base
     else
       relationships.create! followed_id: followed.id
     end
+    create_activity! followed, 'followed', self
   end
 
   ##
@@ -144,6 +148,7 @@ class User < ActiveRecord::Base
     else
       relationships.find_by_followed_id(followed).destroy
     end
+    create_activity! followed, 'unfollowed', self
   end
 
   ##
