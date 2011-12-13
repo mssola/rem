@@ -32,6 +32,10 @@ module Utils
   include RemResponse
 
   ##
+  # Include all the utilities for activity handling
+  include RemActivities
+
+  ##
   # Checks if the given parameter is a valid email.
   #
   # @param *String* email The email to be checked.

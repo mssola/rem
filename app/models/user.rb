@@ -51,6 +51,8 @@ class User < ActiveRecord::Base
                                    :class_name => "Relationship",
                                    :dependent => :destroy
 
+  has_many :activities, dependent: :destroy
+
   # Rails 3.1 goodie :)
   has_secure_password
 

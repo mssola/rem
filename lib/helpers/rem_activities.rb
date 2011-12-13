@@ -17,34 +17,14 @@
 #
 
 
-##
-# == RemMaps Module Definition
-#
-# A module that encapsulates all methods needed for models that are gmappable.
-module RemMaps
-  ##
-  # The address is taken directly from the _address_ attribute.
-  def gmaps4rails_address
-    address
-  end
-
-  ##
-  # This title follows a very specific and compressed format that
-  # the Javascript code understands.
-  def gmaps4rails_title
-    "#{self.name}|/places/id/#{self.id}"
-  end
-
-  ##
-  # The GMaps infowindow.
-  # WARNING: Deprecated.
-  def gmaps4rails_infowindow
-    route = Route.find(self.route_id)
-    path = "#{route.user_id}/#{route.id}/#{self.name}"
-    if File.exists? Rails.root.to_s + "/app/uploads/#{path}.jpg"
-      "/assets/#{path}.jpg"
-    else
-      "/assets/rem_user.png"
+# TODO
+module RemActivities
+  def create_activity!(model, action)
+    if model.is_a? Route
+      return if model.protected == true
+      mention = "r#{model.id}"
+      opts = { user_id: model.user_id, mention: mention, action: action }
     end
+    Activity.create!(opts)
   end
 end

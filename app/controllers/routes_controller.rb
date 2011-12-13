@@ -44,6 +44,7 @@ class RoutesController < ApplicationController
     if !@current_user.nil? && @route.save
       @route.rating = 0
       @current_user.follow! @route
+      create_activity! @route, 'created'
       respond_to do |format|
         format.json { render :json => rem_created(@route), status: 201 }
         format.html { redirect_to edit_route_url(@current_user.name, @route.id) }
@@ -132,6 +133,7 @@ class RoutesController < ApplicationController
     elsif route.user_id != @current_user.id
       error_occurred 409
     else
+      create_activity! route, 'destroyed'
       route.destroy
       respond_to do |format|
         format.json { render json: { 'msg' => 'Route destroyed', status: 200 }}
