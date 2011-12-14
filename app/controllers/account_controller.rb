@@ -27,10 +27,18 @@ class AccountController < ApplicationController
   # The _update_ method. It's called when the user wants to
   # update its settings on the account.
   def update
-    if update_user
-      redirect_to account_url, notice: 'Configuration saved!'
+    if params[:commit] == 'Change username'
+      if current_user.update_attribute(:name, params[:username])
+        redirect_to account_url, notice: 'Configuration saved!'
+      else
+        render action: 'edit', error: 'An error occurred, please try again'
+      end
     else
-      render action: 'edit', error: 'An error occurred, please try again'
+      if update_user
+        redirect_to account_url, notice: 'Configuration saved!'
+      else
+        render action: 'edit', error: 'An error occurred, please try again'
+      end
     end
   end
 
