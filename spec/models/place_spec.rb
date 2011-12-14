@@ -19,7 +19,7 @@ describe Place do
     expect { mplace.save! }.to raise_error(ActiveRecord::RecordInvalid)
     expect { nplace.save! }.not_to raise_error(ActiveRecord::RecordInvalid)
     expect { iplace.save! }.to raise_error(ActiveRecord::RecordInvalid)
-    expect { jplace.save! }.not_to raise_error(ActiveRecord::RecordInvalid)
+    expect { jplace.save! }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
   it 'validates that a route_id was given for this place' do

@@ -42,6 +42,7 @@ gem 'best_in_place'
 gem 'gravtastic'
 gem 'faker'
 gem 'heroku'
+gem 'multipart-post'
 
 # Some TDD candy
 gem "rspec-rails", :group => [:test, :development]
