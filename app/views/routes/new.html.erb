@@ -11,20 +11,31 @@
   </div>
 <% end %>
 <%= form_for @route do |f| %>
-  <fieldset class="textbox">
-    <div class="prompt name">
-      <%= r_label :name_label, 'Route name' %>
-      <%= f.text_field :name, { class: 'r_text_field' } %>
-    </div>
-    <div class="prompt desc">
-      <%= r_label :desc_label, 'Description' %>
-      <span id="desc_adv">(About this route in less than 160 chars.)</span>
-      <%= f.text_area :desc, { class: 'r_text_area' } %>
-    </div>
-    <div class="protect_route">
-      <%= f.check_box :protected %>
-      <%= r_label :protected_label, 'Keep this route protected' %>
-    </div>
-    <%= r_submit 'Create route' %>
-  </fieldset>
+  <div class="new_route_head">
+    <span>Create a brand new route!</span>
+  </div>
+  <div class="new_route_body">
+    <fieldset class="textbox">
+      <div class="prompt name">
+        <%= r_label :name_label, 'Route name' %>
+        <%= f.text_field :name, { class: 'r_text_field' } %>
+      </div>
+      <div class="prompt desc">
+        <%= r_label :desc_label, 'Description' %>
+        <span id="desc_adv">
+          (About this route in less than 160 chars.)
+        </span>
+        <%= f.text_area :desc, { class: 'r_text_area' } %>
+      </div>
+      <div class="protect_route">
+        <%= f.check_box :protected %>
+        <%= r_label :protected_label, 'Keep this route protected' %>
+      </div>
+      <% if current_user.nil? %>
+        <%= r_submit 'Create route', nil, disabled: true %>
+      <% else %>
+        <%= r_submit 'Create route', nil %>
+      <% end %>
+    </fieldset>
+  </div>
 <% end %>

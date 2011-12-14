@@ -7,14 +7,38 @@
  
 
 #new_route {
-  .textbox {
-    border:none;
+  @include borders;
+  border:1px solid #ddd;
+  background-color:#fafafa;
+  width:43%;
+  margin:auto;
+  margin-top: 20px;
+
+  .new_route_head {
+    font-size:13px;
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    background-color:darken(#fafafa, 5%);
+
+    span {
+      font-weight:bold;
+      color:#808080;
+    }    
   }
 
-  span {
-    color:#636363;
-    font-size:10px;
-    margin-left:3px;
+  .new_route_body {
+    padding:0 20px 20px 20px;
+    .textbox { border:none; }
+    .prompt {
+      margin-top:20px;
+      .r_label { font-weight:bold; }
+    }
+    span {
+      color:#636363;
+      font-size:10px;
+      margin-left:3px;
+    }
+    .r_submit { float:right; }
   }
 }
 

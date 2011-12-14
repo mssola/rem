@@ -29,10 +29,10 @@ class PlacesController < ApplicationController
   ##
   # The _new_ method. Initializes a new empty place.
   def new
+    (redirect_to root_url; return) if current_user.nil?
+
     @place = Place.new
-    @routes = Route.all(conditions: ['user_id=?', current_user.id]).map do |o|
-      [o.name, o.id]
-    end
+    @routes = current_user.routes.map { |o| [o.name, o.id] }
   end
 
   ##
