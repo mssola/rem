@@ -43,8 +43,8 @@ class RoutesController < ApplicationController
 
     if !@current_user.nil? && @route.save
       @route.rating = 0
-      @current_user.follow! @route
       create_activity! @route, 'created'
+      @current_user.follow! @route
       respond_to do |format|
         format.json { render :json => rem_created(@route), status: 201 }
         format.html { redirect_to edit_route_url(@current_user.name, @route.id) }

@@ -129,12 +129,14 @@ class User < ActiveRecord::Base
   #
   # @param *User/Route* followed The user/route we want to follow.
   def follow!(followed)
+    bool = true
     if followed.class.to_s == 'Route'
       route_relationships.create! followed_id: followed.id
     else
       relationships.create! followed_id: followed.id
+      bool = (self.id != followed.id)
     end
-    create_activity! followed, 'followed', self
+    create_activity! followed, 'followed', self.id if bool
   end
 
   ##
@@ -143,12 +145,14 @@ class User < ActiveRecord::Base
   # @param *User/Route* followed We don't want to follow this
   # user/route anymore.
   def unfollow!(followed)
+    bool = true
     if followed.class.to_s == 'Route'
       route_relationships.find_by_followed_id(followed).destroy
     else
       relationships.find_by_followed_id(followed).destroy
+      bool = (self.id != followed.id)
     end
-    create_activity! followed, 'unfollowed', self
+    create_activity! followed, 'unfollowed', self.id if bool
   end
 
   ##
