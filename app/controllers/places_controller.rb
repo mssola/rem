@@ -157,7 +157,7 @@ class PlacesController < ApplicationController
   # Helper method that calls respond_to with the given status.
   #
   # @param *Integer* status The HTTP status code.
-  def handle_error(status)
+  def handle_error(status) #:doc:
     respond_to do |format|
       format.json { render :json => rem_error(status), status: status }
     end

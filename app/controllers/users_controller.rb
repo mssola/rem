@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     else
       @routes = @user.routes
     end
-    @activities = @user.activities.sort { |a,b| b.created_at <=> a.created_at }
+    @activities = @user.activities.sort { |a, b| b.created_at <=> a.created_at }
   end
 
   ##
@@ -144,7 +144,7 @@ class UsersController < ApplicationController
   #
   # @return *Array* a two-sized array that has the route as its first element
   # and the owner's name as its last element.
-  def get_routes
+  def get_routes #:doc:
     if current_user.nil? || current_user.id != @user.id
       return @user.route_following.map do |x|
         x if x.protected == false

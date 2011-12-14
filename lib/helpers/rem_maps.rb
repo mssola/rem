@@ -37,7 +37,6 @@ module RemMaps
 
   ##
   # The GMaps infowindow.
-  # WARNING: Deprecated.
   def gmaps4rails_infowindow
     route = Route.find(self.route_id)
     path = "#{route.user_id}/#{route.id}/#{self.name}"

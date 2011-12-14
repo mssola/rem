@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 #
 # Author:: Copyright (C) 2011  Miquel Sabaté (mikisabate@gmail.com)
 # License::
@@ -19,11 +21,13 @@
 
 
 ##
-# == Activity Class Definition
-#
-# Represents an activity. An activity is an action performed by an user
-# over either another user, route, or place.
-class Activity < ActiveRecord::Base
-  validates_presence_of :user_id, :mention, :action
-  belongs_to :user
-end
+# Extend the doc namespace with the lib task to generate the
+# documentation of the lib directory.s
+namespace :doc do
+  desc 'Documentate the lib directory'
+  task lib: :environment do
+    src = Rails.root.join('lib')
+    dst = Rails.root.join('doc', 'lib')
+    `rdoc #{src} -o #{dst}`
+  end
+end 

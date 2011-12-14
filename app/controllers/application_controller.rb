@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   #
   # @return *User* The current logged in Android user or nil if there's
   # no currently logged in Android user.
-  def android_user
+  def android_user #:doc:
     if params[:auth_token]
       @current_user ||= User.find_by_auth_token!(params[:auth_token])
     end
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   # Helper method that performs a response for a rem error.
   #
   # @param *Integer* status The Http status code.
-  def error_occurred(status)
+  def error_occurred(status) #:doc:
     respond_to do |format|
       format.json { render json: rem_error(status), status: status }
       format.xml  { render xml: rem_error(status), status: status }

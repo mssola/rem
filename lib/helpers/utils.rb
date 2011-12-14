@@ -45,4 +45,15 @@ module Utils
   def valid_email?(email)
     /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.match(email)
   end
+
+  ##
+  # Convert km to miles. This is useful when using the geocoder gem
+  # since it takes distance in miles.
+  #
+  # @param *Integer* dist The distance in km.
+  #
+  # @return *Double* the same distance in miles.
+  def km_to_miles(dist)
+    (distance * 0.6214).round(4)
+  end
 end

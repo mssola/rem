@@ -61,7 +61,7 @@ class Place < ActiveRecord::Base
   # @param *Integer* distance The distance in km where this method should
   # be aware of.
   def nearby(cu, distance)
-    nearbys((distance * 0.6214).round(4)).map do |n|
+    nearbys(km_to_miles(distance)).map do |n|
       user = User.find(Route.find(n.route_id).user_id)
       if user.id == cu.id || cu.bi_following?(user)
         n
