@@ -31,13 +31,9 @@ require 'fileutils'
 # Be aware that this module is expected to be mixed in a controller. This is
 # because it needs to access to the params hash among other things.
 module Uploader
-  ##
-  # To help on building the response hash.
   include RemResponse
-
-  ##
-  # Let's include the helper method create_activity!
   include RemActivities
+  include RemGeocoder
 
   ##
   # Constant containing the base directory for the uploads.
@@ -161,10 +157,12 @@ module Uploader
   #
   # @return *Hash* a hash containing the fields we can set right now.
   def prepare_place(route, name)
+    latlng = [params['latitude'], params['longitude']]
     name.match /(.+)\.(jpg)/
     {
       route_id: route, name: $1,
-      longitude: params['longitude'], latitude: params['latitude']
+      longitude: latlng.last, latitude: latlng.first,
+      address: reverse_geocode(latlng)
     }
   end
 end

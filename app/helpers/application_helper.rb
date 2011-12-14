@@ -44,7 +44,11 @@ module ApplicationHelper
   #
   # @param *User* user The current user.
   def get_avatar_of(user, height = 20)
-    url = (user.email.empty?) ? 'rem_user.png' : user.gravatar_url
+    if user.nil? || user.email.nil? || user.email.empty?
+      url = 'rem_user.png'
+    else
+      url = user.gravatar_url
+    end
     image_tag url, height: height.to_s
   end
 

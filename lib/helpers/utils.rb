@@ -54,6 +54,6 @@ module Utils
   #
   # @return *Double* the same distance in miles.
   def km_to_miles(dist)
-    (distance * 0.6214).round(4)
+    (dist * 0.6214).round(4)
   end
 end
