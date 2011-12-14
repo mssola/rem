@@ -1,3 +1,39 @@
 = Rem
 
-== TODO
+== About the project
+
+This is a Rails application that forms part of a project of a University
+course. The project is about a social network that let the users create
+routes and share them with their friends. It also has a Rest API that let an
+Android terminal to interact with the site. This project contains the
+website (this same repository) and an Android app that interacts with
+this site (find it at https://github.com/edpons/rem_android.git).
+
+== About the programmers
+
+There are three programmers behind this project:
+
+  - Miquel Sabaté, responsible of the website and the design of the API.
+  - Ruben Gómez, main programmer of the Android application.
+  - Enric Domènech, designer of the DB and helper on the Android app.
+
+
+== About this website
+
+This website is using Rails v3.1. Therefore, to set it up you have to install
+all the required gems (through bundle command), configure the DB connections
+(config/database.yml file) and migrate the DB. Moreover, you can also make sure
+that all the tests are passing by calling:
+
+  $ guard
+
+Note that the guard gem is using libnotify, make sure to have this installed
+on your computer. Also note that the server is expected to run on Linux.
+You can launch this site by calling:
+
+  $ rails s -e production
+
+This will boot WEBrick in the production environment. Alternatively, there's also
+some NGinx and Unicorn basic configuration inside the config/ directory if you
+don't want to run this site with WEBrick. Place the files where necessary to
+have the NGinx/Unicorn combo properly configured.
