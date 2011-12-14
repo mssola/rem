@@ -4,7 +4,6 @@
   <ul id="account_tabs" >
     <li class="selected"><a href="account">Public Profile</a></li>
     <li><a href="account/admin">Account Admin</a></li>
-    <li><a href="account/notification">Notifications</a></li>
   </ul>
   <% present current_user do |up| %>
     <fieldset id="user_bucket">
@@ -12,9 +11,6 @@
     </fieldset>
     <fieldset id="admin_bucket" type="hidden">
       <%= render partial: 'admin_bucket', locals: { up: up } %>
-    </fieldset>
-    <fieldset id="notification_bucket" type="hidden">
-      <%= render partial: 'notification_bucket', locals: { up: up } %>
     </fieldset>
   <% end %>
 </div>

@@ -32,13 +32,13 @@
   border-bottom:none;
   padding:10px;
   margin-right:50px;
+  padding-left:50px;
 
   .r_label { font-weight:bold; }
 }
 
 #user_bucket {
   @include bucket_base;
-  padding-left:50px;
 
   span {
     color:#636363;
@@ -62,7 +62,6 @@
 
 #admin_bucket {
   @include bucket_base;
-  padding-left:50px;
   .r_label { font-weight:normal; }
   .r_raw_field { margin-top:5px; }
   strong { color:#636363; }
@@ -80,6 +79,3 @@
   }
 }
 
-#notification_bucket {
-  @include bucket_base;
-}
