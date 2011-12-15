@@ -19,9 +19,9 @@
   <% case mention[0] %>
   <% when 'u' %>
     <a href=<%="/#{to.name}"%>><%= to.name %></a>.
-  <% when 'r'; [Route.find(mention[1..-1]), 'route'] %>
+  <% when 'r' %>
     <a href=<%="/#{name}/#{to.id}"%>><%= to.name %></a>.
-  <% when 'p'; [Place.find(mention[1..-1]), 'place'] %>
+  <% when 'p' %>
     <a href=<%="/places/id/#{to.id}"%>><%= to.name %></a>.
   <% end %>
   <div class="stretch"></div>

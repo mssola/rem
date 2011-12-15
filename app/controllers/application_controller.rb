@@ -28,14 +28,14 @@ class ApplicationController < ActionController::Base
   include Utils
 
   protect_from_forgery
-  force_ssl
+#   force_ssl
   helper_method :current_user
 
   # Setting gettext locale
   before_filter :set_gettext_locale
 
   # Handle ActiveRecord::RecordNotFound exceptions.
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+#   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   protected
 

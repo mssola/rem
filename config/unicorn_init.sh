@@ -7,7 +7,7 @@ set -e
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/home/mssola/Projects/rem/
 PID=$APP_ROOT/tmp/pids/unicorn.pid
-RAILS_ENV="production"
+RAILS_ENV="development"
 CMD="unicorn -D -c $APP_ROOT/config/unicorn.rb -E $RAILS_ENV"
 action="$1"
 set -u
