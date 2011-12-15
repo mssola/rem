@@ -53,6 +53,6 @@ module RemActivities
 
   # TODO
   def destroy_activity!(model)
-    Activity.update_by_sql("UPDATE activities SET destr = true WHERE mention_id = #{model.id}")
+    Activity.update_by_sql("UPDATE activities SET destr = true WHERE mention_id = #{model.id} AND mention_name = #{model.name}")
   end
 end

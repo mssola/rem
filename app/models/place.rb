@@ -32,6 +32,7 @@ class Place < ActiveRecord::Base
   include Utils
 
   validates_with PlaceValidator, :on => :create
+  validates_presence_of :name, :on => :create
   validates_uniqueness_of :name, :scope => :route_id
   validates_length_of :desc, :maximum => 160
 

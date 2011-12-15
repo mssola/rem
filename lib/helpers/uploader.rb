@@ -103,6 +103,15 @@ module Uploader
     rescue ActiveRecord::RecordNotFound; [rem_error(404), 404]
   end
 
+  # TODO
+  def replace_photo!(model, old_name)
+    route = model.route
+    path = File.join(BASE, route.user.id.to_s, route.id.to_s)
+    old = File.join(path, old_name, '.jpg')
+    path = File.join(path, model.name, '.jpg')
+    FileUtils.mv(old, path)
+  end
+
   ##
   # Helper methods.
 

@@ -45,7 +45,8 @@ class PlacesController < ApplicationController
       redirect_to edit_route_url(current_user.name, @place.route_id),
                   :notice => 'Place created successfully'
     else
-      redirect_to new_place_url, :alert => 'Place already exists'
+      @routes = current_user.routes.map { |o| [o.name, o.id] }
+      render 'new'
     end
   end
 
@@ -66,9 +67,11 @@ class PlacesController < ApplicationController
   # is requesting it. Otherwise, the response format will be html.
   def update
     @place = Place.find(params[:id])
+    old_name = @place.name
 
     respond_to do |format|
       if @place.update_attributes(params[:place])
+        replace_photo!(@place, old_name) if @place.name != old_name
         format.html { redirect_to map_place_url, :notice => 'Place updated successfully' }
         format.json { head :ok }
       else

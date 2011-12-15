@@ -4,14 +4,14 @@
 <% else %>
 <li class="public route">
 <% end %>
-  <%= link_to "#{route.name}", "/#{@user.name}/#{route.id}", :class => 'route_name' %>
+  <%= link_to "#{route.name}", "/#{route.user.name}/#{route.id}", :class => 'route_name' %>
   <ul class="route-stats">
     <% if route.protected %>
       <li class="protected_watchers" title="Watchers">
     <% else %>
       <li class="watchers" title="Watchers">
     <% end %>
-      <%= link_to route.followers.count, followers_route_url(@user.name, route.id) %>
+      <%= link_to route.followers.count, followers_route_url(route.user.name, route.id) %>
     </li>
   </ul>
   <% if defined? home %>
