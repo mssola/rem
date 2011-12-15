@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   # @param *Hash* auth This is a hash with important info related to
   # this new user. It follows the OAuth format.
   def self.create_with_omniauth(auth)
-    info = auth['user_info']
+    info = auth['info']
     urls = cleanup_urls(info['urls'])
     create! do |user|
       user.name = info['nickname']
