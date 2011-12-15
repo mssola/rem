@@ -120,7 +120,7 @@ class PlacesController < ApplicationController
   # redirects the user to the home page.
   def destroy
     place = Place.find(params[:id])
-    create_activity! place, 'destroyed'
+    destroy_activity! place
     place.destroy
     redirect_to root_url, :notice => 'Place destroyed'
   end

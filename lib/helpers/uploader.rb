@@ -95,7 +95,7 @@ module Uploader
     m_base = File.join(BASE, android_user.id.to_s, place.route_id.to_s, m_file)
     return [rem_error(404), 404] unless File.exists?(m_base)
 
-    create_activity! place, 'destroyed', place.route.user.id
+    destroy_activity! place
     place.destroy
     FileUtils.rm(m_base)
     [{ :msg => 'Place removed successfully' }, 200]

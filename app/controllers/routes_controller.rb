@@ -131,7 +131,7 @@ class RoutesController < ApplicationController
     elsif route.user_id != @current_user.id
       error_occurred 409
     else
-      create_activity! route, 'destroyed'
+      destroy_activity! route
       route.destroy
       respond_to do |format|
         format.json { render json: { 'msg' => 'Route destroyed', status: 200 }}

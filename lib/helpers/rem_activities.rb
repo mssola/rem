@@ -35,16 +35,24 @@ module RemActivities
       return if model.protected == true
       mention = "r#{model.id}"
       owner ||= model.user_id
-      opts = { user_id: owner, mention: mention, action: action }
+      opts = { user_id: owner, mention: mention,
+               action: action, mention_id: model.id, mention_name: model.name }
     elsif model.is_a? Place
       mention = "p#{model.id}"
       route = Route.find(model.route_id)
-      opts = { user_id: route.user_id, mention: mention, action: action }
+      opts = { user_id: route.user_id, mention: mention,
+               action: action, mention_id: model.id, mention_name: model.name }
     else
       mention = "u#{model.id}"
       owner ||= model.id
-      opts = { user_id: owner, mention: mention, action: action }
+      opts = { user_id: owner, mention: mention,
+               action: action, mention_id: model.id, mention_name: model.name }
     end
     Activity.create!(opts)
+  end
+
+  # TODO
+  def destroy_activity!(model)
+    Activity.update_by_sql("UPDATE activities SET destr = true WHERE mention_id = #{model.id}")
   end
 end

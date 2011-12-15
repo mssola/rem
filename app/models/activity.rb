@@ -26,4 +26,9 @@
 class Activity < ActiveRecord::Base
   validates_presence_of :user_id, :mention, :action
   belongs_to :user
+
+  # TODO
+  def self.update_by_sql(sql)
+    connection.update(sql)
+  end
 end

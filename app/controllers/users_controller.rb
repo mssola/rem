@@ -89,6 +89,7 @@ class UsersController < ApplicationController
   # user on our database and delete the auth_token on the cookies.
   def destroy
     @user = User.find(params[:id])
+    destroy_activity! @user
     @user.destroy
     cookies.delete(:auth_token)
     redirect_to root_url, :notice => _('Account deleted')

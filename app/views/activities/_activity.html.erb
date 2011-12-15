@@ -5,6 +5,20 @@
   <%= get_avatar_of activity.user, 32 %>
 </div>
 
+<% if activity.destr %>
+  <% name = activity.user.name %>
+  <% ment = case activity.mention[0] %>
+  <% when 'u'; 'user' %>
+  <% when 'r'; 'route' %>
+  <% when 'p'; 'place' %>
+  <% end %>
+  <div class="activity_desc">
+    <a href=<%="/#{name}"%>><%= name %></a> <%= activity.action %> <%= "#{ment} #{activity.mention_name} " %>
+    <div class="stretch"></div>
+  </div>
+  </div>
+<% else %>
+
 <% mention = activity.mention %>
 <% to = '' %>
 <% to, ment = case mention[0] %>
@@ -28,3 +42,5 @@
 </div>
 
 </div>
+
+<% end %>
