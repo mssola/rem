@@ -1,5 +1,5 @@
 
-<% cond = (current_user.id == @route.user_id) %>
+<% cond = (!current_user.nil? && current_user.id == @route.user_id) %>
 
 <% if cond %>
   <div id="search_map" class="edit_place_searchmap">

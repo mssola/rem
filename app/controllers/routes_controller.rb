@@ -76,8 +76,6 @@ class RoutesController < ApplicationController
     end
     @places.each { |p| puts p.name }
     @markers = @places.to_gmaps4rails
-
-    rescue ActiveRecord::RecordNotFound; redirect_to root_url, :notice => 'Route not found'
   end
 
   ##

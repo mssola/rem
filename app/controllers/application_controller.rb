@@ -34,6 +34,9 @@ class ApplicationController < ActionController::Base
   # Setting gettext locale
   before_filter :set_gettext_locale
 
+  # Handle ActiveRecord::RecordNotFound exceptions.
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
   protected
 
   ##
@@ -67,5 +70,11 @@ class ApplicationController < ActionController::Base
       format.json { render json: rem_error(status), status: status }
       format.xml  { render xml: rem_error(status), status: status }
     end
+  end
+
+  ##
+  # Called whenever ActiveRecord::RecordNotFound is raised.
+  def record_not_found
+    render "#{Rails.root}/public/404.html"
   end
 end

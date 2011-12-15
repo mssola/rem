@@ -38,12 +38,6 @@ module RemMaps
   ##
   # The GMaps infowindow.
   def gmaps4rails_infowindow
-    route = Route.find(self.route_id)
-    path = "#{route.user_id}/#{route.id}/#{self.name}"
-    if File.exists? Rails.root.to_s + "/app/uploads/#{path}.jpg"
-      "/assets/#{path}.jpg"
-    else
-      "/assets/rem_user.png"
-    end
+    address
   end
 end

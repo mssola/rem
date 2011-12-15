@@ -39,3 +39,18 @@ a:link, a:visited {
   color:#27b;
   text-decoration:none;
 }
+
+.error_dialog {
+  width: 25em;
+  padding: 0 4em;
+  margin: 2em auto 0 auto;
+  border: 1px solid #ccc;
+  border-right-color: #999;
+  border-bottom-color: #999;
+
+  h1 {
+    font-size: 100%;
+    color: #f00;
+    line-height: 1.5em;
+  }
+}
