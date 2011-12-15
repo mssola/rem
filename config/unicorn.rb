@@ -3,7 +3,7 @@
 
 
 # Feel free to change any of the following constants for your app:
-WD = '/home/mssola/Desktop/fib/ac/pxc/rem/rem/'
+WD = '/home/mssola/Projects/rem/'
 NCORES = `cat /proc/cpuinfo | grep 'cores' | uniq | sed 's/[^0-9]//g'`.to_i
 
 # Setting up the working directory and some paths
