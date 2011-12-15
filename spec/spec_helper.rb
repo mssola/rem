@@ -43,9 +43,6 @@ Spork.prefork do
     config.include(MailerMacros)
     config.before(:each) { reset_email }
 
-    # Include ResponseUtils so we can check the Rest API
-    config.include(ResponseUtils)
-
     # Testing Multipart requests
     config.include(MPTester)
 
