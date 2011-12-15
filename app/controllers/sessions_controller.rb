@@ -126,7 +126,7 @@ class SessionsController < ApplicationController
   def other_auth(h) #:doc:
     auth = Authentication.find_by_provider_and_uid(h['provider'], h['uid'])
     if auth.nil?
-      info = h['user_info']
+      info = h['info']
       account = check_user_account info
       if account
         account.name = info['nickname'] if account.name == ""
