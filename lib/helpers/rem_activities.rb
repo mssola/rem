@@ -51,8 +51,11 @@ module RemActivities
     Activity.create!(opts)
   end
 
-  # TODO
+  ##
+  # Destroy an activity.
+  #
+  # @param *ActiveRecord::Base* model The implied model.
   def destroy_activity!(model)
-    Activity.update_by_sql("UPDATE activities SET destr = true WHERE mention_id = #{model.id} AND mention_name = #{model.name}")
+    Activity.update_by_sql("UPDATE activities SET destr = true WHERE mention_id = #{model.id}")
   end
 end

@@ -103,12 +103,17 @@ module Uploader
     rescue ActiveRecord::RecordNotFound; [rem_error(404), 404]
   end
 
-  # TODO
+  ##
+  # This method replaces a photo by renaming it.
+  #
+  # @param *ActiveRecord::Base* model The new model row.
+  #
+  # @param *String* old_name The old name for this row.
   def replace_photo!(model, old_name)
     route = model.route
     path = File.join(BASE, route.user.id.to_s, route.id.to_s)
-    old = File.join(path, old_name, '.jpg')
-    path = File.join(path, model.name, '.jpg')
+    old = File.join(path, old_name + '.jpg')
+    path = File.join(path, model.name + '.jpg')
     FileUtils.mv(old, path)
   end
 
