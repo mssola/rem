@@ -125,7 +125,7 @@ class UsersController < ApplicationController
       mroutes = @user.routes
     else
       mroutes = @user.public_routes
-      if ((current_user.id != @user.id) && !(@user.bi_following?(current_user)))
+      if (current_user.nil? || (current_user.id != @user.id) && !(@user.bi_following?(current_user)))
         @routes = @user.public_routes
       else
         @routes = @user.routes
